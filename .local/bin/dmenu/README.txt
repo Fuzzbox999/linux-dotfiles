@@ -29,13 +29,13 @@ which provides an extended dmenu with recent applications, web search and packag
 In the i3/config file you can add for instance :
 
 # Original dmenu :
-bindsym $mod+t exec $HOME/.bin/dmenu/dmenu-run_wrapper
+bindsym $mod+t exec $HOME/.local/bin/dmenu/dmenu-run_wrapper
 
 # i3 dmenu == localised applications names :
-bindsym $mod+Shift+t exec i3-dmenu-desktop --dmenu='$HOME/.bin/dmenu/dmenu-extended_wrapper -i'
+bindsym $mod+Shift+t exec i3-dmenu-desktop --dmenu='$HOME/.local/bin/dmenu/dmenu-extended_wrapper -i'
 
 # List of running windows :
-bindsym $mod+w exec $HOME/.bin/dmenu/dmenu-show-opened-windows
+bindsym $mod+w exec $HOME/.local/bin/dmenu/dmenu-show-opened-windows
 
 # Morc menu :
 bindsym $mod+Shift+d exec morc_menu
