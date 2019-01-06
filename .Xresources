@@ -1,0 +1,18 @@
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    full
+URxvt*saveLines: 100000
+URxvt*visualBell: true
+URxvt*font: xft:Hermit-medium Term:medium:pixelsize=12:antialias=true:hinting=true
+URxvt*boldFont: xft:Hermit-bold Term:pixelsize=12:antialias=true:hinting=true
+URxvt*scrollBar:	false
+URxvt*scrollstyle:	rxvt
+URxvt*internalBorder:  25
+URxvt*letterSpace: +2
+URxvt*geometry:  105x26
+URxvt*fading:  10
+URxvt.perl-ext-common: resize-font
+!Xcursor.theme: Chameleon-Pearl-Regular-0.5
+!URxvt.transparent:   true
+!URxvt*shading:	90
+

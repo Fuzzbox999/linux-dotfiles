@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# Custom script to start i3wm.
+# It's run by /usr/share/xsessions/custom-i3.desktop (used by the login manager).
+
+xset +fp /home/fuzzbox/.fonts
+xset fp rehash
+
+wal -R
+
+exec i3

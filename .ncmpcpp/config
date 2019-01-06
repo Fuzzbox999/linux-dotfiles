@@ -1,0 +1,20 @@
+####################################################
+## this is example configuration file, copy it to ##
+## ~/.ncmpcpp/config and set up your preferences  ##
+####################################################
+ 
+##### colors definitions #####
+colors_enabled = "yes"
+user_interface = "classic"
+follow_now_playing_lyrics = "yes"
+fetch_lyrics_for_current_song_in_background = "yes"
+song_columns_list_format = "(25)[]{a}(40)[white]{t|f}(7f)[cyan]{l}"
+
+header_visibility = "no"
+titles_visibility = "yes"
+progressbar_look = "━━━"
+#progressbar_look = "───"
+#progressbar_color = "black"
+#progressbar_boldness = "yes"
+song_status_format = "$b$6%t$/b {$8by} $b$6%a$8$/b"
+song_list_format = "{$8%a ⠂ }{%t}$R{%l}"

@@ -1,0 +1,23 @@
+#!/bin/bash
+# Script used to adjust the volume using keyboard keys while adding a max limit at 200%.
+# Keys are binded by i3 using i3/config
+
+MIN=0
+MAX=200
+VAL=$(pacmd list-sinks | grep "volume" | head -n1 | cut -d: -f3 | cut -d% -f1 |cut -d/ -f2 |xargs)
+
+if [ "$1" = down ]; then
+	VAL=$((VAL-5))
+elif [ "$1" = up ]; then
+	VAL=$((VAL+5))
+else
+	VAL=$VAL
+fi
+
+if [ "$VAL" -lt $MIN ]; then
+	VAL=$MIN
+elif [ "$VAL" -gt $MAX ]; then
+	VAL=$MAX
+fi
+
+pactl set-sink-volume 0 "$VAL"%

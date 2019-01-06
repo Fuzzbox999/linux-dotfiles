@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Script called by i3wm from its config file.
+# It's a wrapper which applies the font and color theme imported from $HOME/.bin/dmenu/dmenu-theme-config to call default /usr/bin/dmenu_run.
+# dmenu-theme-config makes use of Pywal generated colors.
+
+. "$HOME/.local/bin/dmenu/dmenu-theme-config"
+
+display=$(i3-msg -t get_workspaces | jq '.[] | select(.focused == true) | .rect' |jq .width)
+
+if [ $display = "1366" ]; then
+	position='-x 383 -y 360 -W 600'
+elif [ $display = "1600" ]; then
+        position='-x 500 -y 425 -W 600'
+elif [ $display = "1920" ]; then
+	position='-x 660 -y 515 -W 600'
+else position='-x 383 -y 180 -W 600'
+fi
+
+/usr/bin/dmenu_run $height $position $font $colors -p Run:

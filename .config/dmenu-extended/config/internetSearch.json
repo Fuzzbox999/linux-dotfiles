@@ -1,0 +1,41 @@
+{
+    "default": "Google",
+    "providers": [	    
+	{
+	    "title": "Duckduckgo",
+	    "url": "https://duckduckgo.com/html/?q={searchterm}"
+	},
+	{
+	    "title": "Duckduckgo images",
+	    "url": "https://duckduckgo.com/?q={searchterm}&iax=images&ia=images"
+	},
+	{
+	    "title": "Arch AUR",
+	    "url": "https://aur.archlinux.org/packages/?O=&K={searchterm}"
+	},
+	{
+	    "title": "Arch Wiki",
+	    "url": "https://wiki.archlinux.org/index.php?search={searchterm}"
+	},
+        {
+            "title": "Github",
+            "url": "https://github.com/search?q={searchterm}"
+        },
+	{
+	    "title": "Wallhaven wallpapers",
+	    "url": "https://alpha.wallhaven.cc/search?q={searchterm}"
+	},
+	{
+            "title": "Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Special:Search?search={searchterm}"
+        },
+	{
+            "title": "Google",
+            "url": "https://www.google.com/search?q={searchterm}"
+        },
+        {
+            "title": "Google images",
+            "url": "https://www.google.com/images?q={searchterm}"
+        }
+        ]
+}

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+. $HOME/.local/bin/dmenu/dmenu-theme-config
+
+display=$(i3-msg -t get_workspaces | jq '.[] | select(.focused == true) | .rect' |jq .width)
+
+if [ $display = "1366" ]; then
+	position='-x 383 -y 244 -W 600'
+elif [ $display = "1600" ]; then
+        position='-x 500 -y 330 -W 600'
+elif [ $display = "1920" ]; then
+	position='-x 660 -y 400 -W 600'
+else position='-x 383 -y 180 -W 600'
+fi
+
+# echo "
+# Search bash history :"
+
+# read action
+
+# command=$(grep $action $HOME/.bash_history|dmenu $font $colors $height $position -l 10)
+
+command=$(cat $HOME/.bash_history|dmenu $font $colors $height $position -l 10)
+
+exec_or_cp=$(echo -e "Run\nCopy"|dmenu -i $font $colors $height $position)
+
+if [ $exec_or_cp == "Run" ]; then
+	exec $command
+else
+	echo "$command"|xclip -selection "primary"
+fi
+
