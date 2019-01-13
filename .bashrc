@@ -28,6 +28,8 @@ alias ccl='cd && clear'
 alias bh='$HOME/.local/bin/dmenu/dmenu-search-bash-history'
 
 alias pac='sudo pacman'
+alias mirrors='sudo reflector --country France --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
+alias autoremove='pac -Rns $(pacman -Qtdq)'
 
 alias config='/usr/bin/git --git-dir=$HOME/.local/dotfiles/ --work-tree=$HOME'
 
