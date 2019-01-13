@@ -17,4 +17,4 @@ elif [ $display = "1600" ]; then
 else position='-x 383 -y 180 -W 600'
 fi
 
-dmenu $height $position $font $colors -p Run: -l 8 -i "$1"
+dmenu $height $position $font $colors -l 8 -i "$1"

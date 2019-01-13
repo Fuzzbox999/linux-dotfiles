@@ -17,4 +17,4 @@ elif [ $display = "1920" ]; then
 else position='-x 383 -y 180 -W 600'
 fi
 
-/usr/bin/dmenu_run $height $position $font $colors -p Run:
+/usr/bin/dmenu_run $height $position $font $colors
