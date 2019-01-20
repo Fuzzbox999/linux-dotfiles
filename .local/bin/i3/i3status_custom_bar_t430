@@ -1,0 +1,99 @@
+#!/bin/bash
+
+# Modified version based on Keheliya Gallaba script :
+# https://keheliya.blogspot.com/2018/01/weather-info-in-i3status.html
+# Requires numlockx and ncmpcpp to be installed... and used.
+# Brightness works for amdgpu chipset.
+# $size checks my fetchmail/mutt inbox for new mail
+
+# Import (Pywal) colors
+. "$HOME/.cache/wal/colors.sh"
+
+i3status | (read line && echo "$line" && read line && echo "$line" && read line && echo "$line" && while :
+
+do
+  	read line
+
+. "$HOME/.local/etc/pkg-status"
+# . "$HOME/.local/etc/sun"
+
+# Change this color to change the main text color
+linecolor=${color7}
+
+freq0=$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq)
+freq1=$(cat /sys/devices/system/cpu/cpufreq/policy1/scaling_cur_freq)
+freq2=$(cat /sys/devices/system/cpu/cpufreq/policy2/scaling_cur_freq)
+freq3=$(cat /sys/devices/system/cpu/cpufreq/policy3/scaling_cur_freq)
+freq4=$(cat /sys/devices/system/cpu/cpufreq/policy4/scaling_cur_freq)
+freq5=$(cat /sys/devices/system/cpu/cpufreq/policy5/scaling_cur_freq)
+freq6=$(cat /sys/devices/system/cpu/cpufreq/policy6/scaling_cur_freq)
+freq7=$(cat /sys/devices/system/cpu/cpufreq/policy7/scaling_cur_freq)
+moy=$((($freq0+$freq1+$freq2+$freq3+$freq4+$freq5+$freq6+$freq7)/8000))
+
+lvl=$(cat /proc/acpi/ibm/fan |grep level:|cut -d: -f 2|xargs)
+
+# mem use
+memtotal=$(cat /proc/meminfo |grep MemTotal|cut -d: -f 2|cut -dk -f 1)
+memfree=$(cat /proc/meminfo |grep MemFree|cut -d: -f 2|cut -dk -f 1|xargs)
+mempercent=$((($memtotal-$memfree)*100/$memtotal))
+swptotal=$(cat /proc/meminfo |grep SwapTotal|cut -d: -f 2|cut -dk -f 1)
+swpfree=$(cat /proc/meminfo |grep SwapFree|cut -d: -f 2|cut -dk -f 1|xargs)
+swppercent=$((($swptotal-$swpfree)*100/$swptotal))
+
+	# current song
+	artist=$(ncmpcpp --current-song "%a"|cut -d";" -f 2)
+	title=$(ncmpcpp --current-song "%t"|cut -d"(" -f 1)
+	if [ -d ${artist} ]; then
+		icon=""
+		sep=""
+	 else 	icon=""
+		sep="-"
+	 fi
+
+	# capslock status
+	capslock=$(xset -q|grep Caps|cut -d: -f 3|cut -d0 -f1|xargs)
+	if [ $capslock = "off" ]; then
+	      	colorc=${linecolor}
+		numc=" "
+	else 	colorc="#ff0000"
+		numc=" "
+	fi
+
+	# display brightness
+	bt=$(cat /sys/class/backlight/intel_backlight/actual_brightness)
+	btp=$(($bt*100/4437))
+
+
+	# check new mail in fetchmail/mutt inbox
+	size0=$(stat --printf="%s" /home/fuzzbox/.mutt/perso/inbox)
+	size1=$(stat --printf="%s" /home/fuzzbox/.mutt/pro/inbox)
+	size2=$(stat --printf="%s" /home/fuzzbox/.mutt/gmail/inbox)
+	if [ $size0 = "0" ] && [ $size1 = "0" ] && [ $size2 = "0" ]; then
+		mcolor=${linecolor}
+		mailtxt="No mail"
+		check=""
+	else
+		mcolor="${color5}"
+		mailtxt="Got mail"
+		check=""
+	fi
+
+	# fan
+	# fan=$(cat /proc/acpi/ibm/fan |grep speed |cut -d: -f 2 |xargs)
+	fan=$(cat /sys/class/hwmon/hwmon1/fan1_input)
+
+	# higher temp
+	core=$(cat /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input)
+	coretemp=$(($core/1000))
+	#cpufreq=$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq)
+	#freq=$(($cpufreq/1000))
+
+# layout
+#echo ",[{\"full_text\":\"${icon}  ${artist} ${sep} ${title}\",\"color\":\"${linecolor}\" },{\"full_text\":\"${check} ${mailtxt}\",\"color\":\"${mcolor}\" },{\"full_text\":\"Mem ${mempercent}% - ${swppercent}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" ${btp}%\",\"color\":\"${linecolor}\" },{\"full_text\":\"${numc} Caps\",\"color\":\"${colorc}\" },{\"full_text\":\" $upgradeable pkg / $installed\",\"color\":\"${linecolor}\" },{\"full_text\":\"${fan} rpm\",\"color\":\"${linecolor}\" },{\"full_text\":\" ${temp}°C\",\"color\":\"${linecolor}\" },${line#,\[}" || exit 1
+# done)
+
+#echo ",[{\"full_text\":\"${icon}  ${artist} ${sep} ${title}\",\"color\":\"${linecolor}\" },{\"full_text\":\"${check} ${mailtxt}\",\"color\":\"${mcolor}\" },{\"full_text\":\"Mem ${mempercent}% - ${swppercent}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" ${btp}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" $upgradeable pkg / $installed\",\"color\":\"${linecolor}\" },{\"full_text\":\"${fan} rpm\",\"color\":\"${linecolor}\" },${line#,\[}" || exit 1
+#done)
+
+echo ",[{\"full_text\":\"${icon}  ${artist} ${sep} ${title}\",\"color\":\"${linecolor}\" },{\"full_text\":\"Mem ${mempercent}% - ${swppercent}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" ${btp}%\",\"color\":\"${linecolor}\" },{\"full_text\":\"${numc} Caps\",\"color\":\"${colorc}\" },{\"full_text\":\" $upgradeable pkg / $installed\",\"color\":\"${linecolor}\" },{\"full_text\":\" ${moy} MHz - ${coretemp}°C\",\"color\":\"${linecolor}\" },{\"full_text\":\"Fan : Level ${lvl} - ${fan} rpm\",\"color\":\"${linecolor}\" },${line#,\[}" || exit 1
+done)
