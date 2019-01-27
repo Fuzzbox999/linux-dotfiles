@@ -63,6 +63,7 @@ set $w4 4:Work
 set $w5 5:Web
 set $w6 6:Photo
 set $w7 7:Code
+set $w8 8:Music
 
 # I wish I had 6
 set $monitor1 LVDS-1
@@ -75,6 +76,7 @@ workspace $w4 output $monitor2
 workspace $w5 output $monitor2
 workspace $w6 output $monitor2
 workspace $w7 output $monitor2
+workspace $w8 output $monitor2
 
 assign [class="Firefox|qutebrowser"] $w5
 assign [class="libreoffice"] $w4
@@ -90,7 +92,7 @@ bindsym $mod+apostrophe workspace $w4
 bindsym $mod+parenleft workspace $w5
 bindsym $mod+minus workspace $w6
 bindsym $mod+egrave workspace $w7
-bindsym $mod+underscore workspace 8
+bindsym $mod+underscore workspace $w8
 bindsym $mod+ccedilla workspace 9
 bindsym $mod+agrave workspace 10
 
@@ -101,7 +103,7 @@ bindsym $mod+Shift+4 move container to workspace $w4
 bindsym $mod+Shift+5 move container to workspace $w5
 bindsym $mod+Shift+6 move container to workspace $w6
 bindsym $mod+Shift+egrave move container to workspace $w7
-bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+8 move container to workspace $w8
 bindsym $mod+Shift+ccedilla move container to workspace 9
 bindsym $mod+Shift+agrave move container to workspace 10
 
@@ -313,7 +315,7 @@ exec --no-startup-id dockd --daemon
 exec --no-startup-id /home/fuzzbox/.local/bin/system/create_env_vars.sh
 exec --no-startup-id compton --vsync opengl --backend glx --paint-on-overlay -c -l 1 -t 1 -o 0.5 -r 5 -f --opacity-rule "95:class_g = 'URxvt'" --opacity-rule "90:class_g = 'dmenu'" --opacity-rule "90:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C -z
 # exec --no-startup-id nm-applet
-exec --no-startup-id xautolock -time 10 -locker /home/fuzzbox/.local/bin/i3/i3lock_custom
+exec --no-startup-id xautolock -corners 000- -cornersize 30 -time 10 -locker /home/fuzzbox/.local/bin/i3/i3lock_custom
 # exec --no-startup-id mopidy -q
 exec --no-startup-id redshift -l 48.49:2.3 -t 5500:3500
 exec --no-startup-id pactl set-sink-volume 0 35%
