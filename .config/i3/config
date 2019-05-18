@@ -205,6 +205,7 @@ client.background       $bg
 # One bar per monitor
 bar {
 	output LVDS-1
+	#position top
 	tray_output primary
 	status_command /home/fuzzbox/.local/bin/i3/i3status_custom_bar
 	font pango:FontAwesome, Ubuntu Medium 8
@@ -314,7 +315,8 @@ exec --no-startup-id udiskie --no-tray
 exec --no-startup-id wal -R
 exec --no-startup-id dockd --daemon
 exec --no-startup-id /home/fuzzbox/.local/bin/system/create_env_vars.sh
-exec --no-startup-id compton --vsync opengl --backend glx --paint-on-overlay -c -l 1 -t 1 -o 0.5 -r 5 -f --opacity-rule "95:class_g = 'URxvt'" --opacity-rule "95:class_g = 'dmenu'" --opacity-rule "95:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C -z
+#exec --no-startup-id compton --vsync opengl --backend glx --paint-on-overlay -c -l 1 -t 1 -o 0.5 -r 5 -f --opacity-rule "95:class_g = 'URxvt'" --opacity-rule "95:class_g = 'dmenu'" --opacity-rule "95:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C -z
+exec --no-startup-id compton --backend glx --paint-on-overlay -c -l 1 -t 1 -o 0.5 -r 5 -f --opacity-rule "95:class_g = 'URxvt'" --opacity-rule "95:class_g = 'dmenu'" --opacity-rule "95:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C -z
 # exec --no-startup-id nm-applet
 exec --no-startup-id xautolock -corners 000- -cornersize 30 -time 10 -locker /home/fuzzbox/.local/bin/i3/i3lock_custom
 # exec --no-startup-id mopidy -q
