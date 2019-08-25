@@ -1,6 +1,6 @@
 # dotfiles
 
-Arch Linux on a Thinkpad, with [i3gaps](https://github.com/Airblader/i3) as a wm, a patched [dmenu](https://tools.suckless.org/dmenu/) as an app launcher, and [Pywal](https://github.com/dylanaraps/pywal) as a theme manager.
+Arch Linux on [Thinkpads](https://www.reddit.com/r/thinkpad/), with [i3gaps](https://github.com/Airblader/i3) as a wm, a patched [dmenu](https://tools.suckless.org/dmenu/) as an app launcher, and [Pywal](https://github.com/dylanaraps/pywal) as a theme manager.
 
 ![Screenie](https://raw.githubusercontent.com/Fuzzbox999/dotfiles/master/Images/Screenshots/screenie.jpg)
 
