@@ -5,7 +5,7 @@
 # which is used by i3status_custom_bar* scripts.
 
 installed=$(pacman -Q|wc -l)
-upgrade=$(pacman -Qu|wc -l)
+upgrade=$(checkupdates|wc -l)
 
 if [ ! -e $HOME/.local/etc/pkg-status ]; then
 	touch $HOME/.local/etc/pkg-status
