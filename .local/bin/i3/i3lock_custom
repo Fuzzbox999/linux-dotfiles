@@ -1,13 +1,11 @@
 #!/bin/sh
 
-# Import the colors
+# Import the colors (Pywal)
 . "$HOME/.cache/wal/colors.sh"
 
 trans='ff'
 
 colora=$(echo ${color2}$trans|cut -d# -f2)
 colorb=$(echo ${color0}$trans|cut -d# -f2)
-
-# i3lock --composite -k -B 5 -S=0 --indpos="x+250:h-200" --ringcolor=$colora --linecolor=$colora --insidecolor=$colorb --keyhlcolor=$colorb --insidevercolor=$colorb --bshlcolor=$colora --ringvercolor=$colora --verifcolor=$colora --timecolor=$colora --datecolor=$colora --separatorcolor=$colorb --datestr="%A %d %B %Y" --timestr="%H:%M" --time-font=Iosevka --timesize=55 --date-font=Iosevka --datesize=12 --verif-font=Iosevka --verifsize=28
 
 i3lock --composite -k -B 5 --ringcolor=$colora --linecolor=$colora --insidecolor=$colorb --keyhlcolor=$colorb --insidevercolor=$colorb --bshlcolor=$colora --ringvercolor=$colora --verifcolor=$colora --timecolor=$colora --datecolor=$colora --separatorcolor=$colorb --datestr="%A %d %B %Y" --timestr="%H:%M" --time-font=Iosevka --timesize=55 --date-font=Iosevka --datesize=12 --verif-font=Iosevka --verifsize=28
