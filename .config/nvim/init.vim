@@ -56,4 +56,8 @@ map <c-f> :call DmenuOpen("e")<cr>
    " Using plug
 Plug 'dylanaraps/wal.vim'
 
+:set cursorline
+:set nu
+:set scrolloff=999
+
 colorscheme wal

@@ -6,13 +6,15 @@ set $mod Mod4
 set $TERMINAL urxvt
 floating_modifier $mod
 
-# Window managing stuff
+# Terminal launcher
 bindsym $mod+Return exec $TERMINAL
 
 # Kill Kill Kill
 bindsym $mod+Shift+A kill
 
-# Move
+#######################
+### Move and resize ###
+#######################
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -23,7 +25,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# No!!
 # workspace_auto_back_and_forth yes
 
 bindsym $mod+h split h
@@ -55,7 +56,9 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Workspaces and monitors config
+######################################
+### Workspaces and monitors config ###
+######################################
 set $w1 1:Main
 set $w2 2:Media
 set $w3 3:Irc
@@ -63,10 +66,12 @@ set $w4 4:Work
 set $w5 5:Web
 set $w6 6:Photo
 set $w7 7:Code
+set $w8 8:Music
+set $w9 9:Games
 
 # I wish I had 6
 set $monitor1 LVDS-1
-set $monitor2 VGA-1
+set $monitor2 HDMI-3
 
 workspace $w1 output $monitor1
 workspace $w2 output $monitor1
@@ -75,8 +80,10 @@ workspace $w4 output $monitor2
 workspace $w5 output $monitor2
 workspace $w6 output $monitor2
 workspace $w7 output $monitor2
+workspace $w8 output $monitor2
+workspace $w9 output $monitor2
 
-assign [class="Firefox|qutebrowser"] $w5
+assign [class="firefox|Firefox|qutebrowser"] $w5
 assign [class="libreoffice"] $w4
 assign [instance="irssi"] $w3
 assign [instance="Cava|Ncmpcpp"] $w2
@@ -90,8 +97,8 @@ bindsym $mod+apostrophe workspace $w4
 bindsym $mod+parenleft workspace $w5
 bindsym $mod+minus workspace $w6
 bindsym $mod+egrave workspace $w7
-bindsym $mod+underscore workspace 8
-bindsym $mod+ccedilla workspace 9
+bindsym $mod+underscore workspace $w8
+bindsym $mod+ccedilla workspace $w9
 bindsym $mod+agrave workspace 10
 
 bindsym $mod+Shift+1 move container to workspace $w1
@@ -101,8 +108,8 @@ bindsym $mod+Shift+4 move container to workspace $w4
 bindsym $mod+Shift+5 move container to workspace $w5
 bindsym $mod+Shift+6 move container to workspace $w6
 bindsym $mod+Shift+egrave move container to workspace $w7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+ccedilla move container to workspace 9
+bindsym $mod+Shift+8 move container to workspace $w8
+bindsym $mod+Shift+ccedilla move container to workspace $w9
 bindsym $mod+Shift+agrave move container to workspace 10
 
 bindsym $mod+Control+Right workspace next
@@ -110,7 +117,9 @@ bindsym $mod+Control+Left workspace prev
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
-# Gaps mode
+#################
+### Gaps mode ###
+#################
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -148,13 +157,14 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+##################
+### In and out ###
+##################
 # Restart
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-
 # Leave
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Voulez-vous vraiment quitter i3 ?' -b 'Oui, quitter i3' 'i3-msg exit'"
-
 # Leave mode
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -166,32 +176,29 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-#bindsym $mod+Pause mode "$mode_system"
 bindsym XF86Launch1 mode "$mode_system"
 
-# Ricing i3 using Pywal
+#########################
+### Ricing i3 (Pywal) ###
+#########################
 font pango:ubuntu regular 10
-
+# Gaps setup
 gaps inner 14
 gaps outer 0
 smart_gaps on
-
+# Borders setup
 default_border pixel 1
 default_floating_border normal 1
-# for_window [class="^.*"] border pixel 0
-
 # none|vertical|horizontal|both|smart
 hide_edge_borders smart
-
 for_window [class="URxvt"] border pixel 1
 for_window [class="Gnome-calculator"] floating enable border pixel 1
 for_window [class="Thunar"] floating enable border pixel 1
-
+# Colors
 set_from_resource $fg i3wm.color7 #f0f0f0
 set_from_resource $bg i3wm.color2 #f0f0f0
 set_from_resource $fc i3wm.color5 #f0f0f0
 set_from_resource $tx i3wm.color0 #ffffff
-
 # class                 border  backgr. text    indicator child_border
 client.focused          $fc     $fc     $tx     $bg       $fc
 client.focused_inactive $bg     $bg     $fg     $bg       $bg
@@ -200,9 +207,33 @@ client.urgent           $bg     $bg     $fg     $bg       $bg
 client.placeholder      $bg     $bg     $fg     $bg       $bg
 client.background       $bg
 
-# One bar per monitor
+###########################
+### One bar per monitor ###
+###########################
 bar {
 	output LVDS-1
+	#position top
+	tray_output primary
+	status_command /home/fuzzbox/.local/bin/i3/i3status_custom_bar
+	font pango:FontAwesome, Ubuntu Medium 8
+	separator_symbol "|"
+	#height is specific to i3gaps
+	height 28
+	strip_workspace_numbers yes
+colors {
+	background $tx
+	statusline $fg
+	separator $fc
+	focused_workspace  $fc $tx $fg
+	active_workspace   $tx $tx $fc
+	inactive_workspace $tx $tx $fg
+	urgent_workspace   #900000 #900000 #ffffff
+	binding_mode       #900000 #900000 #ffffff
+}
+}
+
+bar {
+	output HDMI-3
 	tray_output primary
 	status_command /home/fuzzbox/.local/bin/i3/i3status_custom_bar
 	font pango:FontAwesome, Ubuntu Medium 8
@@ -221,25 +252,9 @@ colors {
 }
 }
 
-bar {
-	output VGA-1
-	tray_output primary
-	status_command /home/fuzzbox/.local/bin/i3/i3status_custom_bar
-	font pango:FontAwesome, Ubuntu Medium 8
-	separator_symbol "|"
-	height 28
-	strip_workspace_numbers yes
-colors {
-	background $tx
-	statusline $fg
-	separator $fc
-	focused_workspace  $fc $tx $fg
-	active_workspace   $tx $tx $fc
-	inactive_workspace $tx $tx $fg
-	urgent_workspace   #900000 #900000 #ffffff
-	binding_mode       #900000 #900000 #ffffff
-}
-}
+#########################
+### How to start apps ###
+#########################
 
 # Launcher mode
 set $mode_launcher Launch: [f]irefox [t]hunar i3[c]onfig n[v]im [r]anger [l]ibreoffice [i]rssi neo[m]utt [d]arktable [g]imp
@@ -260,11 +275,11 @@ mode "$mode_launcher" {
 }
 
 # Keyboard shortcuts
-
 bindsym $mod+m exec --no-startup-id urxvt -e ranger
+bindsym $mod+u exec --no-startup-id edex
+bindsym $mod+n exec --no-startup-id /home/fuzzbox/.local/bin/start-ncmpcpp
 
-# dmenu as app launcher
-
+### Patched dmenu as app launcher ###
 # Original dmenu, for comparison
 bindsym $mod+t exec --no-startup-id /home/fuzzbox/.local/bin/dmenu/dmenu-run_wrapper
 # i3 dmenu == localised applications names
@@ -279,11 +294,9 @@ bindsym $mod+d exec --no-startup-id dmenu_extended_run
 # Multimedia keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id /home/fuzzbox/.local/bin/system/setvolume.sh up
 bindsym XF86AudioLowerVolume exec --no-startup-id /home/fuzzbox/.local/bin/system/setvolume.sh down
-
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym XF86AudioNext exec --no-startup-id mpc next && killall -USR1 i3status
 bindsym XF86AudioPrev exec --no-startup-id mpc prev && killall -USR1 i3status
-
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Brightness
@@ -300,24 +313,19 @@ bindsym XF86WebCam exec --no-startup-id "mpv /dev/video0"
 bindsym Print exec --no-startup-id "scrot -e 'mv $f ~/Images/Screenshots' && sleep 2 && notify-send Screenshot!!!"
 bindsym $mod+Print exec --no-startup-id "scrot -d 5 -e 'mv $f ~/Images/Screenshots' && sleep 2 && notify-send Screenshot!!!"
 
-# Reload stuff
-# bindsym Num_Lock exec --no-startup-id killall -USR1 i3status
+# Shortcuts to reload stuff
 bindsym Caps_Lock exec --no-startup-id killall -USR1 i3status
 bindsym $mod+Shift+w exec --no-startup-id wal -R
 
-# VIA (Very Important Apps)
-bindsym $mod+n exec --no-startup-id /home/fuzzbox/.local/bin/start-ncmpcpp
-
-# Stuff to start on i3 startup...
-# exec_always --no-startup-id numlockx on
+#######################################
+### Stuff to start on i3 startup... ###
+#######################################
 exec --no-startup-id udiskie --no-tray
 exec --no-startup-id wal -R
 exec --no-startup-id dockd --daemon
 exec --no-startup-id /home/fuzzbox/.local/bin/system/create_env_vars.sh
-exec --no-startup-id compton --vsync opengl --backend glx --paint-on-overlay -c -l 1 -t 1 -o 0.5 -r 5 -f --opacity-rule "95:class_g = 'URxvt'" --opacity-rule "90:class_g = 'dmenu'" --opacity-rule "90:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C -z
-# exec --no-startup-id nm-applet
-exec --no-startup-id xautolock -time 10 -locker /home/fuzzbox/.local/bin/i3/i3lock_custom
-# exec --no-startup-id mopidy -q
+exec --no-startup-id compton --backend glx --paint-on-overlay -c -l 1 -t 1 -o 0.5 -r 5 -f --opacity-rule "95:class_g = 'URxvt'" --opacity-rule "80:class_g = 'dmenu'" --opacity-rule "90:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C -z
+exec --no-startup-id xautolock -corners 000- -cornersize 30 -time 10 -locker /home/fuzzbox/.local/bin/i3/i3lock_custom
 exec --no-startup-id redshift -l 48.49:2.3 -t 5500:3500
 exec --no-startup-id pactl set-sink-volume 0 35%
 exec --no-startup-id /home/fuzzbox/.local/bin/i3/i3lock_custom

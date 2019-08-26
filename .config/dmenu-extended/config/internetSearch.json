@@ -10,7 +10,7 @@
 	    "url": "https://duckduckgo.com/?q={searchterm}&iax=images&ia=images"
 	},
 	{
-	    "title": "Arch AUR",
+	    "title": "AUR",
 	    "url": "https://aur.archlinux.org/packages/?O=&K={searchterm}"
 	},
 	{
@@ -23,7 +23,7 @@
         },
 	{
 	    "title": "Wallhaven wallpapers",
-	    "url": "https://alpha.wallhaven.cc/search?q={searchterm}"
+	    "url": "https://wallhaven.cc/search?q={searchterm}"
 	},
 	{
             "title": "Wikipedia",
