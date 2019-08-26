@@ -292,6 +292,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id /home/fuzzbox/.local/bin/system
 
 # Locker
 bindsym $mod+Shift+x exec --no-startup-id /home/fuzzbox/.local/bin/i3/i3lock_custom
+bindsym XF86ScreenSaver exec --no-startup-id /home/fuzzbox/.local/bin/i3/i3lock_custom
+bindsym XF86WLAN exec --no-startup-id "wifi toggle"
+bindsym XF86WebCam exec --no-startup-id "mpv /dev/video0"
 
 # Screenshoter
 bindsym Print exec --no-startup-id "scrot -e 'mv $f ~/Images/Screenshots' && sleep 2 && notify-send Screenshot!!!"
