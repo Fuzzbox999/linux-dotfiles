@@ -20,7 +20,12 @@ sed -i"" \
         -e "s/light_theme = .*/light_theme = $2/" \
         "$HOME/.config/wpg/wpg.conf"
 
-Once you have selected your shortcut on the selected wallpapers, Ranger will run a shell command which will :
+Once you have typed your shortcut on the selected wallpaper, ranger will run a shell command.
+This is what this command looks like, for instance, in ranger's rc.conf :
+
+map wlo1 shell wal -l -i %f && sedwpg wal true && wpg -a %f && wpg --light --backend -n -s %f && wal -R && cp %f ~/Images/Current/wall.jpg && sassc /home/fuzzbox/.startpage/scss/style.scss /home/fuzzbox/.startpage/style.css && /home/fuzzbox/.local/bin/system/wal_dunst.sh
+
+This command will :
 - call pywal with the desired backend
 - call the script to modify wpg.conf
 - call wpg to generate the gtk theme
@@ -30,18 +35,12 @@ Once you have selected your shortcut on the selected wallpapers, Ranger will run
 - run a script which will update $HOME/.config/dunst/dunstrc dunst config file using pywal colors, and reload it.
 
 #!/bin/sh
-
-# This file is run by a ranger shortcut right after running Pywwal.
-# It updates the dunstrc config file with the new colors and reload dunst.
-
 . "${HOME}/.cache/wal/colors.sh"
-
 sed -i"" --follow-symlinks \
         -e "s/frame_color = .*/frame_color = \"${color7:-#FFFFFF}\"/" \
         -e "s/foreground = .*/foreground = \"${color7:-#FFFFFF}\"/" \
         -e "s/background = .*/background = \"${color0:-#FFFFFF}\"/" \
         "${HOME}/.config/dunst/dunstrc"
-
 pkill dunst
 dunst -config ~/.config/dunst/dunstrc &
 
