@@ -9,50 +9,41 @@
 # Import (Pywal) colors
 . "$HOME/.cache/wal/colors.sh"
 
+# Call i3status
 i3status | (read line && echo "$line" && read line && echo "$line" && read line && echo "$line" && while :
-
 do
   	read line
-
-. "$HOME/.local/etc/pkg-status"
-# . "$HOME/.local/etc/sun"
 
 # Change this color to change the main text color
 linecolor=${color7}
 
-# mem use
-memtotal=$(cat /proc/meminfo |grep MemTotal|cut -d: -f 2|cut -dk -f 1)
-memfree=$(cat /proc/meminfo |grep MemFree|cut -d: -f 2|cut -dk -f 1|xargs)
-mempercent=$((($memtotal-$memfree)*100/$memtotal))
-swptotal=$(cat /proc/meminfo |grep SwapTotal|cut -d: -f 2|cut -dk -f 1)
-swpfree=$(cat /proc/meminfo |grep SwapFree|cut -d: -f 2|cut -dk -f 1|xargs)
-swppercent=$((($swptotal-$swpfree)*100/$swptotal))
+# Import list of upgradeable packages
+. "$HOME/.local/etc/pkg-status"
 
-	# current song
+	# calculate memory use
+	memtotal=$(cat /proc/meminfo |grep MemTotal|cut -d: -f 2|cut -dk -f 1)
+	memfree=$(cat /proc/meminfo |grep MemFree|cut -d: -f 2|cut -dk -f 1|xargs)
+	mempercent=$((($memtotal-$memfree)*100/$memtotal))
+	swptotal=$(cat /proc/meminfo |grep SwapTotal|cut -d: -f 2|cut -dk -f 1)
+	swpfree=$(cat /proc/meminfo |grep SwapFree|cut -d: -f 2|cut -dk -f 1|xargs)
+	swppercent=$((($swptotal-$swpfree)*100/$swptotal))
+
+	# show current song title
 	artist=$(ncmpcpp --current-song "%a"|cut -d";" -f 2)
 	title=$(ncmpcpp --current-song "%t"|cut -d"(" -f 1)
 	if [ -d ${artist} ]; then
 		icon=""
 		sep=""
-	 else 	icon=""
+	else 	icon=""
 		sep="-"
-	 fi
+	fi
 
-	# capslock status
-	#capslock=$(xset -q|grep Caps|cut -d: -f 3|cut -d0 -f1|xargs)
-	#if [ $capslock = "off" ]; then
-	#      	colorc=${linecolor}
-	#	numc=" "
-	#else 	colorc="#ff0000"
-	#	numc=" "
-	#fi
-
-	# display brightness
+	# display current brightness
 	bt=$(cat /sys/class/backlight/intel_backlight/actual_brightness)
 	btp=$(($bt*100/4648))
 
 
-	# check new mail in fetchmail/mutt inbox
+	# check new mail in $HOME/.mutt inboxes using file size
 	size0=$(stat --printf="%s" /home/fuzzbox/.mutt/perso/inbox)
 	size1=$(stat --printf="%s" /home/fuzzbox/.mutt/pro/inbox)
 	size2=$(stat --printf="%s" /home/fuzzbox/.mutt/gmail/inbox)
@@ -66,24 +57,9 @@ swppercent=$((($swptotal-$swpfree)*100/$swptotal))
 		check=""
 	fi
 
-	# fan
+	# display fan speed
 	fan=$(cat /proc/acpi/ibm/fan |grep speed |cut -d: -f 2 |xargs)
 
-	id=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
-    	name=$(xprop -id $id | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
-
-	# higher temp
-	#core=$(cat /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input)
-	#temp=$(($core/1000))
-	#cpufreq=$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq)
-	#freq=$(($cpufreq/1000))
-
-# layout
-#echo ",[{\"full_text\":\"${icon}  ${artist} ${sep} ${title}\",\"color\":\"${linecolor}\" },{\"full_text\":\"${check} ${mailtxt}\",\"color\":\"${mcolor}\" },{\"full_text\":\"Mem ${mempercent}% - ${swppercent}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" ${btp}%\",\"color\":\"${linecolor}\" },{\"full_text\":\"${numc} Caps\",\"color\":\"${colorc}\" },{\"full_text\":\" $upgradeable pkg / $installed\",\"color\":\"${linecolor}\" },{\"full_text\":\"${fan} rpm\",\"color\":\"${linecolor}\" },{\"full_text\":\" ${temp}°C\",\"color\":\"${linecolor}\" },${line#,\[}" || exit 1
-# done)
-
-#echo ",[{\"full_text\":\"${icon}  ${artist} ${sep} ${title}\",\"color\":\"${linecolor}\" },{\"full_text\":\"${name}\",\"color\":\"${linecolor}\" },{\"full_text\":\"${check} ${mailtxt}\",\"color\":\"${mcolor}\" },{\"full_text\":\"Mem ${mempercent}% - ${swppercent}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" ${btp}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" $upgradeable pkg / $installed\",\"color\":\"${linecolor}\" },{\"full_text\":\"${fan} rpm\",\"color\":\"${linecolor}\" },${line#,\[}" || exit 1
-#done)
-
+# layout of the data displayed in i3bar before the standard i3status data
 echo ",[{\"full_text\":\"${icon}  ${artist} ${sep} ${title}\",\"color\":\"${linecolor}\" },{\"full_text\":\"${check} ${mailtxt}\",\"color\":\"${mcolor}\" },{\"full_text\":\"Mem ${mempercent}% - ${swppercent}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" ${btp}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" $upgradeable pkg / $installed\",\"color\":\"${linecolor}\" },{\"full_text\":\"${fan} rpm\",\"color\":\"${linecolor}\" },${line#,\[}" || exit 1
 done)
