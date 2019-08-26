@@ -4,7 +4,9 @@ Arch Linux on [Thinkpads](https://www.reddit.com/r/thinkpad/) (X220 and T430), w
 
 ![Screenie](https://raw.githubusercontent.com/Fuzzbox999/dotfiles/master/Images/Screenshots/screenie.jpg)
 
-If you intend to use some of my dotfiles, be advised that a custom configuration is often complicated; things are intricately linked, so don't just copy the files because they probably won't work on your system. Ricing i3, i3bar or dmenu is really not difficult to achieve. So read the files, understand what they do, be inspired and do your own stuff. If you need a tip, drop me a mail fuzzbox.flc (a) gmail.
+System configuration, software and hardware are intricately linked.
+Don't just copy the files because they probably won't work on your system.
+Read the files, understand what they do, and do your own stuff.
 
 Fuzz'
 
