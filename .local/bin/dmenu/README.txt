@@ -1,3 +1,6 @@
+Warning : this is perfectly usable but can be considered as obsolete since dmenu 4.9 is available, and uses a new patch to center the window instead of the x/y older patch. Moreover, you probably don't need dmenu AND dmenu-extended AND morc_menu... 
+The main interest of this setup is having a dmenu window centered and themed from Pywal colors, with a custom line height, and an "opened windows" list.
+
 My dmenu installation is based on :
 
 * dmenu 4.8 :
