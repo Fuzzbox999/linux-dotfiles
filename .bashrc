@@ -2,35 +2,32 @@
 # ~/.bashrc
 #
 
+# Pywal stuff
 (cat ~/.cache/wal/sequences &)
-
 source ~/.cache/wal/colors-tty.sh
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# [[ $- = *i* ]] && source /usr/bin/liquidprompt
-
-alias ls='ls --color=auto'
-
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias lla='ls -alh'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Custom aliases
 alias neo='echo "" && neofetch --ascii_distro linux --color_blocks off && i3 -v|cut -d" " -f -6'
-
 alias ccl='cd && clear'
 alias bh='$HOME/.local/bin/dmenu/dmenu-search-bash-history'
-
 alias pac='sudo pacman'
 alias mirrors='sudo reflector --country France --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias autoremove='pac -Rns $(pacman -Qtdq)'
 
+# alias for my dotfiles in a bare Git repository
 alias config='/usr/bin/git --git-dir=$HOME/.local/dotfiles/ --work-tree=$HOME'
 
 case "$TERM" in
@@ -58,7 +55,7 @@ fi
 
 unset color_prompt force_color_prompt
 
-# PS1='[\u@\h \W]\$ '
+# Vim/neovim stuff
 
 function vim() {
   args=()
@@ -86,4 +83,3 @@ function nvim() {
   /usr/bin/nvim -p "${args[@]}"
 }
 
-# complete -cf sudo systemd-* systemctl 
