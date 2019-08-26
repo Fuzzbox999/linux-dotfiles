@@ -2,9 +2,6 @@
 
 # Modified version based on Keheliya Gallaba script :
 # https://keheliya.blogspot.com/2018/01/weather-info-in-i3status.html
-# Requires numlockx and ncmpcpp to be installed... and used.
-# Brightness works for amdgpu chipset.
-# $size checks my fetchmail/mutt inbox for new mail
 
 # Import (Pywal) colors
 . "$HOME/.cache/wal/colors.sh"
@@ -28,7 +25,7 @@ linecolor=${color7}
 	swpfree=$(cat /proc/meminfo |grep SwapFree|cut -d: -f 2|cut -dk -f 1|xargs)
 	swppercent=$((($swptotal-$swpfree)*100/$swptotal))
 
-	# show current song title
+	# show current song title - requires ncmpcpp
 	artist=$(ncmpcpp --current-song "%a"|cut -d";" -f 2)
 	title=$(ncmpcpp --current-song "%t"|cut -d"(" -f 1)
 	if [ -d ${artist} ]; then
@@ -38,7 +35,7 @@ linecolor=${color7}
 		sep="-"
 	fi
 
-	# display current brightness
+	# display current brightness - works for my thinkpad x220
 	bt=$(cat /sys/class/backlight/intel_backlight/actual_brightness)
 	btp=$(($bt*100/4648))
 
@@ -57,7 +54,7 @@ linecolor=${color7}
 		check=""
 	fi
 
-	# display fan speed
+	# display fan speed - works for my thinkpad x220
 	fan=$(cat /proc/acpi/ibm/fan |grep speed |cut -d: -f 2 |xargs)
 
 # layout of the data displayed in i3bar before the standard i3status data
