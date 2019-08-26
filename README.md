@@ -1,6 +1,6 @@
 # dotfiles
 
-Arch Linux on [Thinkpads](https://www.reddit.com/r/thinkpad/) (X220 and T430), with [i3gaps](https://github.com/Airblader/i3) as a wm, a patched [dmenu](https://tools.suckless.org/dmenu/) as an app launcher, and [Pywal](https://github.com/dylanaraps/pywal) along with [wpgtk](https://github.com/BigfootN/wpgtk) as a theme manager, driven from the [ranger](https://github.com/ranger/ranger) file manager.
+This is my dotfiles repository. I use Arch Linux on [Thinkpads](https://www.reddit.com/r/thinkpad/) (X220 and T430), with [i3gaps](https://github.com/Airblader/i3) as a wm, a patched [dmenu](https://tools.suckless.org/dmenu/) as an app launcher, and [Pywal](https://github.com/dylanaraps/pywal) along with [wpgtk](https://github.com/BigfootN/wpgtk) as a theme manager, driven from the [ranger](https://github.com/ranger/ranger) file manager.
 
 ![Screenie](https://raw.githubusercontent.com/Fuzzbox999/dotfiles/master/Images/Screenshots/screenie.jpg)
 
