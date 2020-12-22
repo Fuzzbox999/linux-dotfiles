@@ -4,7 +4,6 @@
 # Main variables
 set $mod Mod4
 set $TERMINAL urxvt
-# set $TERMINAL xfce4-terminal
 floating_modifier $mod
 
 # Terminal launcher
@@ -159,8 +158,6 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-# border_radius 2
-
 ##################
 ### In and out ###
 ##################
@@ -220,7 +217,6 @@ bar {
 	tray_output primary
 	status_command /home/fuzzbox/.local/bin/i3/i3status_custom_bar
 	font pango:FontAwesome, Ubuntu Medium 8
-#	font pango:MesloLGS NF, Ubuntu Medium 8
 	separator_symbol "|"
 	#height is specific to i3gaps
 	height 28
@@ -268,32 +264,19 @@ bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher" {
     bindsym f exec firefox
     bindsym t exec thunar
-
     bindsym c exec urxvt -e nvim /home/fuzzbox/.config/i3/config
-#    bindsym c exec xfce4-terminal -e nvim /home/fuzzbox/.config/i3/config
-
     bindsym v exec urxvt -e nvim
-#    bindsym v exec xfce4-terminal -e nvim
-
     bindsym r exec urxvt -name Ranger -e ranger
-#    bindsym r exec xfce4-terminal --title Ranger -e ranger
-
     bindsym l exec libreoffice
-
     bindsym i exec urxvt -name irssi -e irssi
-#    bindsym i exec xfce4-terminal -name irssi -e irssi
-
     bindsym m exec urxvt -name neoMutt -e neomutt
-#    bindsym m exec xfce4-terminal --title neoMutt -x neomutt
-
-bindsym g exec gimp
+    bindsym g exec gimp
     bindsym d exec darktable
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
 
 # Keyboard shortcuts
-#bindsym $mod+m exec --no-startup-id urxvt -e ranger
 bindsym $mod+u exec --no-startup-id edex
 bindsym $mod+n exec --no-startup-id /home/fuzzbox/.local/bin/start-ncmpcpp
 
@@ -343,7 +326,6 @@ exec --no-startup-id udiskie --no-tray
 exec --no-startup-id wal -R
 exec --no-startup-id dockd --daemon
 exec --no-startup-id /home/fuzzbox/.local/bin/system/create_env_vars.sh
-#exec --no-startup-id picom --backend glx --paint-on-overlay -c -l 1 -t 1 -o 0.5 -r 5 -f --opacity-rule "100:class_g = 'URxvt'" --opacity-rule "80:class_g = 'dmenu'" --opacity-rule "100:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C -z
 exec --no-startup-id picom --vsync --backend glx --opacity-rule "90:class_g = 'URxvt'" --opacity-rule "80:class_g = 'dmenu'" --opacity-rule "90:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C
 exec --no-startup-id xautolock -corners 000- -cornersize 30 -time 30 -locker /home/fuzzbox/.local/bin/i3/i3lock_custom
 exec --no-startup-id redshift -l 48.49:2.3 -t 5500:3500
