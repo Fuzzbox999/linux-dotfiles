@@ -4,6 +4,7 @@
 # Main variables
 set $mod Mod4
 set $TERMINAL urxvt
+# set $TERMINAL xfce4-terminal
 floating_modifier $mod
 
 # Terminal launcher
@@ -219,6 +220,7 @@ bar {
 	tray_output primary
 	status_command /home/fuzzbox/.local/bin/i3/i3status_custom_bar
 	font pango:FontAwesome, Ubuntu Medium 8
+#	font pango:MesloLGS NF, Ubuntu Medium 8
 	separator_symbol "|"
 	#height is specific to i3gaps
 	height 28
@@ -266,20 +268,32 @@ bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher" {
     bindsym f exec firefox
     bindsym t exec thunar
+
     bindsym c exec urxvt -e nvim /home/fuzzbox/.config/i3/config
+#    bindsym c exec xfce4-terminal -e nvim /home/fuzzbox/.config/i3/config
+
     bindsym v exec urxvt -e nvim
+#    bindsym v exec xfce4-terminal -e nvim
+
     bindsym r exec urxvt -name Ranger -e ranger
+#    bindsym r exec xfce4-terminal --title Ranger -e ranger
+
     bindsym l exec libreoffice
+
     bindsym i exec urxvt -name irssi -e irssi
+#    bindsym i exec xfce4-terminal -name irssi -e irssi
+
     bindsym m exec urxvt -name neoMutt -e neomutt
-    bindsym g exec gimp
+#    bindsym m exec xfce4-terminal --title neoMutt -x neomutt
+
+bindsym g exec gimp
     bindsym d exec darktable
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
 
 # Keyboard shortcuts
-bindsym $mod+m exec --no-startup-id urxvt -e ranger
+#bindsym $mod+m exec --no-startup-id urxvt -e ranger
 bindsym $mod+u exec --no-startup-id edex
 bindsym $mod+n exec --no-startup-id /home/fuzzbox/.local/bin/start-ncmpcpp
 
