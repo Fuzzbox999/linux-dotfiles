@@ -26,6 +26,7 @@ alias bh='$HOME/.local/bin/dmenu/dmenu-search-bash-history'
 alias pac='sudo pacman'
 alias mirrors='sudo reflector --country France --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias autoremove='pac -Rns $(pacman -Qtdq)'
+alias scrmbl='/home/fuzzbox/.local/bin/scrmbl'
 
 # alias for my dotfiles in a bare Git repository
 alias config='/usr/bin/git --git-dir=$HOME/.local/dotfiles/ --work-tree=$HOME'

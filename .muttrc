@@ -14,6 +14,11 @@ mailboxes "~/.mutt/pro/inbox"
 mailboxes "~/.mutt/perso/inbox"
 mailboxes "~/.mutt/gmail/inbox"
 
+#set spoolfile = "+INBOX"
+#named-mailboxes "Pro" ="pro/inbox"
+#named-mailboxes "Perso" ="perso/inbox"
+#named-mailboxes "Gmail" ="gmail/inbox"
+
 set editor=nvim
 
 source "~/.mutt/perso.conf"

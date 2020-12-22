@@ -21,9 +21,9 @@ linecolor=${color7}
 	memtotal=$(cat /proc/meminfo |grep MemTotal|cut -d: -f 2|cut -dk -f 1)
 	memfree=$(cat /proc/meminfo |grep MemFree|cut -d: -f 2|cut -dk -f 1|xargs)
 	mempercent=$((($memtotal-$memfree)*100/$memtotal))
-	swptotal=$(cat /proc/meminfo |grep SwapTotal|cut -d: -f 2|cut -dk -f 1)
-	swpfree=$(cat /proc/meminfo |grep SwapFree|cut -d: -f 2|cut -dk -f 1|xargs)
-	swppercent=$((($swptotal-$swpfree)*100/$swptotal))
+	#swptotal=$(cat /proc/meminfo |grep SwapTotal|cut -d: -f 2|cut -dk -f 1)
+	#swpfree=$(cat /proc/meminfo |grep SwapFree|cut -d: -f 2|cut -dk -f 1|xargs)
+	#swppercent=$((($swptotal-$swpfree)*100/$swptotal))
 
 	# show current song title - requires ncmpcpp
 	artist=$(ncmpcpp --current-song "%a"|cut -d";" -f 2)
@@ -58,5 +58,5 @@ linecolor=${color7}
 	fan=$(cat /proc/acpi/ibm/fan |grep speed |cut -d: -f 2 |xargs)
 
 # layout of the data displayed in i3bar before the standard i3status data
-echo ",[{\"full_text\":\"${icon}  ${artist} ${sep} ${title}\",\"color\":\"${linecolor}\" },{\"full_text\":\"${check} ${mailtxt}\",\"color\":\"${mcolor}\" },{\"full_text\":\"Mem ${mempercent}% - ${swppercent}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" ${btp}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" $upgradeable pkg / $installed\",\"color\":\"${linecolor}\" },{\"full_text\":\"${fan} rpm\",\"color\":\"${linecolor}\" },${line#,\[}" || exit 1
+echo ",[{\"full_text\":\"${icon}  ${artist} ${sep} ${title}\",\"color\":\"${linecolor}\" },{\"full_text\":\"${check} ${mailtxt}\",\"color\":\"${mcolor}\" },{\"full_text\":\"Mem ${mempercent}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" ${btp}%\",\"color\":\"${linecolor}\" },{\"full_text\":\" $upgradeable pkg / $installed\",\"color\":\"${linecolor}\" },{\"full_text\":\"${fan} rpm\",\"color\":\"${linecolor}\" },${line#,\[}" || exit 1
 done)

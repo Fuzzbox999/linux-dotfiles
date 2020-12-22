@@ -71,7 +71,8 @@ set $w9 9:Games
 
 # I wish I had 6
 set $monitor1 LVDS-1
-set $monitor2 HDMI-3
+#set $monitor2 HDMI-3
+set $monitor2 HDMI-1
 
 workspace $w1 output $monitor1
 workspace $w2 output $monitor1
@@ -157,6 +158,8 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+# border_radius 2
+
 ##################
 ### In and out ###
 ##################
@@ -234,6 +237,7 @@ colors {
 
 bar {
 	output HDMI-3
+	#output HDMI-1
 	tray_output primary
 	status_command /home/fuzzbox/.local/bin/i3/i3status_custom_bar
 	font pango:FontAwesome, Ubuntu Medium 8
@@ -325,8 +329,9 @@ exec --no-startup-id udiskie --no-tray
 exec --no-startup-id wal -R
 exec --no-startup-id dockd --daemon
 exec --no-startup-id /home/fuzzbox/.local/bin/system/create_env_vars.sh
-exec --no-startup-id compton --backend glx --paint-on-overlay -c -l 1 -t 1 -o 0.5 -r 5 -f --opacity-rule "100:class_g = 'URxvt'" --opacity-rule "80:class_g = 'dmenu'" --opacity-rule "100:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C -z
-exec --no-startup-id xautolock -corners 000- -cornersize 30 -time 10 -locker /home/fuzzbox/.local/bin/i3/i3lock_custom
+#exec --no-startup-id picom --backend glx --paint-on-overlay -c -l 1 -t 1 -o 0.5 -r 5 -f --opacity-rule "100:class_g = 'URxvt'" --opacity-rule "80:class_g = 'dmenu'" --opacity-rule "100:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C -z
+exec --no-startup-id picom --vsync --backend glx --opacity-rule "90:class_g = 'URxvt'" --opacity-rule "80:class_g = 'dmenu'" --opacity-rule "90:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C
+exec --no-startup-id xautolock -corners 000- -cornersize 30 -time 30 -locker /home/fuzzbox/.local/bin/i3/i3lock_custom
 exec --no-startup-id redshift -l 48.49:2.3 -t 5500:3500
 exec --no-startup-id pactl set-sink-volume 0 35%
 exec --no-startup-id /home/fuzzbox/.local/bin/i3/i3lock_custom

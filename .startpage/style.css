@@ -7,7 +7,7 @@ ul {
   padding: 0; }
 
 body {
-  background: #161616;
+  background: #201720;
   height: 100%;
   width: 100%; }
 
@@ -21,7 +21,7 @@ main {
   width: 100%; }
 
 h1 {
-  color: #742222;
+  color: #b38baf;
   display: block;
   margin: 0 auto;
   text-align: left;
@@ -29,7 +29,7 @@ h1 {
 
 hr {
   border: 0;
-  border-top: 1px solid #a7acab;
+  border-top: 1px solid #ad86e1;
   opacity: .4;
   width: 400px; }
 
@@ -39,7 +39,7 @@ ul {
   width: 400px; }
 
 li {
-  color: #6b6d6c;
+  color: #cb5fb7;
   display: inline-block;
   font-size: 1.2em;
   line-height: 1.5;
@@ -47,8 +47,8 @@ li {
   margin: 5px; }
 
 a {
-  color: #535555;
+  color: #b36fc6;
   text-decoration: none;
   transition: .2s; }
   a:hover {
-    color: #505050; }
+    color: #3d2b3d; }

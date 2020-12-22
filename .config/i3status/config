@@ -17,12 +17,12 @@ general {
 
 # order += "ipv6"
 # order += "load"
+# order += "cpu_temperature 1"
 order += "cpu_temperature 0"
 order += "cpu_usage"
-# order += "cpu_temperature 1"
 order += "disk /"
 order += "disk /media/mSata"
-# order += "ethernet _first_"
+order += "ethernet _first_"
 order += "wireless _first_"
 order += "battery all"
 order += "volume master"
@@ -94,3 +94,4 @@ disk "/" {
 disk "/media/mSata" {
         format = "%avail"
 }
+

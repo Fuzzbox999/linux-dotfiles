@@ -17,20 +17,20 @@ fi
 # Percentage at which to show low-battery notification
 low_notif_percentage=30
 # Percentage at which to show critical-battery notification
-critical_notif_percentage=15
+# critical_notif_percentage=15
 # Percentage at which to power-off
-critical_action_percentage=10
+# critical_action_percentage=10
 
 
-if [ "${level}" -le ${critical_action_percentage} ]; then
-  notify-send "Le niveau de la batterie est critique: ${level}%"
-  exit 0
-fi
-
-if [ "${level}" -le ${critical_notif_percentage} ]; then
-  notify-send "Le niveau de la batterie est très bas: ${level}%"
-  exit 0
-fi
+#if [ "${level}" -le ${critical_action_percentage} ]; then
+#  notify-send "Le niveau de la batterie est critique: ${level}%"
+#  exit 0
+#fi
+# 
+# if [ "${level}" -le ${critical_notif_percentage} ]; then
+#  notify-send "Le niveau de la batterie est très bas: ${level}%"
+#  exit 0
+# fi
 
 if [ "${level}" -le ${low_notif_percentage} ]; then
   notify-send "Le niveau de la batterie est bas: $level%"
