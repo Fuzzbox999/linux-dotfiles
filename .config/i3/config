@@ -282,15 +282,12 @@ bindsym $mod+n exec --no-startup-id /home/fuzzbox/.local/bin/start-ncmpcpp
 
 ### Patched dmenu as app launcher ###
 # Original dmenu, for comparison
-bindsym $mod+t exec --no-startup-id /home/fuzzbox/.local/bin/dmenu/dmenu-run_wrapper
-# i3 dmenu == localised applications names
-bindsym $mod+Shift+t exec --no-startup-id i3-dmenu-desktop --dmenu='/home/fuzzbox/.local/bin/dmenu/dmenu-extended_wrapper -i'
+bindsym $mod+d exec --no-startup-id /home/fuzzbox/.local/bin/dmenu/dmenu-run_wrapper
 # List of running windows
 bindsym $mod+w exec --no-startup-id /home/fuzzbox/.local/bin/dmenu/dmenu-show-opened-windows
 # Morc menu
 bindsym $mod+Shift+d exec --no-startup-id morc_menu
-# Extended dmenu
-bindsym $mod+d exec --no-startup-id dmenu_extended_run
+bindsym $mod+c exec --no-startup-id ~/.local/bin/dmenu/dmenu-clipmenu_wrapper
 
 # Multimedia keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id /home/fuzzbox/.local/bin/system/setvolume.sh up
@@ -326,9 +323,10 @@ exec --no-startup-id udiskie --no-tray
 exec --no-startup-id wal -R
 exec --no-startup-id dockd --daemon
 exec --no-startup-id /home/fuzzbox/.local/bin/system/create_env_vars.sh
-exec --no-startup-id picom --vsync --backend glx --opacity-rule "90:class_g = 'URxvt'" --opacity-rule "80:class_g = 'dmenu'" --opacity-rule "90:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C
+exec --no-startup-id picom --vsync --blur-background --backend glx --opacity-rule "90:class_g = 'URxvt'" --opacity-rule "80:class_g = 'dmenu'" --opacity-rule "90:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C
 exec --no-startup-id xautolock -corners 000- -cornersize 30 -time 30 -locker /home/fuzzbox/.local/bin/i3/i3lock_custom
 exec --no-startup-id redshift -l 48.49:2.3 -t 5500:3500
 exec --no-startup-id pactl set-sink-volume 0 35%
+exec --no-startup-id clipmenud
 exec --no-startup-id /home/fuzzbox/.local/bin/i3/i3lock_custom
 
