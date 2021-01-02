@@ -6,4 +6,4 @@
 
 . "$HOME/.local/bin/dmenu/dmenu-theme-config"
 
-/usr/bin/dmenu_run $border $height $font $colors -c -l 10
+/usr/bin/clipmenu $border $height $font $colors -c -l 15

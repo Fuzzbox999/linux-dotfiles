@@ -6,15 +6,4 @@
 
 . "$HOME/.local/bin/dmenu/dmenu-theme-config"
 
-display=$(i3-msg -t get_workspaces | jq '.[] | select(.focused == true) | .rect' |jq .width)
-
-if [ $display = "1366" ]; then
-	position='-x 0 -y 0 -W 250'
-elif [ $display = "1600" ]; then
-        position='-x 0 -y 0 -W 250'
-elif [ $display = "1920" ]; then
-	position='-x 0 -y 0 -W 250'
-else position='-x 383 -y 180 -W 600'
-fi
-
-dmenu $height $position $font $colors -p i3 -i -l "$1"
+dmenu $border $height $font $colors -x 0 -y 0 -z 300 -p i3wm -i -l "$1"

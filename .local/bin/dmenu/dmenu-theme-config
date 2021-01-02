@@ -2,6 +2,7 @@
 
 . "$HOME/.cache/wal/colors.sh"
 
-font='-fn ubuntu-10'
+font="-fn 'MesloLGS-10'"
 colors="-nb "$color0" -nf "$color7" -sb "$color10" -sf "$color0""
-height='-h 24'
+height='-h 32'
+border='-bw 1'
