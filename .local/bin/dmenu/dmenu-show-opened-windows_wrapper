@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# Script called by $HOME/.bin/dmenu-show-opened-windows.
-# It's a wrapper which applies the font and color theme imported from $HOME/.bin/dmenu/dmenu-theme-config to call dmenu.
-# dmenu-theme-config makes use of Pywal generated colors.
-
-. "$HOME/.local/bin/dmenu/dmenu-theme-config"
-
-dmenu -c $border $height $font $colors -l 20 -i "$1"

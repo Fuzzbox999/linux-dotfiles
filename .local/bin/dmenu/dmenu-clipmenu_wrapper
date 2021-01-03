@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# Script called by i3wm from its config file.
-# It's a wrapper which applies the font and color theme imported from $HOME/.bin/dmenu/dmenu-theme-config to call default /usr/bin/dmenu_run.
-# dmenu-theme-config makes use of Pywal generated colors.
-
-. "$HOME/.local/bin/dmenu/dmenu-theme-config"
-
-/usr/bin/clipmenu $border $height $font $colors -c -l 15

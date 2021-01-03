@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# Script called by /usr/bin/morc_menu as specified in $HOME/.config/morc_menu/morc_menu_v1.conf.
-# It's a wrapper which applies the font and color theme imported from $HOME/.bin/dmenu/dmenu-theme-config to call dmenu
-# dmenu-theme-config makes use of Pywal generated colors.
-
-. "$HOME/.local/bin/dmenu/dmenu-theme-config"
-
-dmenu $border $height $font $colors -x 0 -y 0 -z 300 -p i3wm -i -l "$1"
