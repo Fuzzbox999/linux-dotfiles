@@ -1,0 +1,2 @@
+SUBSYSTEM=="power_supply", ACTION=="change", ATTR{online}=="1", RUN+="/home/fuzzbox/.local/bin/system/udim_display.sh"
+SUBSYSTEM=="power_supply", ACTION=="change", ATTR{online}=="0", RUN+="/home/fuzzbox/.local/bin/system/dim_display.sh"
