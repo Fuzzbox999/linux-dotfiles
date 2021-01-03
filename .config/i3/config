@@ -4,6 +4,7 @@
 # Main variables
 set $mod Mod4
 set $TERMINAL urxvt
+set $exec exec --no-startup-id
 floating_modifier $mod
 
 # Terminal launcher
@@ -40,8 +41,6 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+q focus parent
 
 # scratchpad invisible workspace
-# bindsym $mod+KP_Subtract move scratchpad
-# bindsym $mod+KP_Add scratchpad show
 bindsym $mod+F1 move scratchpad
 bindsym $mod+F2 scratchpad show
 
@@ -169,11 +168,11 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Voulez-vous vraiment quitter
 # Leave mode
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id ~/.local/bin/i3/i3exit lock, mode "default"
-    bindsym e exec --no-startup-id ~/.local/bin/i3/i3exit logout, mode "default"
-    bindsym s exec --no-startup-id ~/.local/bin/i3/i3exit suspend, mode "default"
-    bindsym r exec --no-startup-id ~/.local/bin/i3/i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id ~/.local/bin/i3/i3exit shutdown, mode "default"
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -215,7 +214,7 @@ bar {
 	output LVDS-1
 	#position top
 	tray_output primary
-	status_command /home/fuzzbox/.local/bin/i3/i3status_custom_bar
+	status_command i3status_custom_bar
 	font pango:FontAwesome, Ubuntu Medium 8
 	separator_symbol "|"
 	#height is specific to i3gaps
@@ -281,17 +280,13 @@ bindsym $mod+u exec --no-startup-id edex
 bindsym $mod+n exec --no-startup-id /home/fuzzbox/.local/bin/start-ncmpcpp
 
 ### Patched dmenu as app launcher ###
-# Original dmenu, for comparison
-bindsym $mod+d exec --no-startup-id /home/fuzzbox/.local/bin/dmenu/dmenu-run_wrapper
-# List of running windows
-bindsym $mod+w exec --no-startup-id /home/fuzzbox/.local/bin/dmenu/dmenu-show-opened-windows
-# Morc menu
-bindsym $mod+Shift+d exec --no-startup-id morc_menu
-bindsym $mod+c exec --no-startup-id ~/.local/bin/dmenu/dmenu-clipmenu_wrapper
+bindsym $mod+d $exec dmenu_run -fn MesloLGS-10 -nb "$tx" -nf "$fg" -sb "$bg" -sf "$tx" -h 32 -bw 1 -c -l 10 -p "Run "
+bindsym $mod+w $exec dmenu-show-opened-windows
+bindsym $mod+c $exec clipmenu -fn MesloLGS-10 -nb "$tx" -nf "$fg" -sb "$bg" -sf "$tx" -h 32 -bw 1 -c -l 15 -p "Copy "
 
 # Multimedia keys
-bindsym XF86AudioRaiseVolume exec --no-startup-id /home/fuzzbox/.local/bin/system/setvolume.sh up
-bindsym XF86AudioLowerVolume exec --no-startup-id /home/fuzzbox/.local/bin/system/setvolume.sh down
+bindsym XF86AudioRaiseVolume exec --no-startup-id setvolume up
+bindsym XF86AudioLowerVolume exec --no-startup-id setvolume down
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym XF86AudioNext exec --no-startup-id mpc next && killall -USR1 i3status
 bindsym XF86AudioPrev exec --no-startup-id mpc prev && killall -USR1 i3status
@@ -299,12 +294,12 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
 
 # Brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id /home/fuzzbox/.local/bin/system/thinkpad-backlight.sh down
-bindsym XF86MonBrightnessUp exec --no-startup-id /home/fuzzbox/.local/bin/system/thinkpad-backlight.sh up
+bindsym XF86MonBrightnessDown exec --no-startup-id thinkpad-backlight down
+bindsym XF86MonBrightnessUp exec --no-startup-id thinkpad-backlight up
 
 # Locker
-bindsym $mod+Shift+x exec --no-startup-id /home/fuzzbox/.local/bin/i3/i3lock_custom
-bindsym XF86ScreenSaver exec --no-startup-id /home/fuzzbox/.local/bin/i3/i3lock_custom
+bindsym $mod+Shift+x exec --no-startup-id i3lock_custom
+bindsym XF86ScreenSaver exec --no-startup-id i3lock_custom
 bindsym XF86WLAN exec --no-startup-id "wifi toggle"
 bindsym XF86WebCam exec --no-startup-id "mpv /dev/video0"
 
@@ -322,11 +317,11 @@ bindsym $mod+Shift+w exec --no-startup-id wal -R
 exec --no-startup-id udiskie --no-tray
 exec --no-startup-id wal -R
 exec --no-startup-id dockd --daemon
-exec --no-startup-id /home/fuzzbox/.local/bin/system/create_env_vars.sh
+exec --no-startup-id create_env_vars
 exec --no-startup-id picom --vsync --blur-background --backend glx --opacity-rule "90:class_g = 'URxvt'" --opacity-rule "80:class_g = 'dmenu'" --opacity-rule "90:class_g = 'i3bar'" -e 1.0 -i 1.0 -D 6 --xinerama-shadow-crop -C
-exec --no-startup-id xautolock -corners 000- -cornersize 30 -time 30 -locker /home/fuzzbox/.local/bin/i3/i3lock_custom
+exec --no-startup-id xautolock -corners 000- -cornersize 30 -time 30 -locker i3lock_custom
 exec --no-startup-id redshift -l 48.49:2.3 -t 5500:3500
 exec --no-startup-id pactl set-sink-volume 0 35%
 exec --no-startup-id clipmenud
-exec --no-startup-id /home/fuzzbox/.local/bin/i3/i3lock_custom
+exec --no-startup-id i3lock_custom
 
