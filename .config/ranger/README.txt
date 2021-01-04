@@ -4,7 +4,6 @@ The principle is :
 - you select a wallpaper
 - 'w' calls pywal
 - then 'd' o 'l' selects if the theme must be dark or light
-- then the optional 'o' indicates if a Gtk theme must be generated
 - then '1', '2', '3', '4' or '5' selects the backend to run (Wal, colorz, haishoku, colorthief or schemer2). 
 
 These backends of course have to be installed.
@@ -12,7 +11,7 @@ These backends of course have to be installed.
 To generate the Gtk theme, I use wpg, which has to be installed too... 
 To use this theme after its creation, I use the flatcolor Gtk theme with the Flattrcolor icon theme.
 
-A custom script modifies $HOME/.config/wpg/wpg.conf, so wpg knows which backend to use, and if it has to be dark or light theme.
+A custom script wal_wpgtk (in .local/bin) modifies $HOME/.config/wpg/wpg.conf, so wpg knows which backend to use, and if it has to be dark or light theme.
 
 #!/bin/sh
 sed -i"" \
@@ -23,7 +22,7 @@ sed -i"" \
 Once you have typed your shortcut on the selected wallpaper, ranger will run a shell command.
 This is what this command looks like, for instance, in ranger's rc.conf :
 
-map wlo1 shell wal -l -i %f && sedwpg wal true && wpg -a %f && wpg --light --backend -n -s %f && wal -R && cp %f ~/Images/Current/wall.jpg && sassc /home/fuzzbox/.startpage/scss/style.scss /home/fuzzbox/.startpage/style.css && /home/fuzzbox/.local/bin/system/wal_dunst.sh
+map wd1 shell wal -i %f && wal_wpgtk wal false && wpg -a %f && wpg --backend -n -s %f && wal -R && cp %f ~/Images/Current/wall.jpg && sassc /home/fuzzbox/.startpage/scss/style.scss /home/fuzzbox/.startpage/style.css && wal_dunst
 
 This command will :
 - call pywal with the desired backend
@@ -32,7 +31,7 @@ This command will :
 - reload pywal
 - make a copy of the current wallpaper in a specific directory
 - run sassc (which has to be installed) to update the startpage css style from pywal colors
-- run a script which will update $HOME/.config/dunst/dunstrc dunst config file using pywal colors, and reload it.
+- run a script (.local/bin/wal_dunst) which will update $HOME/.config/dunst/dunstrc dunst config file using pywal colors, and reload it.
 
 #!/bin/sh
 . "${HOME}/.cache/wal/colors.sh"
