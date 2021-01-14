@@ -12,6 +12,7 @@ dwm-restartsig-20180523-6.2.diff
 dwm-shiftviewclients-6.2.diff
 dwm-status2d-6.2.diff
 dwm-swallow-20201211-61bb8b2.diff
+dwm-push_no_master-6.2.diff
 dwm-vanitygaps-6.2.diff
 
 These patches are available in the /patches subdir.
