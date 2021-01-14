@@ -1,3 +1,26 @@
+This is my build of dwm
+=======================
+
+It's dwm 6.2 patched with :
+dwm-6.2-urg-border.diff
+dwm-actualfullscreen-20191112-cb3f58a.diff
+dwm-attachdirection-6.2.diff
+dwm-autostart-20200610-cb3f58a.diff
+dwm-bar-height-6.2.diff
+dwm-focusonnetactive-6.2.diff
+dwm-restartsig-20180523-6.2.diff
+dwm-shiftviewclients-6.2.diff
+dwm-status2d-6.2.diff
+dwm-swallow-20201211-61bb8b2.diff
+dwm-vanitygaps-6.2.diff
+
+These patches are available in the /patches subdir.
+
+The my-dwm.diff file can be used to apply all those patches at once on the dwm (6.2) source code : git clone https://git.suckless.org/dwm
+
+
+
+
 dwm - dynamic window manager
 ============================
 dwm is an extremely fast, small, and dynamic window manager for X.
