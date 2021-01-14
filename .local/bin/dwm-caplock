@@ -1,0 +1,14 @@
+#!/bin/sh
+
+cap() {
+	capslock=$(xset -q|grep Caps|cut -d: -f 3|cut -d0 -f1|xargs)
+	if [ $capslock = "off" ]; then
+ 		numc=" "
+ 	else
+		numc="^c#ff0000^^d^"
+	fi
+	echo "$numc"
+}
+
+echo $(cap)
+

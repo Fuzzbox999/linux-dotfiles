@@ -1,0 +1,11 @@
+#!/bin/sh
+
+disk() {
+	sda=$(df -h /dev/sda3 | grep sda3|cut -d "G" -f 3|xargs)
+ 	sdb=$(df -h /dev/sdb1 | grep sdb1|cut -d "G" -f 3|xargs)
+	echo "$sda G + $sdb G"
+}
+
+echo $(disk)
+
+

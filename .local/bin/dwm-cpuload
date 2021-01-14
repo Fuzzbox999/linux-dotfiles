@@ -1,0 +1,18 @@
+#!/bin/sh
+
+. $HOME/.local/tmp/cpu-load
+
+high=75
+
+if [ "$load" -gt $high ]; then
+	color="^c#ff0000^"
+	load=$load
+	endcolor="^d^"
+else
+	color=""
+	load=$load
+	endcolor=""
+fi
+
+echo "$color$load%$endcolor"
+

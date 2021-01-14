@@ -1,0 +1,27 @@
+#!/bin/sh
+
+temp_path1='/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input'
+temp_path2='/sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input'
+high=75
+endcolor="^d^"
+
+if [ -f "$temp_path1" ]; then
+	temp_path=$temp_path1
+elif [ -f "$temp_path2" ]; then
+	temp_path=$temp_path2
+else exit 0
+fi
+
+temp() {
+	core=$(cat $temp_path)
+	coretemp=$(($core/1000))
+	if [ "$coretemp" -gt "$high" ]; then
+		color="^c#ff0000^"
+	else
+		color=""
+	fi
+	echo "$color$coretemp°C$endcolor"
+}
+
+echo $(temp)
+

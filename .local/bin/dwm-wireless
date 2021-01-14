@@ -1,0 +1,8 @@
+#!/bin/sh
+
+ssid() {
+	ssid=$(iw wlp3s0 info|grep ssid|cut -d " " -f 2|xargs)
+	echo "$ssid"
+}
+
+echo $(ssid)

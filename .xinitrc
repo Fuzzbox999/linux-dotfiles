@@ -3,4 +3,5 @@
 systemctl --user import-environment DISPLAY
 xrdb $HOME/.Xresources
 wal -R
-exec i3
+exec dwm
+# exec i3

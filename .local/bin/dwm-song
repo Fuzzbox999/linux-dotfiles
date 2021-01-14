@@ -1,0 +1,16 @@
+#!/bin/sh
+
+song() {
+	artist=$(ncmpcpp --current-song "%a"|cut -d";" -f 2) &>/dev/null
+	title=$(ncmpcpp --current-song "%t"|cut -d"(" -f 1) &>/dev/null
+ 	    if [ -d ${artist} ]; then
+ 	            icon=""
+ 	            sep=""
+ 	    else    icon=""
+ 	            sep="-"
+ 	    fi
+	    echo " $icon $artist $sep $title"
+}
+
+echo $(song)
+

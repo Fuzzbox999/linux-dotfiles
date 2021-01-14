@@ -1,0 +1,29 @@
+#!/bin/sh
+
+limit=30
+
+charge() {
+	status0=$(cat /sys/class/power_supply/BAT0/status)
+        if [ $status0 = "Unknown" ] || [ $status0 = "Charging" ]; then
+                         status=""
+                 else
+                         status=" "
+        fi
+        echo "$status"
+}
+ 
+ bat() {
+         BAT0_NOW=$(cat /sys/class/power_supply/BAT0/energy_now)
+         BAT0_FULL=$(cat /sys/class/power_supply/BAT0/energy_full)
+         BAT0_PERCENT=$((($BAT0_NOW)*100/$BAT0_FULL))
+	 if [ "$BAT0_PERCENT" -lt $limit ]; then
+		color="^c#ff0000^"
+	 	endcolor="^d^"
+	else
+		color=""
+		endcolor=""
+	 fi
+         echo "$color$BAT0_PERCENT%$endcolor"
+}
+
+echo "$(charge)$(bat)"
