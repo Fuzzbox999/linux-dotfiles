@@ -8,6 +8,8 @@ dwm-attachdirection-6.2.diff
 dwm-autostart-20200610-cb3f58a.diff
 dwm-bar-height-6.2.diff
 dwm-focusonnetactive-6.2.diff
+dwm-noborderfloatingfix-6.2.diff
+dwm-pertag-6.2.diff
 dwm-restartsig-20180523-6.2.diff
 dwm-shiftviewclients-6.2.diff
 dwm-status2d-6.2.diff
