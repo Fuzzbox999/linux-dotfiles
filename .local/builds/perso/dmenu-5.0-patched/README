@@ -1,3 +1,8 @@
+This is my build of dmenu, patched with "center", "line height" and "border" patches.
+
+##################################################################
+##################################################################
+
 dmenu - dynamic menu
 ====================
 dmenu is an efficient dynamic menu for X.
