@@ -3,18 +3,19 @@ static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 	
 	{" ", "dwm-song", 5, 0},
-	{" ", "dwm-cpuload", 10, 1},
-	{" ", "dwm-temp", 2, 2},
-	{"", "dwm-fan", 2, 3},
-	{"Mem ", "dwm-mem", 5, 4},
-	{" ", "dwm-brightness", 30, 5},
+	{"", "dwm-mail", 30, 13},
+	{" ", "dwm-cpuload", 30, 1},
+	{" ", "dwm-temp", 3, 2},
+	{"", "dwm-fan", 3, 3},
+	{"Mem ", "dwm-mem", 20, 4},
+	{" ", "dwm-brightness", 60, 5},
 	{"", "dwm-caplock", 2, 6},
-	{" ", "dwm-disks", 10, 7},
-	{" ", "dwm-packages", 10, 8},
-	{" ", "dwm-wireless", 5, 9},
+	{" ", "dwm-disks", 30, 7},
+	{" ", "dwm-packages", 15, 8},
 	{"", "dwm-battery", 3, 10},
-	{" ", "dwm-volume", 30, 11},
-	{"", "dwm-date", 10, 12},
+	{" ", "dwm-volume", 60, 11},
+	{"", "dwm-wireless", 5, 9},
+	{"", "dwm-date", 60, 12},
 
 };
 

@@ -2,7 +2,16 @@
 
 ssid() {
 	ssid=$(iw wlp3s0 info|grep ssid|cut -d " " -f 2|xargs)
-	echo "$ssid"
+	if [ -z $ssid ]; then
+		color="^c#ff0000^"
+		state="  "
+		endcolor="^d^"
+	else
+		color=""
+		state="  "
+		endcolor=""
+	fi
+	echo "$color$state$endcolor"
 }
 
 echo $(ssid)

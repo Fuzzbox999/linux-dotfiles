@@ -1,0 +1,23 @@
+#!/bin/sh
+
+mail() {
+
+size0=$(stat --printf="%s" /home/fuzzbox/.mutt/perso/inbox)    
+        size1=$(stat --printf="%s" /home/fuzzbox/.mutt/pro/inbox)    
+        size2=$(stat --printf="%s" /home/fuzzbox/.mutt/gmail/inbox)    
+        if [ $size0 = "0" ] && [ $size1 = "0" ] && [ $size2 = "0" ]; then    
+                mcolor=""
+                mailtxt="No mail"    
+                check=""
+		endcolor=""
+        else    
+                mcolor="^c#ff0000^"    
+                mailtxt="Got mail"    
+                check=""
+		endcolor="^d^"
+        fi    
+	echo "$mcolor $mailtxt $check $endcolor"
+}
+
+echo $(mail)
+
