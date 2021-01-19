@@ -1,5 +1,6 @@
 #!/bin/sh
 
+. $HOME/.cache/wal/colors.sh
 . $HOME/.local/tmp/cpu-load
 
 high=75
@@ -7,12 +8,12 @@ high=75
 if [ "$load" -gt $high ]; then
 	color="^c#ff0000^"
 	load=$load
-	endcolor="^d^"
+	endcolor=""
 else
-	color=""
+	color="^c$background^"
 	load=$load
 	endcolor=""
 fi
 
-echo "$color$load%$endcolor"
+echo "^b$foreground^$color  $load%"
 

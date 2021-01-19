@@ -1,8 +1,10 @@
 #!/bin/sh
 
+. $HOME/.cache/wal/colors.sh
+
 fan() {
 	 fan=$(cat /proc/acpi/ibm/fan |grep speed |cut -d: -f 2 |xargs)
-	 echo "$fan rpm"
+	 echo "^c$background^^b$foreground^$fan rpm "
  }
 
 echo $(fan)

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. $HOME/.cache/wal/colors.sh
+
 limit=30
 
 charge() {
@@ -9,7 +11,14 @@ charge() {
                  else
                          status=" "
         fi
-        echo "$status"
+	if [ $status = "" ]; then    
+                 bgcolor=""    
+                 fgcolor=""    
+        else    
+                 bgcolor="^b$foreground^"    
+                 fgcolor="^c$background^"    
+        fi
+        echo "$fgcolor$bgcolor $status"
 }
  
  bat() {
@@ -21,9 +30,9 @@ charge() {
 	 	endcolor="^d^"
 	else
 		color=""
-		endcolor=""
+		endcolor="^d^"
 	 fi
-         echo "$color$BAT0_PERCENT%$endcolor"
+         echo "$color$BAT0_PERCENT% $endcolor"
 }
 
 echo "$(charge)$(bat)"

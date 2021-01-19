@@ -1,5 +1,8 @@
 #!/bin/sh
 
+. $HOME/.cache/wal/colors.sh
+
+# Check 2 paths, because it varies from time to time on the T450s
 temp_path1='/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input'
 temp_path2='/sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input'
 high=75
@@ -18,9 +21,9 @@ temp() {
 	if [ "$coretemp" -gt "$high" ]; then
 		color="^c#ff0000^"
 	else
-		color=""
+		color="^c$background^"
 	fi
-	echo "$color$coretemp°C$endcolor"
+	echo "$color^b$foreground^ $coretemp°C"
 }
 
 echo $(temp)
