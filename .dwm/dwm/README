@@ -1,4 +1,4 @@
-This is my build of dwm
+his is my build of dwm
 =======================
 
 It's dwm 6.2 patched with :
@@ -20,4 +20,22 @@ dwm-vanitygaps-6.2.diff
 These patches are available in the /patches subdir.
 
 The my-dwm.diff file can be used to apply all those patches at once on the dwm (6.2) source code : git clone https://git.suckless.org/dwm
+
+config.def.h is edited to make use of pywal colors. 
+In order to use this build without pywal, replace the following line :
+
+#include "/home/fuzzbox/.cache/wal/colors-wal-dwm.h"
+
+by these lines : 
+
+static const char col_gray1[]       = "#222222";    
+static const char col_gray2[]       = "#444444";    
+static const char col_gray3[]       = "#bbbbbb";    
+static const char col_gray4[]       = "#eeeeee";    
+static const char col_cyan[]        = "#005577";    
+static const char *colors[][3]      = {    
+        /*               fg         bg         border   */    
+        [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },    
+        [SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },    
+};
 
