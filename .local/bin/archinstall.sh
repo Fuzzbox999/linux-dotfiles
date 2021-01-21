@@ -35,7 +35,7 @@ echo "Generate fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
 
 echo "Chrooting"
-curl https://raw.githubusercontent.com/Fuzzbox999/dotfiles/master/.local/bin/archchroot.sh.test > /mnt/archchroot.sh && arch-chroot /mnt bash archchroot.sh && rm /mnt/archchroot.sh 
+curl https://raw.githubusercontent.com/Fuzzbox999/dotfiles/master/.local/bin/archchroot.sh > /mnt/archchroot.sh && arch-chroot /mnt bash archchroot.sh && rm /mnt/archchroot.sh 
 
 umount -R /mnt
 
