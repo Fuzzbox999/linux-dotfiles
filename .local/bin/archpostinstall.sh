@@ -32,11 +32,12 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 
 # get my dotfiles
 
+mkdir /home/fuzzbox/.local/bin
 cd /home/fuzzbox/.local/
 
 git clone https://github.com/Fuzzbox999/dotfiles.git
 
-cd dotfiles
+cd /home/fuzzbox/.local/dotfiles/
 
 echo "Prepare for suckless tools build"
 
@@ -66,7 +67,7 @@ wal -i /home/fuzzbox/Images/Wallpapers/dwm.jpg
 
 echo "Prepare for suckless tools build"
 
-cd /home/.dwm/
+cd /home/fuzzbox/.dwm/
 mv dmenu-5.0-patched dmenu
 
 echo "Build dwm"
@@ -76,7 +77,7 @@ echo "Build dwmblocks"
 cd ../dwmblocks
 make
 echo "Build dmenu"
-cd ..//dmenu
+cd ../dmenu
 make
 
 echo "Create symlinks in ~/.local/bin/ for suckless tools"

@@ -7,7 +7,9 @@ echo "Synchro time"
 hwclock --systohc
 
 echo "Edit locale.gen"
-sed -i -e 's/#en_US.UTF-8/en_US.UTF-8/g' -e 's/#fr_FR.UTF-8/fr_FR.UTF-8/g' locale.gen
+echo "
+en_US.UTF-8 UTF-8
+fr_FR.UTF-8 UTF-8" >> /etc/locale.gen
 
 echo "Genere locales"
 locale-gen
@@ -61,6 +63,7 @@ echo "Add fuzzbox to sudoers"
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 echo "Edit mouse config"
+mkdir -p /etc/X11/xorg.conf/
 echo "
 Section \"InputClass\"
 	Identifier \"touchpad catchall\"
@@ -94,10 +97,13 @@ ExecStart=
 ExecStart=-/usr/bin/agetty --autologin fuzzbox --noclear %I $TERM" > /etc/systemd/system/getty@tty1.service.d/override.conf
 
 echo "Add fuzzbox crontab"
- echo "*/1 * * * * /home/fuzzbox/.local/bin/check_upgrades\n*/2 * * * * /home/fuzzbox/.local/bin/low_bat_notify\n*/2 * * * * /home/fuzzbox/.local/bin/low_internal_bat_notify" |tee -a /var/spool/cron/fuzzbox
+echo "
+*/1 * * * * /home/fuzzbox/.local/bin/check_upgrades
+*/2 * * * * /home/fuzzbox/.local/bin/low_bat_notify
+*/2 * * * * /home/fuzzbox/.local/bin/low_internal_bat_notify" > /var/spool/cron/fuzzbox
 
 echo "Add root crontab"
-echo "*/15 * * * * /usr/bin/pacman -Sy >> /dev/null 2>&1" |tee -a /var/spool/cron/root
+echo "*/15 * * * * /usr/bin/pacman -Sy >> /dev/null 2>&1" > /var/spool/cron/root
 
 echo "Configure pam for fingerprint"
 echo "auth sufficient pam_fprintd.so" >> /etc/pam.d/system-auth
