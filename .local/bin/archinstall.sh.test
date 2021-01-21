@@ -1,0 +1,83 @@
+#!/bin/sh
+
+echo "Load french keyboard"
+loadkeys fr
+
+echo "Set timedatectl"
+timedatectl set-ntp true
+
+echo "Partition the drive"
+fdisk /dev/vda
+
+echo "Create filesystems"
+mkfs.fat -F32 /dev/vda1
+
+mkfs.ext4 /dev/vda3
+
+mkswap /dev/vda2
+
+swapon /dev/vda2
+
+mount /dev/vda3 /mnt
+
+mkdir /mnt/efi
+
+mount /dev/vda1 /mnt/efi
+
+echo "Install Arch Linux"
+pacstrap /mnt base base-devel linux linux-firmware vim sed
+
+echo "Generate fstab"
+genfstab -U /mnt >> /mnt/etc/fstab
+
+echo "Chrooting"
+arch-root /mnt
+
+echo "Sett timezone"
+ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
+
+echo "Synchro time"
+hwclock --systohc
+
+echo "Edit locale.gen"
+sed -i -e 's/#en_US.UTF-8/en_US.UTF-8/g' -e 's/#fr_FR.UTF-8/fr_FR.UTF-8/g' locale.gen
+
+echo "Genere locales"
+locale-gen
+
+echo "Set language"
+echo "LANG=fr_FR.UTF-8" > /etc/locale.conf
+
+echo "Set keyboard"
+echo "KEYMAP=fr" > /etc/vconsole.conf
+
+echo "Set hostname"
+echo "thinkpad" > /etc/hostname
+
+echo "Set hosts"
+echo "
+127.0.0.1       localhost    
+::1             localhost    
+127.0.1.1       thinkpad.localdomain  thinkpad" > /etc/hosts
+
+echo "Set root password"
+passwd
+
+echo "Install Grub"
+pacman -S grub efibootmgr
+
+grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
+echo "Install the network manager"
+pacman -S networkmanager dhclient wpa_supplicant
+
+echo "Exit chroot"
+exit
+
+echo "Umount disk"
+umount -R /mnt
+
+echo "Done, now reboot..."
+
