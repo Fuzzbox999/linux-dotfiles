@@ -63,7 +63,7 @@ echo "Add fuzzbox to sudoers"
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 echo "Edit mouse config"
-mkdir -p /etc/X11/xorg.conf/
+mkdir -p /etc/X11/xorg.conf.d/
 echo "
 Section \"InputClass\"
 	Identifier \"touchpad catchall\"
@@ -73,7 +73,7 @@ Section \"InputClass\"
 			Option \"TapButton1\" \"1\"
 			Option \"TapButton2\" \"2\"
 			Option \"TapButton3\" \"3\"
-EndSection" > /etc/X11/xorg.conf/10-synaptics.conf
+EndSection" > /etc/X11/xorg.conf.d/10-synaptics.conf
 
 echo "Edit keyoard config" 
 echo "
@@ -83,7 +83,7 @@ Section \"InputClass\"
 	Option \"XkbLayout\" \"fr\"
 	Option \"XkbModel\" \"pc105\"
 	Option \"XkbOptions\" \"terminate:ctrl_alt_bksp\"
-EndSection" > /etc/X11/xorg.conf/00-keyboard.conf
+EndSection" > /etc/X11/xorg.conf.d/00-keyboard.conf
 
 echo "Edit udev backlight rules"
 echo "
