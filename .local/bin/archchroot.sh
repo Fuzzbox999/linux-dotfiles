@@ -1,38 +1,5 @@
 #!/bin/sh
 
-echo "Load french keyboard"
-loadkeys fr
-
-echo "Set timedatectl"
-timedatectl set-ntp true
-
-echo "Partition the drive"
-fdisk /dev/vda
-
-echo "Create filesystems"
-mkfs.fat -F32 /dev/vda1
-
-mkfs.ext4 /dev/vda3
-
-mkswap /dev/vda2
-
-swapon /dev/vda2
-
-mount /dev/vda3 /mnt
-
-mkdir /mnt/efi
-
-mount /dev/vda1 /mnt/efi
-
-echo "Install Arch Linux"
-pacstrap /mnt base base-devel linux linux-firmware vim sed
-
-echo "Generate fstab"
-genfstab -U /mnt >> /mnt/etc/fstab
-
-echo "Chrooting"
-arch-root /mnt
-
 echo "Sett timezone"
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
@@ -66,7 +33,8 @@ passwd
 echo "Install Grub"
 pacman -S grub efibootmgr
 
-grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+# grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+grub-install --target=i386-pc /dev/sda
 
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -75,9 +43,4 @@ pacman -S networkmanager dhclient wpa_supplicant
 
 echo "Exit chroot"
 exit
-
-echo "Umount disk"
-umount -R /mnt
-
-echo "Done, now reboot..."
 
