@@ -14,26 +14,31 @@ passwd fuzzbox
 
 echo "Add user fuzzbox to video and wheel groups"
 gpasswd -a fuzzbox video
-
 gpasswd -a fuzzbox wheel
+
+echo "Add fuzzbox to sudoers"
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+
+echo "Become fuzzbox"
+su - fuzzbox
 
 echo "Install more programs"
 
-pacman -S links git xorg ranger rxvt-unicode urxvt-perls openssh htop feh xorg-xinit wget firefox papirus-icon-theme picom ttf-font-awesome scrot neofetch lxapearance python-pywal xdotool dunst xclip pulseaudio pavucontrol udisks2 udiskie mplayer cheese blueman zsh zsh-autosuggestions zsh-completions zsh-lovers zsh-syntax-highlighting zsh-theme-powerlevel10k zathura xdotool xdg-user-dirs tlp tlp-rdw thunar neomutt neovim mpv mpc mopidy hdparm gnome-font-viewer fprintd dunst blueman bluez xf86-input-synaptics jq sassc ncmpcpp cronie gimp firefox-i18n-fr imagemagick net-tools curl redshift
+sudo pacman -S links git xorg ranger rxvt-unicode urxvt-perls openssh htop feh xorg-xinit wget firefox papirus-icon-theme picom ttf-font-awesome scrot neofetch python-pywal xdotool dunst xclip pulseaudio pavucontrol udisks2 udiskie mplayer cheese blueman zsh zsh-autosuggestions zsh-completions zsh-lovers zsh-syntax-highlighting zsh-theme-powerlevel10k zathura xdotool xdg-user-dirs tlp tlp-rdw thunar neomutt neovim mpv mpc mopidy hdparm gnome-font-viewer fprintd dunst blueman bluez xf86-input-synaptics jq sassc ncmpcpp cronie gimp firefox-i18n-fr imagemagick net-tools curl redshift
 
 echo "Install AUR helper"
-cd /home/fuzzbox
+cd
 
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -si
+sudo makepkg -si
 cd
 
 echo "Install more packages from AUR"
 yay -S colorz getmail gtk-theme-flat-color-git i3lock-color-git mopidy-mpd mopidy-spotify nerd-fonts-meslo oh-my-zsh-git sc-im ttf-iosevka ttf-iosevka-term ttf-meslo ttf-meslo-nerd-font-powerlevel10k tty-clock urlview wpgtk-git cava clipit python-colorthief  
 
 echo "Edit mouse config"
-echo "
+sudo echo "
 Section \"InputClass\"
 	Identifier \"touchpad catchall\"
 		Driver \"synaptics\"
@@ -45,7 +50,7 @@ Section \"InputClass\"
 EndSection" > /etc/X11/xorg.conf/10-synaptics.conf
 
 echo "Edit keyoard config" 
-echo "
+sudo echo "
 Section \"InputClass\"
 	Identifier \"system-keyboard\"
 	MatchIsKeyboard \"on\"
@@ -55,30 +60,27 @@ Section \"InputClass\"
 EndSection" > /etc/X11/xorg.conf/00-keyboard.conf
 
 echo "Edit udev backlight rules"
-echo "
+sudo echo "
 ACTION==\"add\", SUBSYSTEM==\"backlight\", KERNEL==\"intel_backlight\", RUN+=\"/bin/chgrp video /sys/class/backlight/%k/brightness\"
 ACTION==\"add\", SUBSYSTEM==\"backlight\", KERNEL==\"intel_backlight\", RUN+=\"/bin/chmod g+w /sys/class/backlight/%k/brightness\" " > /etc/udev/rules.d/backlight.rules
 
 echo "Configuring tty1 auto-login"
-echo "
+sudo echo "
 [Service]
 ExecStart=
 ExecStart=-/usr/bin/agetty --autologin fuzzbox --noclear %I $TERM" > /etc/systemd/system/getty@tty1.service.d/override.conf
 
 echo "Add fuzzbox crontab"
-echo "*/1 * * * * /home/fuzzbox/.local/bin/check_upgrades\n*/2 * * * * /home/fuzzbox/.local/bin/low_bat_notify\n*/2 * * * * /home/fuzzbox/.local/bin/low_internal_bat_notify" |tee -a /var/spool/cron/fuzzbox
+sudo echo "*/1 * * * * /home/fuzzbox/.local/bin/check_upgrades\n*/2 * * * * /home/fuzzbox/.local/bin/low_bat_notify\n*/2 * * * * /home/fuzzbox/.local/bin/low_internal_bat_notify" |tee -a /var/spool/cron/fuzzbox
 
 echo "Add root crontab"
-echo "*/15 * * * * /usr/bin/pacman -Sy >> /dev/null 2>&1" |tee -a /var/spool/cron/root
+sudo echo "*/15 * * * * /usr/bin/pacman -Sy >> /dev/null 2>&1" |tee -a /var/spool/cron/root
 
 echo "Configure pam for fingerprint"
-echo "auth sufficient pam_fprintd.so" >> /etc/pam.d/system-auth
-echo "auth sufficient pam_fprintd.so" >> /etc/pam.d/system-login
-echo "auth sufficient pam_fprintd.so" >> /etc/pam.d/system-local-login
-echo "auth sufficient pam_fprintd.so" >> /etc/pam.d/sudo
-
-echo "Become fuzzbox"
-su - fuzzbox
+sudo echo "auth sufficient pam_fprintd.so" >> /etc/pam.d/system-auth
+sudo echo "auth sufficient pam_fprintd.so" >> /etc/pam.d/system-login
+sudo echo "auth sufficient pam_fprintd.so" >> /etc/pam.d/system-local-login
+sudo echo "auth sufficient pam_fprintd.so" >> /etc/pam.d/sudo
 
 echo "Swithcing to zsh shell"
 chsh -s /usr/bin/zsh
