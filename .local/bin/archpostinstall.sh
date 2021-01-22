@@ -27,6 +27,8 @@ echo "Install ranger plugins"
 mkdir -p /home/fuzzbox/.config/ranger/plugins/
 git clone https://github.com/alexanderjeurissen/ranger_devicons /home/fuzzbox/.config/ranger/plugins/ranger_devicons
 
+zsh
+
 echo "Install zsh theme"
 sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
