@@ -71,7 +71,7 @@ cd /home/fuzzbox/.dwm/
 mv dmenu-5.0-patched dmenu
 
 echo "Build dwm"
-cd /home/fuzbox/.dwm/dwm/
+cd /home/fuzzbox/.dwm/dwm/
 make
 echo "Build dwmblocks"
 cd /home/fuzzbox/.dwm/dwmblocks
@@ -87,6 +87,8 @@ ln -s /home/fuzzbox/.dwm/dwmblocks dwmblocks
 ln -s /home/fuzzbox/.dwm/dmenu/dmenu dmenu
 ln -s /home/fuzzbox/.dwm/dmenu/dmenu_run dmenu_run
 ln -s /home/fuzzbox/.dwm/dmenu/dmenu_path dmenu_path
+
+echo "Now run archendinstall.sh as root du finish the installation"
 
 echo "Done"
 
