@@ -44,5 +44,5 @@ else
 	true
 fi
 
-i3lock_custom &
+# i3lock_custom &
 
