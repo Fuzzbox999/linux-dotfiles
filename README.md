@@ -8,8 +8,6 @@ Hi,
 - App launcher : [patched](https://github.com/Fuzzbox999/dotfiles/tree/master/.local/builds/perso/dmenu-5.0-patched) [dmenu](https://tools.suckless.org/dmenu/)
 - Theme manager : [Pywal](https://github.com/dylanaraps/pywal) and [wpgtk](https://github.com/BigfootN/wpgtk), driven from [ranger](https://github.com/ranger/ranger) file manager.
 
-![Screenie](https://raw.githubusercontent.com/Fuzzbox999/dotfiles/master/Images/Screenshots/screenie.jpg)
-
 ![Screenie](https://raw.githubusercontent.com/Fuzzbox999/dotfiles/master/Images/Screenshots/output.gif)
 
 Fuzz'
