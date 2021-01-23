@@ -4,7 +4,7 @@ Xft.hinting:    full
 URxvt*saveLines: 100000
 URxvt*visualBell: true
 !URxvt*font: xft:Hermit-medium Term:medium:pixelsize=12:antialias=true:hinting=true
-URxvt*font: xft:MesloLGS NF:pixelsize=14:antialias=true:hinting=true
+URxvt*font: xft:MesloLGS NF:pixelsize=13:antialias=true:hinting=true
 !URxvt*boldFont: xft:Hermit-bold Term:pixelsize=12:antialias=true:hinting=true
 !URxvt*boldFont: xft:MesloLGS-NF-Bold:pixelsize=14:antialias=true:hinting=true
 URxvt*scrollBar:	false

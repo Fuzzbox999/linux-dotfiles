@@ -22,5 +22,5 @@ while :; do
   echo "load='$cpu_usage'" >$HOME/.local/tmp/cpu-load
   # Wait a second before the next read 
   kill -35 $(pidof dwmblocks)
-  sleep 2 
+  sleep 3
 done
