@@ -45,10 +45,7 @@ echo "Prepare for suckless tools build"
 
 mkdir -p /home/fuzzbox/.suckless/
 cd /home/fuzzbox/.local/dotfiles/
-cp -r .dwm/autostart.sh /home/fuzzbox/.suckless/
-cp -r .dwm/dwm/ /home/fuzzbox/.suckless/
-cp -r .dwm/dwmblocks/ /home/fuzzbox/.suckless/
-cp -r .local/builds/perso/dmenu-5.0-patched /home/fuzzbox/.suckless/
+cp -r .suckless/* /home/fuzzbox/.suckless/
 
 cp -r .local/bin/* /home/fuzzbox/.local/bin/
 cp -r .config/* /home/fuzzbox/.config/
@@ -68,9 +65,6 @@ wal -i /home/fuzzbox/Images/Wallpapers/dwm.jpg
 # Install suckless tools
 
 echo "Prepare for suckless tools build"
-
-cd /home/fuzzbox/.suckless/
-mv dmenu-5.0-patched dmenu
 
 echo "Build dwm"
 cd /home/fuzzbox/.suckless/dwm/
