@@ -1,0 +1,33 @@
+#!/bin/sh
+
+. "$HOME/.cache/wal/colors.sh"
+
+theme=$(echo -e "Dark\nLight"| dmenu -c -fn MesloLGS-10 -nb "$color0" -nf "$color7" -sb "$color10" -sf "$color0" -h 32 -bw 1 -c -l 2)
+
+if   [ "$theme" == "Dark" ]; then
+	wal_arg=""
+	walwpg="false"
+	wpg_arg=""
+elif [ "$theme" == "Light" ]; then
+	wal_arg="-l"
+	walwpg="true"
+	wpg_arg="--light"
+else
+	exit 0
+fi
+
+
+backend=$(echo -e "wal\ncolorz\nhaishoku\ncolorthief\nschemer2"| dmenu -c -fn MesloLGS-10 -nb "$color0" -nf "$color7" -sb "$color10" -sf "$color0" -h 32 -bw 1 -c -l 5)
+
+wal --backend $backend $wal_arg -i $1
+wal_wpgtk $backend $walwpg
+wpg -a $1
+wpg $wpg_arg --backend $backend -n -s $1
+wal -R
+cp $1 ~/Images/Current/wall.jpg
+sassc /home/fuzzbox/.startpage/scss/style.scss /home/fuzzbox/.startpage/style.css
+wal_dunst
+rm /home/fuzzbox/.dwm/dwm/config.h
+cd /home/fuzzbox/.dwm/dwm/ && make
+kill -HUP $(pidof dwm)
+
