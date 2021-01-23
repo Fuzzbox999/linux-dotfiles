@@ -1,6 +1,38 @@
 vnoremap <C-c> "*y :let @+=@*<CR>
 map <C-v> "+P
 
+let g:airline_powerline_fonts = 1
+
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
 call plug#begin('~/.vim/plugged')
 
    " Make sure you use single quotes
@@ -47,17 +79,23 @@ endfunction
 
 " use ctrl-t to open file in a new tab
 " use ctrl-f to open file in current buffer
-map <c-t> :call DmenuOpen("tabe")<cr>
-map <c-f> :call DmenuOpen("e")<cr>
+" map <c-t> :call DmenuOpen("tabe")<cr>
+" map <c-f> :call DmenuOpen("e")<cr>
 
    " Initialize plugin system
-   call plug#end()
+call plug#end()
 
    " Using plug
+
 Plug 'dylanaraps/wal.vim'
 
-:set cursorline
+colorscheme wal
+
+" :set cursorline
+" :hi CursorLine cterm=NONE ctermbg=7 ctermfg=black
+" :set cursorcolumn
+" :hi cursorcolumn cterm=NONE ctermbg=7 ctermfg=white guibg=7 guifg=white
 :set nu
 :set scrolloff=999
 
-colorscheme wal
+" colorscheme wal
