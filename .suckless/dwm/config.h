@@ -12,7 +12,7 @@ static       int smartgaps          = 1;        /* 1 means no outer gap when the
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 32;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "MesloLGS NF:size=8" };
+static const char *fonts[]          = { "MesloLGS NF:size=9" };
 static const char dmenufont[]       = "MesloLGS NF:size=8";
 
 /* static const char col_gray1[]       = "#222222";    

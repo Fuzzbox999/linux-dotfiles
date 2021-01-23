@@ -3,10 +3,10 @@ static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 	
 	{" ", "dwm-song", 5, 0},
-	{"", "dwm-mail", 60, 13},
-	{"", "dwm-cpuload", 30, 1},
+/*	{"", "dwm-mail", 60, 13}, */
+	{"", "dwm-cpuload", 3, 1},
 	{"", "dwm-temp", 3, 2},
-	{"", "dwm-fan", 3, 3},
+	{"", "dwm-fan", 5, 3},
 	{"", "dwm-mem", 20, 4},
 	{" ", "dwm-disks", 30, 7},
 	{" ", "dwm-packages", 15, 8},

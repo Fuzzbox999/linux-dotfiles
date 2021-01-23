@@ -43,12 +43,12 @@ cd /home/fuzzbox/.local/dotfiles/
 
 echo "Prepare for suckless tools build"
 
-mkdir -p /home/fuzzbox/.dwm/
+mkdir -p /home/fuzzbox/.suckless/
 cd /home/fuzzbox/.local/dotfiles/
-cp -r .dwm/autostart.sh /home/fuzzbox/.dwm/
-cp -r .dwm/dwm/ /home/fuzzbox/.dwm/
-cp -r .dwm/dwmblocks/ /home/fuzzbox/.dwm/
-cp -r .local/builds/perso/dmenu-5.0-patched /home/fuzzbox/.dwm/
+cp -r .dwm/autostart.sh /home/fuzzbox/.suckless/
+cp -r .dwm/dwm/ /home/fuzzbox/.suckless/
+cp -r .dwm/dwmblocks/ /home/fuzzbox/.suckless/
+cp -r .local/builds/perso/dmenu-5.0-patched /home/fuzzbox/.suckless/
 
 cp -r .local/bin/* /home/fuzzbox/.local/bin/
 cp -r .config/* /home/fuzzbox/.config/
@@ -69,26 +69,26 @@ wal -i /home/fuzzbox/Images/Wallpapers/dwm.jpg
 
 echo "Prepare for suckless tools build"
 
-cd /home/fuzzbox/.dwm/
+cd /home/fuzzbox/.suckless/
 mv dmenu-5.0-patched dmenu
 
 echo "Build dwm"
-cd /home/fuzzbox/.dwm/dwm/
+cd /home/fuzzbox/.suckless/dwm/
 make
 echo "Build dwmblocks"
-cd /home/fuzzbox/.dwm/dwmblocks
+cd /home/fuzzbox/.suckless/dwmblocks
 make
 echo "Build dmenu"
-cd /home/fuzzbox/.dwm/dmenu
+cd /home/fuzzbox/.suckless/dmenu
 make
 
 echo "Create symlinks in ~/.local/bin/ for suckless tools"
 cd /home/fuzzbox/.local/bin
-ln -s /home/fuzzbox/.dwm/dwm/dwm dwm
-ln -s /home/fuzzbox/.dwm/dwmblocks dwmblocks
-ln -s /home/fuzzbox/.dwm/dmenu/dmenu dmenu
-ln -s /home/fuzzbox/.dwm/dmenu/dmenu_run dmenu_run
-ln -s /home/fuzzbox/.dwm/dmenu/dmenu_path dmenu_path
+ln -s /home/fuzzbox/.suckless/dwm/dwm dwm
+ln -s /home/fuzzbox/.suckless/dwmblocks dwmblocks
+ln -s /home/fuzzbox/.suckless/dmenu/dmenu dmenu
+ln -s /home/fuzzbox/.suckless/dmenu/dmenu_run dmenu_run
+ln -s /home/fuzzbox/.suckless/dmenu/dmenu_path dmenu_path
 
 echo "Now run archendinstall.sh as root du finish the installation"
 
