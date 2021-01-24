@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -25,14 +25,17 @@ source ~/.cache/wal/colors-tty.sh
 POWERLEVEL9K_INSTANT_PROMPT=off
 
 export PATH=$PATH:~/.local/bin
+export EDITOR=nvim
 
 alias pac='sudo pacman'
 alias mirrors='sudo reflector --country France --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias autoremove='pac -Rns $(pacman -Qtdq)'
 alias config='/usr/bin/git --git-dir=$HOME/.local/dotfiles/ --work-tree=$HOME'
+alias cl='clear'
 alias ccl='cd && clear'
-alias neo='echo "" && neofetch --ascii_distro linux --color_blocks off && i3 -v|cut -d" " -f -6'
+alias neo='echo "" && neofetch --disable Theme Icons GPU Uptime Packages title Resolution --color_blocks off --title_fqdn on --underline off --kernel_shorthand on --memory_percent on --memory_unit gib --speed_shorthand on --cpu_brand off --distro_shorthand on  --ascii_distro linux_small'
 alias dragon='dragon-drag-and-drop'
+alias bat='sudo tlp-stat -b'
 
 setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes
@@ -70,7 +73,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case insensitive tab
 autoload -Uz promptinit
 promptinit
 
-ZSH=/usr/share/oh-my-zsh/
+ZSH=/usr/share/oh-my-zsh
 
 DISABLE_AUTO_UPDATE="true"
 
@@ -80,6 +83,10 @@ plugins=(
 )
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
+
+zstyle ':completion:*' rehash true
+
+# PERL_DESTRUCT_LEVEL=2
 
 # History configurations
 HISTFILE=~/.zsh_history
@@ -234,6 +241,12 @@ alias lla='ls -lA'
 alias l='ls -CF'
 
 # enable auto-suggestions based on the history
+#if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+#    . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#    # change suggestion color
+#    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
+#fi
+
 if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     # change suggestion color
@@ -241,18 +254,6 @@ if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; th
 fi
 
 # Vim stuff
-
-function vim() {
-  args=()
-  for i in $@; do
-    if [[ -h $i ]]; then
-      args+=`readlink $i`
-    else
-      args+=$i
-    fi
-  done
-/usr/bin/vim -p "${args[@]}"
-}
 
 function nvim() {
   args=()
