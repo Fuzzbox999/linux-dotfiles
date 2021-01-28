@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. "$HOME/.local/etc/pkg-status"
+. $HOME/.local/etc/pkg-status
 
 pkg() {
 	if [ "$upgradeable" = "0" ]; then
@@ -10,7 +10,7 @@ pkg() {
 		color="^c#ff0000^"
 		endcolor="^d^"
 	fi
-	echo "$color$upgradeable$endcolor/$installed"
+	echo "$color $upgradeable$endcolor / $installed"
 	. "$HOME/.local/etc/pkg-status"
 }
 

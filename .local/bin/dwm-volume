@@ -3,13 +3,13 @@
 vol() {
 	ismuted=$(pacmd list-sinks|grep muted|cut -d ":" -f 2|xargs)
 	if [ "$ismuted" = "yes" ]; then
-		val="^c#ff0000^Mute^d^"
+		val="^c#ff0000^Muted^d^"
 		sym=""
 	else
  		val=$(pacmd list-sinks | grep "volume" | head -n1 | cut -d: -f3 | cut -d% -f1 |    cut -d/ -f2 |xargs)
 		sym="%"
  	fi
- 	echo "$val$sym"
+ 	echo " $val$sym"
 }
 
 echo $(vol)

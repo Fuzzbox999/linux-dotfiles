@@ -2,21 +2,22 @@
 
 mail() {
 
-size0=$(stat --printf="%s" /home/fuzzbox/.mutt/perso/inbox)    
+	size0=$(stat --printf="%s" /home/fuzzbox/.mutt/perso/inbox)    
         size1=$(stat --printf="%s" /home/fuzzbox/.mutt/pro/inbox)    
         size2=$(stat --printf="%s" /home/fuzzbox/.mutt/gmail/inbox)    
         if [ $size0 = "0" ] && [ $size1 = "0" ] && [ $size2 = "0" ]; then    
-                mcolor=""
-                mailtxt="No mail"    
-                check=""
+                color=""
+                # txt="No mail"    
+                icon=""
 		endcolor=""
         else    
-                mcolor="^c#ff0000^"    
-                mailtxt="Got mail"    
-                check=""
+                color="^c#ff0000^"    
+                # txt="Got mail"    
+                icon=""
 		endcolor="^d^"
         fi    
-	echo "$mcolor $mailtxt $check $endcolor"
+	# echo "$txt $color $icon $endcolor"
+	echo "$color $icon $endcolor"
 }
 
 echo $(mail)

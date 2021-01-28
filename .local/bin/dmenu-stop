@@ -2,7 +2,7 @@
 
 . "$HOME/.cache/wal/colors.sh"
 
-action=$(echo -e "Verrouiller\nArrêter\nRedémarrer"|dmenu -c -fn MesloLGS-8 -nb "$color0" -nf "$color7" -sb "$color10" -sf "$color0" -h 32 -bw 1 -l 3)
+action=$(echo -e "Verrouiller\nArrêter\nRedémarrer"|dmenu -c -fn "$1" -nb "$color0" -nf "$color7" -sb "$color10" -sf "$color0" -h 32 -bw 1 -l 3)
 
 if [ $action == "Verrouiller" ]; then
 	exec i3exit lock

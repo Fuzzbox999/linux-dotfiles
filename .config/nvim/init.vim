@@ -10,6 +10,10 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
+set undofile
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+set list listchars=nbsp:¬,tab:»·,trail:·,extends:>
+
 " unicode symbols
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
@@ -69,14 +73,6 @@ function! Chomp(str)
   return substitute(a:str, '\n$', '', '')
 endfunction
 
-function! DmenuOpen(cmd)
-    let fname = Chomp(system("find . | $HOME/.local/bin/dmenu/dmenu-extended_wrapper -i -l 20 -p " . a:cmd))
-    if empty(fname)
-    return
-  endif
-  execute a:cmd . " " . fname
-endfunction
-
 " use ctrl-t to open file in a new tab
 " use ctrl-f to open file in current buffer
 " map <c-t> :call DmenuOpen("tabe")<cr>
@@ -91,11 +87,10 @@ Plug 'dylanaraps/wal.vim'
 
 colorscheme wal
 
-" :set cursorline
-" :hi CursorLine cterm=NONE ctermbg=7 ctermfg=black
 " :set cursorcolumn
-" :hi cursorcolumn cterm=NONE ctermbg=7 ctermfg=white guibg=7 guifg=white
+" :set cursorline
+
 :set nu
 :set scrolloff=999
 
-" colorscheme wal
+colorscheme wal

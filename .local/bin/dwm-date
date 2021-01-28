@@ -7,5 +7,5 @@ day() {
 	echo "^c$color5^$day^d^"
 }
 
-echo "$(day) "
+echo "$(day)  "
 

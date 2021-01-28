@@ -9,8 +9,8 @@ song() {
  	    else    icon=""
  	            sep="-"
  	    fi
-	    echo " $icon $artist $sep $title"
+	    echo "$icon $artist $sep $title"
 }
 
-echo $(song)
+echo "   $(song)"
 

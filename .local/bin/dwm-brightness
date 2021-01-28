@@ -3,7 +3,7 @@
 bt() {
 	bt=$(cat /sys/class/backlight/intel_backlight/actual_brightness)
 	btp=$(($bt*100/4648))
-	echo "$btp%"
+	echo " $btp%"
 }
 
 echo $(bt)
