@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# The lock screen I use both with i3 and dwm
+
 # Import the colors (Pywal)
 . "$HOME/.cache/wal/colors.sh"
 
@@ -8,4 +10,5 @@ trans='ff'
 colora=$(echo ${color2}$trans|cut -d# -f2)
 colorb=$(echo ${color0}$trans|cut -d# -f2)
 
-i3lock --composite -k -B 5 --ringcolor=$colora --linecolor=$colora --insidecolor=$colorb --keyhlcolor=$colorb --insidevercolor=$colorb --bshlcolor=$colora --ringvercolor=$colora --verifcolor=$colora --timecolor=$colora --datecolor=$colora --separatorcolor=$colorb --datestr="%A %d %B %Y" --timestr="%H:%M" --time-font=Iosevka --timesize=55 --date-font=Iosevka --datesize=12 --verif-font=Iosevka --verifsize=28 --veriftext="scanning..."
+# i3lock --composite -k -B 5 --ringcolor=$colora --linecolor=$colora --insidecolor=$colorb --keyhlcolor=$colorb --insidevercolor=$colorb --bshlcolor=$colora --ringvercolor=$colora --verifcolor=$colora --timecolor=$colora --datecolor=$colora --separatorcolor=$colorb --datestr="%A %d %B %Y" --timestr="%H:%M" --time-font=Iosevka --timesize=55 --date-font=Iosevka --datesize=12 --verif-font=Iosevka --verifsize=28 --veriftext="scanning..."
+i3lock --composite -k -B 5 --ringcolor=$colora --linecolor=$colora --insidecolor=$colorb --keyhlcolor=$colorb --insidevercolor=$colorb --bshlcolor=$colora --ringvercolor=$colora --verifcolor=$colora --timecolor=$colora --datecolor=$colora --separatorcolor=$colorb --datestr="%A %d %B %Y" --timestr="%H:%M" --time-font="SFNS Display" --timesize=55 --date-font="SFNS Display" --datesize=16 --verif-font="SFNS Display" --verifsize=28 --veriftext="Scanning..."
