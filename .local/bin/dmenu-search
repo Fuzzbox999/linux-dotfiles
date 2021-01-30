@@ -14,7 +14,7 @@ font="SFNS Display:style=Regular:size=11"
 [ -f "$hfile" ] || touch "$hfile"
 
 # get primary selection and search history from $hfile and pass into dmenu
-selection=$(echo "$(xclip -o)" | tac - $hfile | awk 'NF' | dmenu -c -fn "$1" -nb "$color0" -nf "$color7" -sb "$color10" -sf "$color0" -h 32 -bw 1 -i -l 5 -p "Chercher" | tr ' ' '+' ) || exit 1
+selection=$(echo "$(xclip -o)" | tac - $hfile | awk 'NF' | dmenu -c -fn "$1" -nb "$color0" -nf "$color15" -sb "$color2" -sf "$color0" -h 32 -bw 1 -i -l 5 -p "Chercher" | tr ' ' '+' ) || exit 1
 
 se[0]="Wallhaven"
 se[1]="Youtube"
@@ -38,7 +38,7 @@ else
 fi
 
 # get choice of search engine using dmenu
-choice=$(printf "%s\n" "${se[@]}" | dmenu -c -fn "$1" -nb "$color0" -nf "$color7" -sb "$color10" -sf "$color0" -h 32 -bw 1 -l 15 -i -p "Chercher \"$(echo "$selection")\"")|| exit 1
+choice=$(printf "%s\n" "${se[@]}" | dmenu -c -fn "$1" -nb "$color0" -nf "$color15" -sb "$color2" -sf "$color0" -h 32 -bw 1 -l 15 -i -p "Chercher \"$(echo "$selection")\"")|| exit 1
 
 # get apropriate url for choice
 if [ "$choice" = "${se[0]}" ]; then

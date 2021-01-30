@@ -4,7 +4,7 @@
 
 dmenufont="SFNS Display:style=Regular:size=11"
 
-theme=$(echo -e "Dark\nLight"| dmenu -c -fn "$dmenufont" -nb "$color0" -nf "$color7" -sb "$color10" -sf "$color0" -h 32 -bw 1 -c -l 2)
+theme=$(echo -e "Dark\nLight"| dmenu -c -fn "$dmenufont" -nb "$color0" -nf "$color15" -sb "$color2" -sf "$color0" -h 32 -bw 1 -c -l 2)
 
 if   [ "$theme" == "Dark" ]; then
 	wal_arg=""
@@ -24,7 +24,7 @@ else
 	true
 fi
 
-backend=$(echo -e "wal\ncolorz\nhaishoku\ncolorthief\nschemer2"| dmenu -c -fn "$dmenufont" -nb "$color0" -nf "$color7" -sb "$color10" -sf "$color0" -h 32 -bw 1 -c -l 5)
+backend=$(echo -e "wal\ncolorz\nhaishoku\ncolorthief\nschemer2"| dmenu -c -fn "$dmenufont" -nb "$color0" -nf "$color15" -sb "$color2" -sf "$color0" -h 32 -bw 1 -c -l 5)
 
 wal --backend $backend $wal_arg -i $1
 
