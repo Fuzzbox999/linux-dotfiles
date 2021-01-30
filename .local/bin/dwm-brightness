@@ -1,9 +1,10 @@
 #!/bin/sh
 
 bt() {
-	bt=$(cat /sys/class/backlight/intel_backlight/actual_brightness)
-	btp=$(($bt*100/4648))
-	echo " $btp%"
+	read -r actual_brightness < /sys/class/backlight/intel_backlight/actual_brightness
+	read -r max_brightness < /sys/class/backlight/intel_backlight/max_brightness
+	bt=$((actual_brightness*100/max_brightness))
+	echo " $bt%"
 }
 
 echo $(bt)
