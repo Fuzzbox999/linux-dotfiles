@@ -8,10 +8,18 @@ MIN=0
 MAX=$(cat $KEYS_DIR/max_brightness)
 VAL=$(cat $KEYS_DIR/actual_brightness)
 
+if [ "$MAX" = 852 ]; then
+	STEP=71
+elif [ "$MAX" = 4648 ]; then
+	STEP=332
+elif [ "$MAX" = 4437 ]; then
+	STEP=261
+fi
+
 if [ "$1" = down ]; then
-	VAL=$((VAL-332))
+	VAL=$((VAL-$STEP))
 elif [ "$1" = up ]; then
-	VAL=$((VAL+332))
+	VAL=$((VAL+$STEP))
 else
 	VAL=$VAL
 fi

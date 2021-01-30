@@ -3,10 +3,8 @@
 . $HOME/.cache/wal/colors.sh
 
 mem(){
-	memtotal=$(cat /proc/meminfo |grep MemTotal|cut -d: -f 2|cut -dk -f 1)
-	memfree=$(cat /proc/meminfo |grep MemFree|cut -d: -f 2|cut -dk -f 1|xargs)
-	mempercent=$((($memtotal-$memfree)*100/$memtotal))
-	echo "^c$background^^b$foreground^ $mempercent% ^d^"
+	mem=$(free -h --mega | awk 'NR==2{print $3}')
+	echo "^c$background^^b$foreground^ $mem ^d^"
 }
 
 echo $(mem)

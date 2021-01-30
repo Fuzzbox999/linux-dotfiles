@@ -6,14 +6,14 @@ static const Block blocks[] = {
 	{"", "dwm-cpuload", 30, 1},
 	{"", "dwm-temp", 3, 2},
 	{"", "dwm-fan", 3, 3},
-	{"", "dwm-mem", 20, 4},
+	{"", "dwm-mem", 10, 4},
 	{"", "dwm-disks", 30, 7},
 	{"", "dwm-packages", 15, 8},
 	{"", "dwm-battery", 3, 10},
 	{"", "dwm-brightness", 60, 5},
 	{"", "dwm-volume", 60, 11},
 	{"", "dwm-caplock", 2, 6},
-/*	{"", "dwm-mail", 30, 13}, */
+/*	{"", "dwm-mail", 30, 13},  */
 	{"", "dwm-wireless", 5, 9},
 	{"", "dwm-date", 60, 12},
 
