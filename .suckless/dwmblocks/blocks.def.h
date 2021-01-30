@@ -13,7 +13,7 @@ static const Block blocks[] = {
 	{"", "dwm-brightness", 0, 5},
 	{"", "dwm-volume", 0, 11},
 	{"", "dwm-caplock", 3, 6},
-	{"", "dwm-mail", 300, 13},
+/*	{"", "dwm-mail", 300, 13},  */
 	{"", "dwm-wireless", 5, 9},
 	{"", "dwm-date", 60, 12},
 
