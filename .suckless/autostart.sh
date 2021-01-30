@@ -1,8 +1,13 @@
 #!/bin/sh
 
 create_env_vars &
-cpuload &
 pactl set-sink-volume 0 50% &
+
+if [ -z $(pgrep cpuload) ]; then
+	cpuload &
+else
+	true
+fi
 
 if [ -z $(pgrep dwmblocks) ]; then
 	dwmblocks &
