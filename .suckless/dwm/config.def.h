@@ -12,8 +12,8 @@ static       int smartgaps          = 1;        /* 1 means no outer gap when the
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 32;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "SFNS Display:style=Regular:size=9", "FontAwesome:style=Regular:size=9", "Font awesome 5 Free Solid:style=Solid:size=9" };
-static const char dmenufont[]       = "SFNS Display:style=Regular:size=9";
+static const char *fonts[]          = { "SFNS Display:style=Regular:size=11", "FontAwesome:style=Regular:size=11", "Font awesome 5 Free Solid:style=Solid:size=11" };
+static const char dmenufont[]       = "SFNS Display:style=Regular:size=11";
 
 /*
 static const char col_gray1[]       = "#222222";
@@ -116,7 +116,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_c,	   spawn,	     {.v = dmenucpcmd } },
 	{ MODKEY,			XK_r,	   spawn,	     {.v = dmenusearchcmd } },
 	{ MODKEY,	                XK_Return, spawn,            {.v = termcmd } },
-	{ MODKEY|ShiftMask,		XK_h,	   spawn,	     {.v = dmenustcmd } },
+	{ MODKEY|ShiftMask, 		XK_h,	   spawn,	     {.v = dmenustcmd } },
 	{ MODKEY,                       XK_b,      togglebar,        {0} },
 	{ MODKEY,                       XK_k, 	   focusstack,       {.i = +1 } },
 	{ MODKEY,                       XK_j,      focusstack,       {.i = -1 } },
@@ -141,7 +141,7 @@ static Key keys[] = {
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_8,      incrohgaps,       {.i = -1 } },
 	{ MODKEY|Mod1Mask,              XK_9,      incrovgaps,       {.i = +1 } },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_9,      incrovgaps,       {.i = -1 } },
-	{ MODKEY|Mod1Mask,              XK_0,      togglegaps,       {0} },
+	{ MODKEY|Mod1Mask,              XK_0,      togglegaps,       {0} }, 
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_0,      defaultgaps,      {0} },
 	{ MODKEY,                       XK_Tab,    view,             {0} },
 	{ MODKEY|ControlMask,           XK_Right,  shiftviewclients, { .i = +1 } },
@@ -180,15 +180,15 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioMicMute,       	   spawn,	     SHCMD("pactl set-source-mute 1 toggle") },
 	{ 0, XK_Caps_Lock,		   	   spawn,	     SHCMD("kill -40 $(pidof dwmblocks)") },
 	{ 0, XK_Print,		   		   spawn,	     SHCMD("scrot -e 'mv $f ~/Images/Screenshots' && sleep 2 && notify-send Screenshot!!!") },
-	{ MODKEY|Mod1Mask,		XK_n,	   spawn,	     SHCMD("mpc next ; kill -34 $(pidof dwmblocks)") },
-	{ MODKEY|Mod1Mask,		XK_p,	   spawn,	     SHCMD("mpc prev ; kill -34 $(pidof dwmblocks)") },
+	{ MODKEY|Mod1Mask,		XK_n,	   spawn,	     SHCMD("mpc next") },
+	{ MODKEY|Mod1Mask,		XK_p,	   spawn,	     SHCMD("mpc prev") },
 	{ MODKEY|Mod1Mask,		XK_t,	   spawn,	     SHCMD("mpc toggle ; kill -34 $(pidof dwmblocks)") },
-	{ MODKEY|ShiftMask,		XK_b,	   spawn,	     SHCMD("firefox") },
+	{ MODKEY|ShiftMask,		XK_b,	   spawn,	     SHCMD("firefox") },			
 	{ MODKEY|ShiftMask,		XK_c,	   spawn,	     SHCMD("urxvt -e nvim ~/.suckless/dwm/config.def.h") },
 	{ MODKEY|ShiftMask,		XK_m,	   spawn,	     SHCMD("urxvt -e neomutt") },
 	{ MODKEY|ShiftMask,		XK_r,	   spawn,	     SHCMD("urxvt -e ranger") },
 	{ MODKEY|ShiftMask,		XK_t,	   spawn,	     SHCMD("thunar") },
-	{ MODKEY|ShiftMask,		XK_n,	   spawn,	     SHCMD("start-ncmpcpp") },
+	{ MODKEY|ShiftMask,		XK_n,	   spawn,	     SHCMD("start-ncmpcpp") },			
 };
 
 /* button definitions */

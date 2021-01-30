@@ -5,12 +5,18 @@ pactl set-sink-volume 0 50% &
 
 if [ -z $(pgrep cpuload) ]; then
 	cpuload &
-else
+else 
 	true
 fi
 
 if [ -z $(pgrep dwmblocks) ]; then
 	dwmblocks &
+else
+	true
+fi
+
+if [ -z $(pgrep dwm-mpd) ]; then
+	dwm-mpd &
 else
 	true
 fi

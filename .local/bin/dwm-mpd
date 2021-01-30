@@ -1,0 +1,5 @@
+#!/bin/sh
+
+while : ; do
+	mpc idle >/dev/null && kill -48 $(pidof dwmblocks) || break
+done
