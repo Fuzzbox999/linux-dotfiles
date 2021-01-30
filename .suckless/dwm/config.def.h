@@ -141,7 +141,7 @@ static Key keys[] = {
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_8,      incrohgaps,       {.i = -1 } },
 	{ MODKEY|Mod1Mask,              XK_9,      incrovgaps,       {.i = +1 } },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_9,      incrovgaps,       {.i = -1 } },
-	{ MODKEY|Mod1Mask,              XK_0,      togglegaps,       {0} }, 
+	{ MODKEY|Mod1Mask,              XK_0,      togglegaps,       {0} },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_0,      defaultgaps,      {0} },
 	{ MODKEY,                       XK_Tab,    view,             {0} },
 	{ MODKEY|ControlMask,           XK_Right,  shiftviewclients, { .i = +1 } },
@@ -183,12 +183,12 @@ static Key keys[] = {
 	{ MODKEY|Mod1Mask,		XK_n,	   spawn,	     SHCMD("mpc next ; kill -34 $(pidof dwmblocks)") },
 	{ MODKEY|Mod1Mask,		XK_p,	   spawn,	     SHCMD("mpc prev ; kill -34 $(pidof dwmblocks)") },
 	{ MODKEY|Mod1Mask,		XK_t,	   spawn,	     SHCMD("mpc toggle ; kill -34 $(pidof dwmblocks)") },
-	{ MODKEY|ShiftMask,		XK_b,	   spawn,	     SHCMD("firefox") },			
+	{ MODKEY|ShiftMask,		XK_b,	   spawn,	     SHCMD("firefox") },
 	{ MODKEY|ShiftMask,		XK_c,	   spawn,	     SHCMD("urxvt -e nvim ~/.suckless/dwm/config.def.h") },
 	{ MODKEY|ShiftMask,		XK_m,	   spawn,	     SHCMD("urxvt -e neomutt") },
 	{ MODKEY|ShiftMask,		XK_r,	   spawn,	     SHCMD("urxvt -e ranger") },
 	{ MODKEY|ShiftMask,		XK_t,	   spawn,	     SHCMD("thunar") },
-	{ MODKEY|ShiftMask,		XK_n,	   spawn,	     SHCMD("start-ncmpcpp") },			
+	{ MODKEY|ShiftMask,		XK_n,	   spawn,	     SHCMD("start-ncmpcpp") },
 };
 
 /* button definitions */
