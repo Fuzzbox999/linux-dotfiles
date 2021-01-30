@@ -1,4 +1,6 @@
 #!/bin/sh
+#This script will only work with "cpuload" script launched on X session opening
+#cpuload runs in the background and populates .local/tmp/cpu-load
 
 . $HOME/.cache/wal/colors.sh
 . $HOME/.local/tmp/cpu-load
