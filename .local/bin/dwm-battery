@@ -5,7 +5,7 @@
 limit=30
 
 charge() {
-	status0=$(cat /sys/class/power_supply/BAT0/status)
+	read status0 < /sys/class/power_supply/BAT0/status
         if [ $status0 = "Unknown" ] || [ $status0 = "Charging" ]; then
                          status=""
                  else
@@ -22,8 +22,8 @@ charge() {
 }
  
  bat() {
-         BAT0_NOW=$(cat /sys/class/power_supply/BAT0/energy_now)
-         BAT0_FULL=$(cat /sys/class/power_supply/BAT0/energy_full)
+	 read BAT0_NOW < /sys/class/power_supply/BAT0/energy_now
+	 read BAT0_FULL < /sys/class/power_supply/BAT0/energy_full
          BAT0_PERCENT=$((($BAT0_NOW)*100/$BAT0_FULL))
 	 if [ "$BAT0_PERCENT" -lt $limit ]; then
 		color="^c#ff0000^"
@@ -35,4 +35,4 @@ charge() {
          echo "$color$BAT0_PERCENT% $endcolor"
 }
 
-echo "$(charge)$(bat)"
+echo "$(charge) $(bat)"
