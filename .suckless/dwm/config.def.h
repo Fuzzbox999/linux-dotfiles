@@ -100,9 +100,9 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 /* static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL }; */
-static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, "-c", "-bw", "1", "-h", "32", "-l", "5", "-z", "800", "-p", "Lancer", NULL };
+static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", norm_bg, "-c", "-bw", "1", "-h", "32", "-l", "5", "-z", "800", "-p", "Lancer", NULL };
 static const char *dmenuwdcmd[] = { "dmenu-show-opened-windows", dmenufont, NULL };
-static const char *dmenucpcmd[] = { "clipmenu", "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, "-c", "-bw", "1", "-h", "32", "-l", "5", "-p", "Copier", NULL };
+static const char *dmenucpcmd[] = { "clipmenu", "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", norm_bg, "-c", "-bw", "1", "-h", "32", "-l", "5", "-p", "Copier", NULL };
 static const char *dmenustcmd[] = { "dmenu-stop", dmenufont, NULL };
 static const char *dmenusearchcmd[] = { "dmenu-search", dmenufont, NULL };
 static const char *dmenukillcmd[] = { "dmenu-kill", dmenufont, NULL };
@@ -116,7 +116,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_c,	   spawn,	     {.v = dmenucpcmd } },
 	{ MODKEY,			XK_r,	   spawn,	     {.v = dmenusearchcmd } },
 	{ MODKEY,	                XK_Return, spawn,            {.v = termcmd } },
-	{ MODKEY|ShiftMask,		XK_h,	   spawn,	     {.v = dmenustcmd } },
+	{ MODKEY, 			XK_h,	   spawn,	     {.v = dmenustcmd } },
 	{ MODKEY,                       XK_b,      togglebar,        {0} },
 	{ MODKEY,                       XK_k, 	   focusstack,       {.i = +1 } },
 	{ MODKEY,                       XK_j,      focusstack,       {.i = -1 } },
