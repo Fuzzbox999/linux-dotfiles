@@ -19,12 +19,18 @@ dwm-vanitygaps-6.2.diff
 
 These patches are available in the /patches subdir.
 
-The my-dwm.diff file can be used to apply all those patches at once on the dwm (6.2) source code : git clone https://git.suckless.org/dwm
+The my-dwm.diff file can be used to apply (at your risk) all those patches at once on the dwm (6.2) source code : 
+git clone https://git.suckless.org/dwm
+cd dwm
+cp /path/to/my-dwm.diff ./
+patch < my-dwm.diff
+The next patch would create the file my-dwm.diff, 
+which already exists!  Assume -R? [n] n
+Apply anyway? [n] n
 
 
 config.def.h is edited to make use of pywal colors. 
 In order to use this build without pywal, remove the following lines :
-
 
 #include "/home/fuzzbox/.cache/wal/colors-wal-dwm.h"
 
@@ -32,7 +38,6 @@ static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufon
 
 
 and uncomment these lines :
-
 
 /* static const char col_gray1[]       = "#222222";    
 static const char col_gray2[]       = "#444444";    
