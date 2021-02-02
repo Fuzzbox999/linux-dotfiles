@@ -12,8 +12,8 @@ static       int smartgaps          = 1;        /* 1 means no outer gap when the
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const int user_bh            = 32;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "SFNS Display:style=Regular:size=11", "FontAwesome:style=Regular:size=11", "Font awesome 5 Free Solid:style=Solid:size=11" };
-static const char dmenufont[]       = "SFNS Display:style=Regular:size=11";
+static const char *fonts[]          = { "SFNS Display:style=Regular:size=9", "FontAwesome:style=Regular:size=9", "Font awesome 5 Free Solid:style=Solid:size=9" };
+static const char dmenufont[]       = "SFNS Display:style=Regular:size=9";
 
 /*
 static const char col_gray1[]       = "#222222";
@@ -106,7 +106,7 @@ static const char *dmenucpcmd[] = { "clipmenu", "-fn", dmenufont, "-nb", norm_bg
 static const char *dmenustcmd[] = { "dmenu-stop", dmenufont, NULL };
 static const char *dmenusearchcmd[] = { "dmenu-search", dmenufont, NULL };
 static const char *dmenukillcmd[] = { "dmenu-kill", dmenufont, NULL };
-static const char *termcmd[]    = { "urxvt", NULL };
+static const char *termcmd[]    = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function          argument */
@@ -184,9 +184,9 @@ static Key keys[] = {
 	{ MODKEY|Mod1Mask,		XK_p,	   spawn,	     SHCMD("mpc prev") },
 	{ MODKEY|Mod1Mask,		XK_t,	   spawn,	     SHCMD("mpc toggle ; kill -34 $(pidof dwmblocks)") },
 	{ MODKEY|ShiftMask,		XK_b,	   spawn,	     SHCMD("firefox") },			
-	{ MODKEY|ShiftMask,		XK_c,	   spawn,	     SHCMD("urxvt -e nvim ~/.suckless/dwm/config.def.h") },
-	{ MODKEY|ShiftMask,		XK_m,	   spawn,	     SHCMD("urxvt -e neomutt") },
-	{ MODKEY|ShiftMask,		XK_r,	   spawn,	     SHCMD("urxvt -e ranger") },
+	{ MODKEY|ShiftMask,		XK_c,	   spawn,	     SHCMD("st -n Config -e nvim ~/.suckless/dwm/config.def.h") },
+	{ MODKEY|ShiftMask,		XK_m,	   spawn,	     SHCMD("st -n Mutt -e neomutt") },
+	{ MODKEY|ShiftMask,		XK_r,	   spawn,	     SHCMD("st -n Ranger -e ranger") },
 	{ MODKEY|ShiftMask,		XK_t,	   spawn,	     SHCMD("thunar") },
 	{ MODKEY|ShiftMask,		XK_n,	   spawn,	     SHCMD("start-ncmpcpp") },			
 };
