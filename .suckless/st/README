@@ -1,3 +1,9 @@
+My build of st, patched with :
+st-copyurl-20190202-3be4cf1.diff
+st-delkey-20201112-4ef0cbd.diff
+st-scrollback-20201205-4ef0cbd.diff
+st-w3m-0.8.3.diff
+
 st - simple terminal
 --------------------
 st is a simple terminal emulator for X which sucks less.
