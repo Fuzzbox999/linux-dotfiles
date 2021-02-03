@@ -1,8 +1,6 @@
 #!/bin/sh
 
-. "$HOME/.cache/wal/colors.sh"
-
-action=$(echo -e "Verrouiller\nArrêter\nRedémarrer"|dmenu -c -fn "$1" -nb "$color0" -nf "$color15" -sb "$color2" -sf "$color0" -h 32 -bw 1 -l 3)
+action=$(echo -e "Verrouiller\nArrêter\nRedémarrer"|dmenu -l 3)
 
 if [ $action == "Verrouiller" ]; then
 	exec i3exit lock

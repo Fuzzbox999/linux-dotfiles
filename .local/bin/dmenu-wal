@@ -1,10 +1,8 @@
 #!/bin/sh
 
-. "$HOME/.cache/wal/colors.sh"
+. $HOME/.cache/wal/colors.sh
 
-dmenufont="SFNS Display:style=Regular:size=11"
-
-theme=$(echo -e "Dark\nLight"| dmenu -c -fn "$dmenufont" -nb "$color0" -nf "$color15" -sb "$color2" -sf "$color0" -h 32 -bw 1 -c -l 2)
+theme=$(echo -e "Dark\nLight"| dmenu -l 2)
 
 if   [ "$theme" == "Dark" ]; then
 	wal_arg=""
@@ -24,7 +22,7 @@ else
 	true
 fi
 
-backend=$(echo -e "wal\ncolorz\nhaishoku\ncolorthief\nschemer2"| dmenu -c -fn "$dmenufont" -nb "$color0" -nf "$color15" -sb "$color2" -sf "$color0" -h 32 -bw 1 -c -l 5)
+backend=$(echo -e "wal\ncolorz\nhaishoku\ncolorthief\nschemer2"| dmenu -l 5)
 
 wal --backend $backend $wal_arg -i $1
 
@@ -53,4 +51,10 @@ kill -HUP $(pidof dwm)
 
 pkill dunst
 dunst -config ~/.config/dunst/dunstrc &
+
+rm /home/fuzzbox/.suckless/st/config.h
+cd /home/fuzzbox/.suckless/st/ && make
+
+rm /home/fuzzbox/.suckless/dmenu/config.h
+cd /home/fuzzbox/.suckless/dmenu/ && make
 

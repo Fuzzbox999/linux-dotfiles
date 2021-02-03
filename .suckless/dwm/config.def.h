@@ -4,10 +4,10 @@
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
-static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
+static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 20;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 20;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 20;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
@@ -44,13 +44,14 @@ static const Rule rules[] = {
 	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "URxvt",   NULL,     NULL,	       0,	  0,	      1,	   0,	     -1 },
+	{ "st-256color",   NULL,     NULL,     0,	  0,	      1,	   0,	     -1 },
 	{ "Thunar",  NULL,     NULL,	       0,	  1,	      0,	   0	     -1 },
 	{ "Dragon-drag-and-drop",  NULL,     NULL,	       0,	  1,	      0,	   0	     -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
-static const float mfact     	 = 0.5;  /* factor of master area size [0.05..0.95] */
+static const float mfact     	 = 0.55;  /* factor of master area size [0.05..0.95] */
 static const int nmaster     	 = 1;    /* number of clients in master area */
 static const int resizehints 	 = 0;    /* 1 means respect size hints in tiled resizals */
 static const int attachdirection = 0;    /* 0 default, 1 above, 2 aside, 3 below, 4 bottom, 5 top */
@@ -100,9 +101,9 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 /* static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL }; */
-static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", norm_bg, "-c", "-bw", "1", "-h", "32", "-l", "5", "-z", "800", "-p", "Lancer", NULL };
+static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-l", "5", "-p", "Lancer", NULL };
 static const char *dmenuwdcmd[] = { "dmenu-show-opened-windows", dmenufont, NULL };
-static const char *dmenucpcmd[] = { "clipmenu", "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", norm_bg, "-c", "-bw", "1", "-h", "32", "-l", "5", "-p", "Copier", NULL };
+static const char *dmenucpcmd[] = { "clipmenu", "-fn", dmenufont, "-l", "5", "-p", "Copier", NULL };
 static const char *dmenustcmd[] = { "dmenu-stop", dmenufont, NULL };
 static const char *dmenusearchcmd[] = { "dmenu-search", dmenufont, NULL };
 static const char *dmenukillcmd[] = { "dmenu-kill", dmenufont, NULL };
@@ -189,6 +190,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_r,	   spawn,	     SHCMD("st -n Ranger -e ranger") },
 	{ MODKEY|ShiftMask,		XK_t,	   spawn,	     SHCMD("thunar") },
 	{ MODKEY|ShiftMask,		XK_n,	   spawn,	     SHCMD("start-ncmpcpp") },			
+	{ MODKEY,			XK_y,	   spawn,	     SHCMD("dmenu-yt") },
 };
 
 /* button definitions */

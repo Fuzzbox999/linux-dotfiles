@@ -1,8 +1,6 @@
 #!/bin/sh
 
-. $HOME/.cache/wal/colors.sh
-
-pid=$(ps -u $USER -o pid,%mem,%cpu,comm | sort -b -k2 -r | sed -n '1!p' | dmenu -i -l 10 -c -fn "$1" -nb "$color0" -nf "$color15" -sb "$color2" -sf "$color0" -h 32 -bw 1 -p "Kill")
+pid=$(ps -u $USER -o pid,%mem,%cpu,comm | sort -b -k2 -r | sed -n '1!p' | dmenu -i -l 10 -p "Kill")
 
 kill -15 $pid 2>/dev/null
 # notify-send "RIP$pid"

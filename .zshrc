@@ -36,6 +36,7 @@ alias ccl='cd && clear'
 alias neo='echo "" && neofetch --disable Theme Icons GPU Uptime Packages title Resolution --color_blocks off --title_fqdn on --underline off --kernel_shorthand on --memory_percent on --memory_unit gib --speed_shorthand on --cpu_brand off --distro_shorthand on  --ascii_distro linux_small'
 alias dragon='dragon-drag-and-drop'
 alias bat='sudo tlp-stat -b'
+alias vim='nvim'
 
 setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes

@@ -3,36 +3,38 @@
 . $HOME/.cache/wal/colors.sh
 
 limit=30
+endcolor="^d^"
 
-charge() {
+battery() {
 	read status0 < /sys/class/power_supply/BAT0/status
-        if [ $status0 = "Unknown" ] || [ $status0 = "Charging" ]; then
+
+	read BAT0_NOW < /sys/class/power_supply/BAT0/energy_now
+	read BAT0_FULL < /sys/class/power_supply/BAT0/energy_full
+	BAT_TOT=$((($BAT0_NOW)*100/$BAT0_FULL))
+
+	# is it on AC or on battery ?
+	if [ $status0 = "Unknown" ] || [ $status0 = "Charging" ] || [ $status0 = "Full" ]; then
                          status=""
                  else
                          status=" "
         fi
-	if [ $status = "" ]; then    
-                 bgcolor=""    
-                 fgcolor=""    
-        else    
-                 bgcolor="^b$foreground^"    
-                 fgcolor="^c$background^"    
-        fi
-        echo "$fgcolor$bgcolor $status"
-}
- 
- bat() {
-	 read BAT0_NOW < /sys/class/power_supply/BAT0/energy_now
-	 read BAT0_FULL < /sys/class/power_supply/BAT0/energy_full
-         BAT0_PERCENT=$((($BAT0_NOW)*100/$BAT0_FULL))
-	 if [ "$BAT0_PERCENT" -lt $limit ]; then
-		color="^c#ff0000^"
-	 	endcolor="^d^"
+
+	# Different colors if on AC / on battery / on < 30% battery
+	if [ $status = "" ]; then
+		bgcolor=""
+		fgcolor=""
 	else
-		color=""
-		endcolor="^d^"
-	 fi
-         echo "$color$BAT0_PERCENT% $endcolor"
+		if [ "$BAT_TOT" -lt $limit ]; then
+			bgcolor="^b#ff0000^"
+			fgcolor="^c$background^"
+		else
+			bgcolor="^b$foreground^"
+			fgcolor="^c$background^"
+		fi
+
+	fi
+	echo "$fgcolor$bgcolor $status $BAT_TOT% $endcolor"
 }
 
-echo "$(charge) $(bat)"
+echo "$(battery)"
+
