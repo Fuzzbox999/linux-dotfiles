@@ -4,13 +4,10 @@
 
 pkg() {
 	if [ "$upgradeable" = "0" ]; then
-		color=""
-		endcolor=""
+		echo " $upgradeable / $installed"
 	else
-		color="^c#ff0000^"
-		endcolor="^d^"
+		echo " ^c#ff0000^$upgradeable^d^ / $installed"
 	fi
-	echo "$color $upgradeable$endcolor / $installed"
 	. "$HOME/.local/etc/pkg-status"
 }
 

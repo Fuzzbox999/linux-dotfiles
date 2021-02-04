@@ -1,18 +1,12 @@
 #!/bin/sh
 
 wifi() {
-	ssid=$(iw wlp3s0 info|grep ssid|cut -d " " -f 2|xargs)
 	read wifi < /sys/class/net/wlp3s0/operstate
 	if [ "$wifi" == "down" ]; then
-		color="^c#ff0000^"
-		state=" "
-		endcolor="^d^"
+		echo "^c#ff0000^^d^"
 	else
-		color=""
-		state=" "
-		endcolor=""
+		echo " "
 	fi
-	echo "$color$state$endcolor"
 }
 
 echo $(wifi)

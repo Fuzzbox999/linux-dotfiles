@@ -1,15 +1,12 @@
 #!/bin/sh
 
 vol() {
-	ismuted=$(pacmd list-sinks|grep muted|cut -d ":" -f 2|xargs)
+	ismuted=$(pacmd list-sinks|grep muted|awk '{print $2}')
 	if [ "$ismuted" = "yes" ]; then
-		val="^c#ff0000^Muted^d^"
-		sym=""
+		echo " ^c#ff0000^Muted^d^"
 	else
- 		val=$(pacmd list-sinks | grep "volume" | head -n1 | cut -d: -f3 | cut -d% -f1 |    cut -d/ -f2 |xargs)
-		sym="%"
+ 		echo " $(pacmd list-sinks|grep "volume"|awk 'NR==1{print $5}')"
  	fi
- 	echo " $val$sym"
 }
 
 echo $(vol)

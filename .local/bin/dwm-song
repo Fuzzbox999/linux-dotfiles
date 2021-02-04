@@ -1,16 +1,13 @@
 #!/bin/sh
 
-song() {
-	artist=$(ncmpcpp -q --current-song "%a") &>/dev/null
-	title=$(ncmpcpp -q --current-song "%t") &>/dev/null
- 	    if [[ -z ${artist} ]]; then
- 	            icon=""
- 	            sep=""
- 	    else    icon=""
- 	            sep="-"
+music() {
+	song=$(ncmpcpp -q --current-song "%a - %t") &>/dev/null
+ 	    if [[ -z ${song} ]]; then
+		    exit 0
+ 	    else
+		    echo " $song"
  	    fi
-	    echo "$icon $artist $sep $title"
 }
 
-echo "   $(song)"
+echo "   $(music)"
 

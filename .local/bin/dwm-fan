@@ -3,9 +3,9 @@
 . $HOME/.cache/wal/colors.sh
 
 fan() {
-	 fan=$(cat /proc/acpi/ibm/fan |grep speed |cut -d: -f 2 |xargs)
-	 echo "^c$background^^b$foreground^ $fan "
- }
+	 fan=$(cat /proc/acpi/ibm/fan|awk 'NR==2{print $2}')
+	 echo "^c$background^^b$foreground^ $fan rpm"
+}
 
 echo $(fan)
 
