@@ -75,6 +75,9 @@ make
 echo "Build dmenu"
 cd /home/fuzzbox/.suckless/dmenu
 make
+echo "Build st"
+cd /home/fuzzbox/.suckless/st
+make
 
 echo "Create symlinks in ~/.local/bin/ for suckless tools"
 cd /home/fuzzbox/.local/bin
@@ -83,6 +86,7 @@ ln -s /home/fuzzbox/.suckless/dwmblocks dwmblocks
 ln -s /home/fuzzbox/.suckless/dmenu/dmenu dmenu
 ln -s /home/fuzzbox/.suckless/dmenu/dmenu_run dmenu_run
 ln -s /home/fuzzbox/.suckless/dmenu/dmenu_path dmenu_path
+ln -s /home/fuzzbox/.suckless/st/st st
 mkdir -p /home/fuzzbox/.dwm
 cd /home/fuzzbox/.dwm
 ln -s /home/fuzzbox/.suckless/autostart.sh autostart.sh
