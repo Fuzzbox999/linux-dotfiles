@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ -z $(pgrep mopidy) ]; then
+	mopidy -q &
+	sleep 3
+else
+	true
+fi
+
+if [ -z $(pgrep dwm-mpd) ]; then
+	dwm-mpd &
+else
+	true
+fi

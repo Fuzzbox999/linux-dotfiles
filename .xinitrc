@@ -3,4 +3,4 @@
 systemctl --user import-environment DISPLAY
 xrdb $HOME/.Xresources
 wal -R
-exec dwm 2> ~/.suckless/dwm.log
+exec dwm
