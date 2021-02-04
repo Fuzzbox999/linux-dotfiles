@@ -1,7 +1,5 @@
 # dotfiles
 
-Hi,
-
 - [Arch Linux](https://archlinux.org/)
 - [Thinkpads](https://www.reddit.com/r/thinkpad/) (X220, T430 and T450s)
 - [patched](https://github.com/Fuzzbox999/dotfiles/tree/master/.suckless/dwm/patches) [dwm](https://dwm.suckless.org/)
