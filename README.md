@@ -12,4 +12,3 @@ Hi,
 
 ![Screenie](https://raw.githubusercontent.com/Fuzzbox999/dotfiles/master/Images/Screenshots/output.gif)
 
-Fuzz'
