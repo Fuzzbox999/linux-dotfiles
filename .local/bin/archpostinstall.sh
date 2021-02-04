@@ -12,7 +12,7 @@ makepkg -si
 cd
 
 echo "Install more packages from AUR"
-yay -S colorz getmail gtk-theme-flat-color-git i3lock-color-git mopidy-mpd mopidy-spotify nerd-fonts-meslo oh-my-zsh-git sc-im ttf-meslo ttf-meslo-nerd-font-powerlevel10k tty-clock urlview wpgtk-git cava clipit python-colorthief  
+yay -S colorz getmail gtk-theme-flat-color-git i3lock-color-git mopidy-mpd mopidy-spotify nerd-fonts-meslo oh-my-zsh-git sc-im ttf-meslo ttf-meslo-nerd-font-powerlevel10k tty-clock urlview wpgtk-git cava clipit python-colorthief cava-git clipit colorz dragon-drag-and-drop-git edid-decode-git kunst-git libspotify libxft-bgra mpd-notification nerd-fonts-mononoki noto-color-emoji-fontconfig oh-my-zsh-git otf-san-francisco picom-jonaburg-git python-colorthief python-pyspotify python2-xcb-proto ttf-mac-fonts ttf-mononoki ttf-symbola ttf-yosemite-san-francisco-font-git tty-clock uuid wttr
 
 echo "Swithcing to zsh shell"
 chsh -s /usr/bin/zsh
