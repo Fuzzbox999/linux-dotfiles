@@ -2,5 +2,6 @@
 
 KEYS_DIR=/sys/class
 
-echo "4648" | tee $KEYS_DIR/backlight/intel_backlight/brightness && killall -USR1 i3status
-# echo "255" | tee $KEYS_DIR/leds/tpacpi::thinklight/brightness
+echo "852" | tee $KEYS_DIR/backlight/intel_backlight/brightness
+echo "2" | tee $KEYS_DIR/leds/tpacpi::kbd_backlight/brightness 
+kill -39 $(pidof dwmblocks)

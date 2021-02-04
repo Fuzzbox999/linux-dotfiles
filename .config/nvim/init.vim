@@ -1,19 +1,19 @@
 vnoremap <C-c> "*y :let @+=@*<CR>
 map <C-v> "+P
 
+set undofile
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+set list listchars=nbsp:¬,tab:»·,trail:·,extends:>
+:set nu
+:set scrolloff=999
+
 let g:airline_powerline_fonts = 1
 
 " air-line
 let g:airline_powerline_fonts = 1
-
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-
-set undofile
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-set list listchars=nbsp:¬,tab:»·,trail:·,extends:>
-
 " unicode symbols
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
@@ -27,7 +27,6 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
-
 " airline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
@@ -73,11 +72,6 @@ function! Chomp(str)
   return substitute(a:str, '\n$', '', '')
 endfunction
 
-" use ctrl-t to open file in a new tab
-" use ctrl-f to open file in current buffer
-" map <c-t> :call DmenuOpen("tabe")<cr>
-" map <c-f> :call DmenuOpen("e")<cr>
-
    " Initialize plugin system
 call plug#end()
 
@@ -89,8 +83,3 @@ colorscheme wal
 
 " :set cursorcolumn
 " :set cursorline
-
-:set nu
-:set scrolloff=999
-
-colorscheme wal

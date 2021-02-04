@@ -2,7 +2,7 @@
 
 music() {
 	song=$(ncmpcpp -q --current-song "%a - %t") &>/dev/null
- 	    if [[ -z ${song} ]]; then
+ 	    if [ -z ${song} ]; then
 		    exit 0
  	    else
 		    echo " $song"

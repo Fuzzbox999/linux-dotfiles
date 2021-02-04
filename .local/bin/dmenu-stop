@@ -3,7 +3,7 @@
 action=$(echo -e "Verrouiller\nArrêter\nRedémarrer"|dmenu -l 3)
 
 if [ $action == "Verrouiller" ]; then
-	exec i3exit lock
+	exec i3lock_custom
 elif [ $action == "Arrêter" ]; then
 	poweroff
 elif [ $action == "Redémarrer" ]; then
