@@ -1,7 +1,5 @@
-This is my build of dwm
-=======================
+dwm 6.2 patched with :
 
-It's dwm 6.2 patched with :
 dwm-6.2-urg-border.diff
 dwm-actualfullscreen-20191112-cb3f58a.diff
 dwm-attachdirection-6.2.diff
@@ -17,40 +15,4 @@ dwm-swallow-20201211-61bb8b2.diff
 dwm-push_no_master-6.2.diff
 dwm-vanitygaps-6.2.diff
 
-These patches are available in the /patches subdir.
-
-The my-dwm.diff file can be used to apply (at your risk) all those patches at once on the dwm (6.2) source code : 
-git clone https://git.suckless.org/dwm
-cd dwm
-cp /path/to/my-dwm.diff ./
-patch < my-dwm.diff
-The next patch would create the file my-dwm.diff, 
-which already exists!  Assume -R? [n] n
-Apply anyway? [n] n
-
-
-config.def.h is edited to make use of pywal colors. 
-In order to use this build without pywal, remove the following lines :
-
-#include "/home/fuzzbox/.cache/wal/colors-wal-dwm.h"
-
-static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, "-c", "-bw", "1", "-h", "32", "-l", "5", "-z", "800", "-p", "Run", NULL };
-
-
-and uncomment these lines :
-
-/* static const char col_gray1[]       = "#222222";    
-static const char col_gray2[]       = "#444444";    
-static const char col_gray3[]       = "#bbbbbb";    
-static const char col_gray4[]       = "#eeeeee";    
-static const char col_cyan[]        = "#005577";    
-static const char *colors[][3]      = {    */
-        /*               fg         bg         border   */    
-/*      [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },    
-        [SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },    
-}; */
-
-and this one :
-
-/* static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };*/
-
++ config.def.h edited to work with Pywal.

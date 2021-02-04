@@ -1,4 +1,5 @@
-My build of st, patched with :
+st, patched with :
+
 st-copyurl-20190202-3be4cf1.diff
 st-delkey-20201112-4ef0cbd.diff
 st-scrollback-20201205-4ef0cbd.diff
