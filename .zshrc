@@ -26,6 +26,7 @@ POWERLEVEL9K_INSTANT_PROMPT=off
 
 export PATH=$PATH:~/.local/bin
 export EDITOR=nvim
+export XDG_CONFIG_HOME=~/.config/
 
 alias pac='sudo pacman'
 alias mirrors='sudo reflector --country France --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
@@ -37,6 +38,7 @@ alias neo='echo "" && neofetch --disable Theme Icons GPU Uptime Packages title R
 alias dragon='dragon-drag-and-drop'
 alias bat='sudo tlp-stat -b'
 alias vim='nvim'
+alias stab='tabbed -r 2 st -w '' -e'
 
 setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes
@@ -278,3 +280,4 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
