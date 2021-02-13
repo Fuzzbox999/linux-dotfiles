@@ -12,3 +12,11 @@ if [ -z $(pgrep dwm-mpd) ]; then
 else
 	true
 fi
+
+sleep 2
+
+st -n Cava -e cava&
+sleep 1
+kunst --force-online&
+sleep 1
+start-ncmpcpp&
