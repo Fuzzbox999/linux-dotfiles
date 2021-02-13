@@ -1,10 +1,26 @@
-vnoremap <C-c> "*y :let @+=@*<CR>
-map <C-v> "+P
+" vnoremap <C-c> "*y :let @+=@*<CR>
+" map <C-v> "+P
+" from https://www.youtube.com/watch?v=XA2WjJbmmoM
+" Use find, and Ctrl n and Ctrl f for autocompletion
+set path+=**
+set path+=.config/**
+set path+=.suckless/**
+set path+=.local/bin/**
+set wildmenu
+" file browser using edit
+let g:netrw_liststyle=3
+" noremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
+" http://philipbradley.net/rspec-into-vim-with-quickfix
+" set makeprg=bundle\ exec\ rspec\ -f\ QuickfixFormatter
+" :make runs RSpec :cl lists errors :cc# jump to error by number :cn and :cp
+" to navigate forward and back
+" end
 
 set undofile
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 set list listchars=nbsp:¬,tab:»·,trail:·,extends:>
 :set nu
+:set rnu
 :set scrolloff=999
 
 let g:airline_powerline_fonts = 1
@@ -81,5 +97,5 @@ Plug 'dylanaraps/wal.vim'
 
 colorscheme wal
 
-" :set cursorcolumn
-" :set cursorline
+" set cursorcolumn
+set cursorline
