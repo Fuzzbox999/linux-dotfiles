@@ -2,6 +2,7 @@
 
 create_env_vars &
 pactl set-sink-volume 0 50% &
+unclutter -idle 3 &
 
 if [ -z $(pgrep cpuload) ]; then
 	cpuload &
@@ -15,15 +16,20 @@ else
 	true
 fi
 
-if [ -z $(pgrep udiskie) ]; then
-	udiskie --no-tray &
+#if [ -z $(pgrep udiskie) ]; then
+#	udiskie --no-tray &
+#else
+#	true
+#fi
+
+if [ -z $(pgrep devmon) ]; then
+	devmon &
 else
 	true
 fi
 
 if [ -z $(pgrep picom) ]; then
-	picom --vsync --blur-background --active-opacity 1.0 --backend glx --opacity-rule "95:class_g = 'URxvt'" --opacity-rule "95:class_g = 'st-256color'" --opacity-rule "85:class_g = 'dmenu'" --opacity-rule "95:class_g = 'dwm'" -c -e 1.0 -i 0.9 -o 1.0 -D 6 --xinerama-shadow-crop -C &
-	# picom --vsync --blur-background --active-opacity 1.0 --backend glx -c -e 1.0 -i 1.0 -o 1.0 -D 6 --xinerama-shadow-crop -C &
+	picom &
 else
 	true
 fi

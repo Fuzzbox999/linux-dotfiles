@@ -24,17 +24,20 @@ source ~/.cache/wal/colors-tty.sh
 
 POWERLEVEL9K_INSTANT_PROMPT=off
 
-export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.local/bin:~/.local/bin/statusbar:~/.local/bin/dmenuscripts
 export EDITOR=nvim
 export XDG_CONFIG_HOME=~/.config/
+export NNTPSERVER='news.eternal-september.org'
+export NNN_PLUG='f:finder;o:fzopen;p:mocplay;d:diffs;t:nmount;v:imgview'
 
+alias slrn='slrn -i ~/.config/slrn/slrn.rc'
 alias pac='sudo pacman'
 alias mirrors='sudo reflector --country France --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias autoremove='pac -Rns $(pacman -Qtdq)'
 alias config='/usr/bin/git --git-dir=$HOME/.local/dotfiles/ --work-tree=$HOME'
 alias cl='clear'
 alias ccl='cd && clear'
-alias neo='echo "" && neofetch --disable Theme Icons GPU Uptime Packages title Resolution --color_blocks off --title_fqdn on --underline off --kernel_shorthand on --memory_percent on --memory_unit gib --speed_shorthand on --cpu_brand off --distro_shorthand on  --ascii_distro linux_small'
+alias neo='echo "" && neofetch --disable Theme Icons GPU Uptime Packages title Resolution --color_blocks on --title_fqdn on --underline off --kernel_shorthand on --memory_percent on --memory_unit gib --speed_shorthand on --cpu_brand off --distro_shorthand on  --ascii_distro linux_small \n && dwm-dwm \n && dwm-power'
 alias dragon='dragon-drag-and-drop'
 alias bat='sudo tlp-stat -b'
 alias vim='nvim'

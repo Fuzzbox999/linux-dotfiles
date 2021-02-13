@@ -2,7 +2,7 @@
 
 if [[ -z "$1" ]]; then
 	printf "Search query: ";
-	query=$( echo | dmenu -p "Search YT Video:" )
+	query=$( echo | dmenu -p "Chercher sur YT :" )
 else
 	query="$1"
 fi
@@ -21,6 +21,6 @@ urlstring="https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&
 
 mpv "https://$( curl -s "${urlstring}" \
 	| jq -r '.items[] | "\(.snippet.channelTitle) => \(.snippet.title) => youtu.be/\(.id.videoId)"' \
-	| dmenu -i -p 'Select Video -' -l 20 \
+	| dmenu -i -p 'Sélectionner la video -' -l 20 \
 	| awk '{print $NF}' \
 )"
