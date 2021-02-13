@@ -5,6 +5,7 @@ dwm-actualfullscreen-20191112-cb3f58a.diff
 dwm-attachdirection-6.2.diff
 dwm-autostart-20200610-cb3f58a.diff
 dwm-bar-height-6.2.diff
+dwm-fixborders-6.2.diff
 dwm-focusonnetactive-6.2.diff
 dwm-noborderfloatingfix-6.2.diff
 dwm-pertag-6.2.diff
@@ -14,5 +15,3 @@ dwm-status2d-6.2.diff
 dwm-swallow-20201211-61bb8b2.diff
 dwm-push_no_master-6.2.diff
 dwm-vanitygaps-6.2.diff
-
-+ config.def.h edited to work with Pywal.
