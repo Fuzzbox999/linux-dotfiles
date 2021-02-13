@@ -24,6 +24,8 @@
                              * MAX(0, MIN((y)+(h),(r).y_org+(r).height) - MAX((y),(r).y_org)))
 #define LENGTH(X)             (sizeof X / sizeof X[0])
 #define TEXTW(X)              (drw_fontset_getwidth(drw, (X)) + lrpad)
+#define NUMBERSMAXDIGITS      100
+#define NUMBERSBUFSIZE        (NUMBERSMAXDIGITS * 2) + 1
 
 /* enums */
 enum { SchemeNorm, SchemeSel, SchemeOut, SchemeLast }; /* color schemes */
@@ -34,6 +36,7 @@ struct item {
 	int out;
 };
 
+static char numbers[NUMBERSBUFSIZE] = "";
 static char text[BUFSIZ] = "";
 static char *embed;
 static int bh, mw, mh;
@@ -55,6 +58,10 @@ static XIC xic;
 
 static Drw *drw;
 static Clr *scheme[SchemeLast];
+
+static char *histfile;
+static char **history;
+static size_t histsz, histpos;
 
 #include "config.h"
 
@@ -139,6 +146,21 @@ drawitem(struct item *item, int x, int y, int w)
 }
 
 static void
+recalculatenumbers()
+{
+	unsigned int numer = 0, denom = 0;
+	struct item *item;
+	if (matchend) {
+		numer++;
+		for (item = matchend; item && item->left; item = item->left)
+			numer++;
+	}
+	for (item = items; item && item->text; item++)
+		denom++;
+	snprintf(numbers, NUMBERSBUFSIZE, "%d/%d", numer, denom);
+}
+
+static void
 drawmenu(void)
 {
 	unsigned int curpos;
@@ -163,6 +185,7 @@ drawmenu(void)
 		drw_rect(drw, x + curpos, 2 + (bh - fh) / 2, 2, fh - 4, 1, 0);
 	}
 
+	recalculatenumbers();
 	if (lines > 0) {
 		/* draw vertical list */
 		for (item = curr; item != next; item = item->right)
@@ -177,13 +200,15 @@ drawmenu(void)
 		}
 		x += w;
 		for (item = curr; item != next; item = item->right)
-			x = drawitem(item, x, 0, MIN(TEXTW(item->text), mw - x - TEXTW(">")));
+			x = drawitem(item, x, 0, MIN(TEXTW(item->text), mw - x - TEXTW(">") - TEXTW(numbers)));
 		if (next) {
 			w = TEXTW(">");
 			drw_setscheme(drw, scheme[SchemeNorm]);
-			drw_text(drw, mw - w, 0, w, bh, lrpad / 2, ">", 0);
+			drw_text(drw, mw - w - TEXTW(numbers), 0, w, bh, lrpad / 2, ">", 0);
 		}
 	}
+	drw_setscheme(drw, scheme[SchemeNorm]);
+	drw_text(drw, mw - TEXTW(numbers), 0, TEXTW(numbers), bh, lrpad / 2, numbers, 0);
 	drw_map(drw, win, 0, 0, mw, mh);
 }
 
@@ -317,6 +342,129 @@ movewordedge(int dir)
 }
 
 static void
+loadhistory(void)
+{
+	FILE *fp = NULL;
+	static size_t cap = 0;
+	size_t llen;
+	char *line;
+
+	if (!histfile) {
+		return;
+	}
+
+	fp = fopen(histfile, "r");
+	if (!fp) {
+		return;
+	}
+
+	for (;;) {
+		line = NULL;
+		llen = 0;
+		if (-1 == getline(&line, &llen, fp)) {
+			if (ferror(fp)) {
+				die("failed to read history");
+			}
+			free(line);
+			break;
+		}
+
+		if (cap == histsz) {
+			cap += 64 * sizeof(char*);
+			history = realloc(history, cap);
+			if (!history) {
+				die("failed to realloc memory");
+			}
+		}
+		strtok(line, "\n");
+		history[histsz] = line;
+		histsz++;
+	}
+	histpos = histsz;
+
+	if (fclose(fp)) {
+		die("failed to close file %s", histfile);
+	}
+}
+
+static void
+navhistory(int dir)
+{
+	static char def[BUFSIZ];
+	char *p = NULL;
+	size_t len = 0;
+
+	if (!history || histpos + 1 == 0)
+		return;
+
+	if (histsz == histpos) {
+		strncpy(def, text, sizeof(def));
+	}
+
+	switch(dir) {
+	case 1:
+		if (histpos < histsz - 1) {
+			p = history[++histpos];
+		} else if (histpos == histsz - 1) {
+			p = def;
+			histpos++;
+		}
+		break;
+	case -1:
+		if (histpos > 0) {
+			p = history[--histpos];
+		}
+		break;
+	}
+	if (p == NULL) {
+		return;
+	}
+
+	len = MIN(strlen(p), BUFSIZ - 1);
+	strncpy(text, p, len);
+	text[len] = '\0';
+	cursor = len;
+	match();
+}
+
+static void
+savehistory(char *input)
+{
+	unsigned int i;
+	FILE *fp;
+
+	if (!histfile ||
+	    0 == maxhist ||
+	    0 == strlen(input)) {
+		goto out;
+	}
+
+	fp = fopen(histfile, "w");
+	if (!fp) {
+		die("failed to open %s", histfile);
+	}
+	for (i = histsz < maxhist ? 0 : histsz - maxhist; i < histsz; i++) {
+		if (0 >= fprintf(fp, "%s\n", history[i])) {
+			die("failed to write to %s", histfile);
+		}
+	}
+	if (!histnodup || (histsz > 0 && strcmp(input, history[histsz-1]) != 0)) { /* TODO */
+		if (0 >= fputs(input, fp)) {
+			die("failed to write to %s", histfile);
+		}
+	}
+	if (fclose(fp)) {
+		die("failed to close file %s", histfile);
+	}
+
+out:
+	for (i = 0; i < histsz; i++) {
+		free(history[i]);
+	}
+	free(history);
+}
+
+static void
 keypress(XKeyEvent *ev)
 {
 	char buf[32];
@@ -400,6 +548,14 @@ keypress(XKeyEvent *ev)
 		case XK_j: ksym = XK_Next;  break;
 		case XK_k: ksym = XK_Prior; break;
 		case XK_l: ksym = XK_Down;  break;
+		case XK_p:
+			navhistory(-1);
+			buf[0]=0;
+			break;
+		case XK_n:
+			navhistory(1);
+			buf[0]=0;
+			break;
 		default:
 			return;
 		}
@@ -478,6 +634,8 @@ insert:
 	case XK_KP_Enter:
 		puts((sel && !(ev->state & ShiftMask)) ? sel->text : text);
 		if (!(ev->state & ControlMask)) {
+			savehistory((sel && !(ev->state & ShiftMask))
+				    ? sel->text : text);
 			cleanup();
 			exit(0);
 		}
@@ -721,7 +879,8 @@ usage(void)
 {
 	fputs("usage: dmenu [-bfiv] [-l lines] [-h height] [-p prompt] [-fn font] [-m monitor]\n"		
 	      "             [-x xoffset] [-y yoffset] [-z width]\n"
-	      "             [-nb color] [-nf color] [-sb color] [-sf color] [-w windowid]\n", stderr);
+	      "             [-nb color] [-nf color] [-sb color] [-sf color] [-w windowid]\n"
+	      "             [-H histfile]", stderr);
 	exit(1);
 }
 
@@ -748,6 +907,8 @@ main(int argc, char *argv[])
 		} else if (i + 1 == argc)
 			usage();
 		/* these options take one argument */
+		else if (!strcmp(argv[i], "-H"))
+			histfile = argv[++i];
 		else if (!strcmp(argv[i], "-l"))   /* number of lines in vertical list */
 			lines = atoi(argv[++i]);
 		else if (!strcmp(argv[i], "-x"))   /* window x offset */
@@ -801,6 +962,8 @@ main(int argc, char *argv[])
 	if (pledge("stdio rpath", NULL) == -1)
 		die("pledge");
 #endif
+
+	loadhistory();
 
 	if (fast && !isatty(0)) {
 		grabkeyboard();
