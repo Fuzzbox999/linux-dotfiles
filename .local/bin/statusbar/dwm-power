@@ -1,11 +1,23 @@
 #!/bin/sh
 
 power() {
-	read -r power_now0 < /sys/class/power_supply/BAT0/power_now
-	read -r power_now1 < /sys/class/power_supply/BAT1/power_now
-	power0=$((power_now0/1000000))
-	power1=$((power_now1/1000000))
-	echo " Power drain = Internal battery : $power0 W - External battery : $power1 W"
+
+	read online < /sys/class/power_supply/AC/online
+
+	if [ $online = "1" ]; then
+		exit 0
+	else
+		read -r energy_now < /sys/class/power_supply/BAT0/energy_now
+		read -r power_now < /sys/class/power_supply/BAT0/power_now
+	
+		watts=$(echo "$power_now*0.000001"|bc -l|awk '{printf "%.2f", $1}')
+	
+		remain_tot=$(echo "$energy_now/$power_now"|bc -l)
+		remain_min=$(echo "$remain_tot*3600"|bc -l)
+		remain=$(date -d@$remain_min -u +%H:%M)
+	
+		echo "Battery discharge rate : $watts W (remaining time : $remain)"
+	fi
 }
 
 echo $(power)

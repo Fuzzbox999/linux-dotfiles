@@ -6,14 +6,15 @@ limit=30
 endcolor="^d^"
 
 battery() {
-	read status0 < /sys/class/power_supply/BAT0/status
+	read online < /sys/class/power_supply/AC/online
 
 	read BAT0_NOW < /sys/class/power_supply/BAT0/energy_now
 	read BAT0_FULL < /sys/class/power_supply/BAT0/energy_full
+	
 	BAT_TOT=$((($BAT0_NOW)*100/$BAT0_FULL))
 
 	# is it on AC or on battery ?
-	if [ $status0 = "Unknown" ] || [ $status0 = "Charging" ] || [ $status0 = "Full" ]; then
+	if [ $online = "1" ]; then
                          status=""
                  else
                          status=" "
@@ -22,6 +23,7 @@ battery() {
 	# Different colors if on AC / on battery / on < 30% battery
 	if [ $status = "" ]; then
 		echo " $status $BAT_TOT% ^d^"
+		exit 0
 	else
 		if [ "$BAT_TOT" -lt $limit ]; then
 			echo "^c$background^^b#ff0000^ $status $BAT_TOT% ^d^"

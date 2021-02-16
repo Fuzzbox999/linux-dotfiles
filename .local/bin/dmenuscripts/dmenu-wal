@@ -67,13 +67,15 @@ cd /home/fuzzbox/.suckless/dwm/ && make
 
 kill -HUP $(pidof dwm)
 
-# rebuild st and dmenu
+# rebuild st, tabbed and dmenu
 rm /home/fuzzbox/.suckless/st/config.h
 cd /home/fuzzbox/.suckless/st/ && make
 
 rm /home/fuzzbox/.suckless/dmenu/config.h
 cd /home/fuzzbox/.suckless/dmenu/ && make
 
+rm /home/fuzzbox/.suckless/tabbed/config.h
+cd /home/fuzzbox/.suckless/tabbed/ && make
 # update dunst config file
 sed -i"" --follow-symlinks \
         -e "s/frame_color = .*/frame_color = \"${color7:-#FFFFFF}\"/" \
