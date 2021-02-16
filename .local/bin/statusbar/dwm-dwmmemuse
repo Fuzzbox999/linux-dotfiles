@@ -1,0 +1,11 @@
+#!/bin/sh
+
+factor="0.0009765625"
+
+mem_kb_dwm=$(pmap -x $(pidof dwm)|grep total|awk '{printf $3}')
+mem_kb_dwmblocks=$(pmap -x $(pidof dwmblocks)|grep total|awk '{printf $3}')
+
+mem_dwm=$(echo "$mem_kb_dwm*$factor"|bc -l|awk '{printf "%.2f", $1}')
+mem_dwmblocks=$(echo "$mem_kb_dwmblocks*$factor"|bc -l|awk '{printf "%.2f", $1}')
+
+echo "WM RAM usage : dwm = $mem_dwm MB - dwmblocks = $mem_dwmblocks MB" 
