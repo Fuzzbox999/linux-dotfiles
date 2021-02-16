@@ -1,13 +1,28 @@
 #!/bin/sh
 
 . $HOME/.cache/wal/colors.sh
-. $HOME/.local/tmp/cpu-load
 
 high=75
 
-if [ "$load" -gt $high ]; then
-	echo "^b$foreground^^c$background^ ^c#ff0000^ $load%"
-else
-	echo "^b$foreground^^c$background^  $load%"
-fi
+cpu() {
+	local a b c cpu previdle prevtotal idle total rest
+
+	read -r cpu a b c previdle rest </proc/stat
+	prevtotal=$((a + b + c + previdle))
+
+	sleep 0.5
+
+	read -r cpu a b c idle rest </proc/stat
+	total=$((a + b + c + idle))
+
+	load=$((100 * ((total - prevtotal) - (idle - previdle)) / (total - prevtotal)))
+
+	if [ "$load" -gt $high ]; then
+		echo "^b$foreground^^c$background^ ^c#ff0000^ $load%"
+	else
+		echo "^b$foreground^^c$background^  $load%"
+	fi
+}
+
+echo $(cpu)
 
