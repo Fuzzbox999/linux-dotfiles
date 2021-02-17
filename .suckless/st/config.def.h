@@ -5,14 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-/* static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true"; */
-static char *font = "MesloLGS NF:pixelsize=14:antialias=true:autohint=true";
+static char *font = "MesloLGS NF:pixelsize=16:antialias=true:autohint=true";
+
 /* Spare fonts */
 static char *font2[] = {
-	"Hack:pixelsize=13:antialias=true:autohint=true",
-	"JoyPixels:pixelsize=13:antialias=true:autohint=true",
-/*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
-/*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
+ 	"Hack:pixelsize=15:antialias=true:autohint=true",
+ 	"JoyPixels:pixelsize=15:antialias=true:autohint=true",
 };
 
 static int borderpx = 20;
@@ -103,16 +101,59 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* Terminal colors (16 first used in escape sequence) */
-#include "/home/fuzzbox/.cache/wal/colors-wal-st.h"
+static const char *colorname[] = {
+	/* 8 normal colors */
+	"black",
+	"red3",
+	"green3",
+	"yellow3",
+	"blue2",
+	"magenta3",
+	"cyan3",
+	"gray90",
+
+	/* 8 bright colors */
+	"gray50",
+	"red",
+	"green",
+	"yellow",
+	"#5c5cff",
+	"magenta",
+	"cyan",
+	"white",
+
+	[255] = 0,
+
+	/* more colors can be added after 255 to use with DefaultXX */
+	"#cccccc",
+	"#555555",
+};
+
 
 /*
- * Default shape of cursor
- * 2: Block ("█")
- * 4: Underline ("_")
- * 6: Bar ("|")
- * 7: Snowman ("☃")
+ * Default colors (colorname index)
+ * foreground, background, cursor, reverse cursor
  */
-static unsigned int cursorshape = 2;
+unsigned int defaultfg = 7;
+unsigned int defaultbg = 0;
+static unsigned int defaultcs = 256;
+static unsigned int defaultrcs = 257;
+
+/*
+ * https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h4-Functions-using-CSI-_-ordered-by-the-final-character-lparen-s-rparen:CSI-Ps-SP-q.1D81
+ * Default style of cursor
+ * 0: Blinking block
+ * 1: Blinking block (default)
+ * 2: Steady block ("█")
+ * 3: Blinking underline
+ * 4: Steady underline ("_")
+ * 5: Blinking bar
+ * 6: Steady bar ("|")
+ * 7: Blinking st cursor
+ * 8: Steady st cursor
+ */
+static unsigned int cursorstyle = 3;
+static Rune stcursor = 0x2603; /* snowman (U+2603) */
 
 /*
  * Default columns and rows numbers
@@ -140,6 +181,42 @@ static unsigned int defaultattr = 11;
  * modifier, set to 0 to not use it.
  */
 static uint forcemousemod = ShiftMask;
+
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+		{ "font",         STRING,  &font },
+		{ "color0",       STRING,  &colorname[0] },
+		{ "color1",       STRING,  &colorname[1] },
+		{ "color2",       STRING,  &colorname[2] },
+		{ "color3",       STRING,  &colorname[3] },
+		{ "color4",       STRING,  &colorname[4] },
+		{ "color5",       STRING,  &colorname[5] },
+		{ "color6",       STRING,  &colorname[6] },
+		{ "color7",       STRING,  &colorname[7] },
+		{ "color8",       STRING,  &colorname[8] },
+		{ "color9",       STRING,  &colorname[9] },
+		{ "color10",      STRING,  &colorname[10] },
+		{ "color11",      STRING,  &colorname[11] },
+		{ "color12",      STRING,  &colorname[12] },
+		{ "color13",      STRING,  &colorname[13] },
+		{ "color14",      STRING,  &colorname[14] },
+		{ "color15",      STRING,  &colorname[15] },
+		{ "background",   STRING,  &colorname[256] },
+		{ "foreground",   STRING,  &colorname[257] },
+		{ "cursorColor",  STRING,  &colorname[258] },
+		{ "termname",     STRING,  &termname },
+		{ "shell",        STRING,  &shell },
+		{ "minlatency",   INTEGER, &minlatency },
+		{ "maxlatency",   INTEGER, &maxlatency },
+		{ "blinktimeout", INTEGER, &blinktimeout },
+		{ "bellvolume",   INTEGER, &bellvolume },
+		{ "tabspaces",    INTEGER, &tabspaces },
+		{ "borderpx",     INTEGER, &borderpx },
+		{ "cwscale",      FLOAT,   &cwscale },
+		{ "chscale",      FLOAT,   &chscale },
+};
 
 /*
  * Internal mouse shortcuts.
@@ -172,9 +249,9 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ MODKEY,               XK_l,           copyurl,        {.i =  0} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
+	{ MODKEY,               XK_l,           copyurl,        {.i =  0} },
 };
 
 /*

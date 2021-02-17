@@ -1,10 +1,8 @@
 #!/bin/sh
 
-. $HOME/.cache/wal/colors.sh
-
 fan() {
 	 fan=$(cat /proc/acpi/ibm/fan|awk 'NR==2{print $2}')
-	 echo "^c$background^^b$foreground^ $fan rpm"
+	 echo " $fan rpm"
 }
 
 echo $(fan)

@@ -1,10 +1,8 @@
 #!/bin/sh
 
-. $HOME/.cache/wal/colors.sh
-
 mem(){
 	mem=$(free -h --mega | awk 'NR==2{print $3}')
-	echo "^c$background^^b$foreground^ $mem ^d^"
+	echo " $mem "
 }
 
 echo $(mem)

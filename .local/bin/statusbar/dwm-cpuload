@@ -1,7 +1,5 @@
 #!/bin/sh
 
-. $HOME/.cache/wal/colors.sh
-
 high=75
 
 cpu() {
@@ -18,9 +16,9 @@ cpu() {
 	load=$((100 * ((total - prevtotal) - (idle - previdle)) / (total - prevtotal)))
 
 	if [ "$load" -gt $high ]; then
-		echo "^b$foreground^^c$background^ ^c#ff0000^ $load%"
+		echo " ^c#ff0000^ $load%^d^"
 	else
-		echo "^b$foreground^^c$background^  $load%"
+		echo "  $load%"
 	fi
 }
 

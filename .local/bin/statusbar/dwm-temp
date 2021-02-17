@@ -1,7 +1,5 @@
 #!/bin/sh
 
-. $HOME/.cache/wal/colors.sh
-
 # Check 2 paths, because it varies from time to time on the T450s
 temp_path1='/sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input'
 temp_path2='/sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input'
@@ -22,9 +20,9 @@ temp() {
 	read core < $temp_path
 	coretemp=$(($core/1000))
 	if [ "$coretemp" -gt "$high" ]; then
-		echo "^b$foreground^^c$background^^c#ff0000^ $coretemp°C"
+		echo "^c#ff0000^ $coretemp°C^d^"
 	else
-		echo "^b$foreground^^c$background^ $coretemp°C"
+		echo " $coretemp°C"
 	fi
 }
 

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+status=$(xinput --list-props 11|grep Enabled|cut -d: -f2|xargs)
+
+if [ $status = 0 ]; then
+	xinput --enable 11
+else
+	xinput --disable 11
+fi
+

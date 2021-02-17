@@ -1,7 +1,5 @@
 #!/bin/sh
 
-. $HOME/.cache/wal/colors.sh
-
 limit=30
 endcolor="^d^"
 
@@ -26,9 +24,9 @@ battery() {
 		exit 0
 	else
 		if [ "$BAT_TOT" -lt $limit ]; then
-			echo "^c$background^^b#ff0000^ $status $BAT_TOT% ^d^"
+			echo " $status ^c#ff0000^$BAT_TOT% ^d^"
 		else
-			echo "^c$background^^b$foreground^ $status $BAT_TOT% ^d^"
+			echo " $status $BAT_TOT% "
 		fi
 
 	fi
