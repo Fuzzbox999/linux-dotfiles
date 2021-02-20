@@ -16,6 +16,11 @@ let g:netrw_liststyle=3
 " to navigate forward and back
 " end
 
+augroup RestoreCursorShapeOnExit
+    autocmd!
+    autocmd VimLeave * set guicursor=a:hor20-blinkon1
+augroup END
+
 set undofile
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 set list listchars=nbsp:¬,tab:»·,trail:·,extends:>
