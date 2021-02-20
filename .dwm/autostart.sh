@@ -1,1 +1,0 @@
-../.suckless/autostart.sh
