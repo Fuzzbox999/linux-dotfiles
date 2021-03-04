@@ -2,19 +2,29 @@
 " map <C-v> "+P
 " from https://www.youtube.com/watch?v=XA2WjJbmmoM
 " Use find, and Ctrl n and Ctrl f for autocompletion
+
+" set runtimepath^=~/.vim runtimepath+=~/.vim/after
+" let &packpath = &runtimepath
+" source ~/.vimrc
+
 set path+=**
 set path+=.config/**
-set path+=.suckless/**
+set path+=.cache/suckless/**
 set path+=.local/bin/**
 set wildmenu
+set hlsearch
+set smarttab
+set showcmd
+" set termguicolors
+set formatoptions+=c
+set formatoptions+=q
+set clipboard+=unnamedplus
+set completeopt=menuone,longest
+"setlocal spell spelllang=fr
+"set complete+=kspell
+
 " file browser using edit
 let g:netrw_liststyle=3
-" noremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
-" http://philipbradley.net/rspec-into-vim-with-quickfix
-" set makeprg=bundle\ exec\ rspec\ -f\ QuickfixFormatter
-" :make runs RSpec :cl lists errors :cc# jump to error by number :cn and :cp
-" to navigate forward and back
-" end
 
 augroup RestoreCursorShapeOnExit
     autocmd!
@@ -28,7 +38,19 @@ set list listchars=nbsp:¬,tab:»·,trail:·,extends:>
 :set rnu
 :set scrolloff=999
 
-let g:airline_powerline_fonts = 1
+" syntax on
+
+" execute the current line of text as a shell command
+" noremap  Q !!$SHELL<CR>
+
+" Command-line mode mapping for alt-v
+" Replace the command-line with the text beneath the cursor in the buffer
+" cnoremap <Esc>q <C-\>esubstitute(getline('.'), '^\s*\(' . escape(substitute(&commentstring, '%s.*$', '', ''), '*') . '\)*\s*:*' , '', '')<CR>
+" cnoremap <Esc>v <C-\>esubstitute(getline('.'), '^\s*\(' . escape(substitute(&commentstring, '%s.*$', '', ''), '*') . '\)*\s*:*' , '', '')<CR>
+
+" Use <C-L> to clear search highlighting and redraw the screen
+noremap  <silent> <C-l>      :nohlsearch <bar> redraw!<CR>
+inoremap <silent> <C-l> <C-O>:nohlsearch <bar> redraw!<CR>
 
 " air-line
 let g:airline_powerline_fonts = 1
@@ -89,18 +111,32 @@ call plug#begin('~/.vim/plugged')
    " Unmanaged plugin (manually installed and updated)
    Plug '~/my-prototype-plugin'
 
-function! Chomp(str)
-  return substitute(a:str, '\n$', '', '')
+   Plug 'nvim-lua/popup.nvim'
+   Plug 'nvim-lua/plenary.nvim'
+   Plug 'nvim-telescope/telescope.nvim'
+
+   " We recommend updating the parsers on update
+   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
+   
+   " Colorizer
+"   Plug 'norcalli/nvim-colorizer.lua'
+
+   Plug 'dylanaraps/wal.vim'
+
+   function! Chomp(str)
+   return substitute(a:str, '\n$', '', '')
 endfunction
 
    " Initialize plugin system
 call plug#end()
 
-   " Using plug
-
-Plug 'dylanaraps/wal.vim'
+" lua require'colorizer'.setup()
 
 colorscheme wal
 
 " set cursorcolumn
-set cursorline
+" set cursorline
+" hi CursorLine term=bold cterm=bold
+" :hi CursorLine cterm=underline term=underline ctermbg=NONE guibg=NONE
+" :au Colorscheme * :hi CursorLine cterm=underline term=underline ctermbg=NONE guibg=NONE
+

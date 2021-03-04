@@ -2,18 +2,49 @@ Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    full
 URxvt*saveLines: 100000
-URxvt*visualBell: true
-URxvt*font: xft:MesloLGS NF:pixelsize=13:antialias=true:hinting=true
+URxvt*visualBell: false
+URxvt*font: xft:MesloLGS NF:pixelsize=15:antialias=true:hinting=true
 xft:symbola:size=10:minspace=False
+!urxvt.transparent: true
+!urxvt.shading: 85
+!urxvt.blurRadius: 5
 URxvt*scrollBar:	false
 URxvt*scrollstyle:	rxvt
 URxvt*internalBorder:  25
 URxvt*letterSpace: +0
 URxvt*geometry:  105x26
 URxvt*fading:  10
-URxvt.perl-ext-common: resize-font
+URxvt.perl-ext-common: resize-font,default,matcher
 URxvt.keysym.C-minus:     resize-font:smaller
 URxvt.keysym.C-plus:      resize-font:bigger
 URxvt.keysym.C-equal:     resize-font:reset
 URxvt.keysym.C-question:  resize-font:show
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
 
+dwm.borderpx: 3
+dwm.snap: 32
+dwm.swallowfloating: 1
+dwm.gappih: 10
+dwm.gappiv: 10
+dwm.gappoh: 10
+dwm.gappov: 10
+dwm.smartgaps: 1
+dwm.showbar: 1
+dwm.topbar: 0
+dwm.user_bh: 32
+!dwm.color0:
+!dwm.color8:
+!dwm.color0:
+!dwm.color4:
+!dwm.color0:
+!dwm.color4:
+dwm.mfact: 0.55
+dwm.nmaster: 1
+dwm.resizehints: 0
+dwm.attachdirection: 0 
+!0 default, 1 above, 2 aside, 3 below, 4 bottom, 5 top
+
+*.alpha: 0.2
+
+!st.borderpx: 100

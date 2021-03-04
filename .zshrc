@@ -5,24 +5,16 @@
 #  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 #fi
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-#fi
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
+# pywal stuff
 (cat ~/.cache/wal/sequences &)
 source ~/.cache/wal/colors-tty.sh
 
 POWERLEVEL9K_INSTANT_PROMPT=off
+
+fortune -e all fr && echo "\n"
 
 export PATH=$PATH:~/.local/bin:~/.local/bin/statusbar:~/.local/bin/dmenuscripts
 export EDITOR=nvim
@@ -34,14 +26,14 @@ alias slrn='slrn -i ~/.config/slrn/slrn.rc'
 alias pac='sudo pacman'
 alias mirrors='sudo reflector --country France --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias autoremove='pac -Rns $(pacman -Qtdq)'
-alias config='/usr/bin/git --git-dir=$HOME/.local/dotfiles/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.cache/dotfiles/ --work-tree=$HOME'
 alias cl='clear'
 alias ccl='cd && clear'
-alias neo='echo "" && neofetch --disable Theme Icons GPU Uptime Packages title Resolution --color_blocks on --title_fqdn on --underline off --kernel_shorthand on --memory_percent on --memory_unit gib --speed_shorthand on --cpu_brand off --distro_shorthand on  --ascii_distro linux_small \n && dwm-dwm \n && dwm-power'
+alias neo='echo "" && neofetch --disable Theme Icons GPU Uptime Packages title Resolution --color_blocks on --title_fqdn on --underline off --kernel_shorthand on --memory_percent on --memory_unit gib --speed_shorthand on --cpu_brand off --distro_shorthand on  --ascii_distro linux_small'
 alias dragon='dragon-drag-and-drop'
 alias bat='sudo tlp-stat -b'
-alias vim='nvim'
 alias stab='tabbed -r 2 st -w '' -e'
+alias chk='journalctl -eperr'
 
 setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes
@@ -108,7 +100,7 @@ setopt hist_verify            # show command with history expansion to user befo
 alias history="history 0"
 
 # make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -241,18 +233,12 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -l'
+alias ll='ls -lh'
 alias la='ls -A'
-alias lla='ls -lA'
+alias lla='ls -lhA'
 alias l='ls -CF'
 
 # enable auto-suggestions based on the history
-#if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-#    . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-#    # change suggestion color
-#    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
-#fi
-
 if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     # change suggestion color
@@ -260,7 +246,6 @@ if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; th
 fi
 
 # Vim stuff
-
 function nvim() {
   args=()
   for i in $@; do
@@ -284,3 +269,5 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
