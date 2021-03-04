@@ -1,6 +1,0 @@
-I don't install suckless tools in /usr/whatever.
-
-I only type make in each $HOME/.suckless tool directory when a rebuild is required.
-
-dwm, dwmblocks, dmenu* binaries are symlinked from $HOME/.local/bin and
-$HOME/.local/bin is added to my $PATH in from .zshrc.
