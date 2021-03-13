@@ -1,10 +1,8 @@
 #!/bin/sh
 
-. "$HOME/.cache/wal/colors.sh"
-
 day() {
 	day="$(date +"%e %b  %H:%M")"
-	echo "^c$color5^$day^d^"
+	echo "$day"
 }
 
 echo "$(day)  "

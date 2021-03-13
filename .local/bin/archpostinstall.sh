@@ -2,7 +2,7 @@
 
 echo "Install more programs"
 
-sudo pacman -S links git xorg ranger rxvt-unicode urxvt-perls openssh htop feh xorg-xinit wget firefox papirus-icon-theme picom ttf-font-awesome scrot neofetch python-pywal xdotool dunst xclip pulseaudio pavucontrol udisks2 udiskie mplayer cheese blueman zsh zsh-autosuggestions zsh-completions zsh-lovers zsh-syntax-highlighting zsh-theme-powerlevel10k zathura xdotool xdg-user-dirs tlp tlp-rdw thunar neomutt neovim mpv mpc mopidy hdparm gnome-font-viewer fprintd dunst blueman bluez xf86-input-synaptics jq sassc ncmpcpp cronie gimp firefox-i18n-fr imagemagick net-tools curl redshift vim-airline vim-airline-themes awesome-terminal-fonts powerline-fonts
+sudo pacman -S links git xorg ranger rxvt-unicode urxvt-perls openssh htop feh xorg-xinit wget firefox papirus-icon-theme picom ttf-font-awesome scrot neofetch python-pywal xdotool dunst xclip pulseaudio pavucontrol udevil mplayer cheese blueman zsh zsh-autosuggestions zsh-completions zsh-lovers zsh-syntax-highlighting zsh-theme-powerlevel10k zathura xdotool xdg-user-dirs tlp tlp-rdw thunar neomutt neovim mpv mpc mopidy hdparm gnome-font-viewer fprintd dunst blueman bluez xf86-input-synaptics jq sassc ncmpcpp cronie gimp firefox-i18n-fr imagemagick net-tools curl redshift vim-airline vim-airline-themes awesome-terminal-fonts powerline-fonts
 
 echo "Install AUR helper"
 

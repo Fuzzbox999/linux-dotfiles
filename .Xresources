@@ -45,6 +45,6 @@ dwm.resizehints: 0
 dwm.attachdirection: 0 
 !0 default, 1 above, 2 aside, 3 below, 4 bottom, 5 top
 
-*.alpha: 0.2
+*.alpha: 0.5
 
 !st.borderpx: 100
