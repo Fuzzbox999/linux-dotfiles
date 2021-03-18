@@ -4,7 +4,7 @@
 static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
 static double opacity = 1.0;                /* -o  option; defines alpha translucency        */
 static int centered = 1;                    /* -c option; centers dmenu on screen */
-static int min_width = 500;                    /* minimum width when centered */
+static int min_width = 700;                    /* minimum width when centered */
 
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static char *fonts[] = {
@@ -17,10 +17,11 @@ static const char *prompt      = NULL;      /* -p  option; prompt to the left of
 /* static const unsigned int baralpha = 0xd0; */
 static const unsigned int baralpha = 100;
 static const unsigned int borderalpha = OPAQUE;
-static const unsigned int alphas[][3]      = {
+
+static const unsigned int alphas[SchemeLast][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, OPAQUE, borderalpha },
 };
 
 static char *colors[SchemeLast][2] = {
