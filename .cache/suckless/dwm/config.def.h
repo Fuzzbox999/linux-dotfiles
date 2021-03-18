@@ -95,21 +95,21 @@ ResourcePref resources[] = {
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "  ",    tile }, /* first entry is default */
-	{ "  ",    monocle },
-	{ "  ",    spiral },
-	{ "[\\]",     dwindle },
-	{ "H[]",      deck },
-	{ "TTT",      bstack },
-	{ "===",      bstackhoriz },
-	{ "  ",    grid },
-	{ "###",      nrowgrid },
-	{ "---",      horizgrid },
-	{ ":::",      gaplessgrid },
-	{ "  ",    centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
-	{ "><>",      NULL }, /* no layout function means floating behavior */
-	{ NULL,       NULL },
+	{ "[]=",     tile }, /* first entry is default */
+	{ "[M]",     monocle },
+	{ "[@]",     spiral },
+	{ "[\\]",    dwindle },
+	{ "H[]",     deck },
+	{ "TTT",     bstack },
+	{ "===",     bstackhoriz },
+	{ "HHH",     grid },
+	{ "###",     nrowgrid },
+	{ "---",     horizgrid },
+	{ ":::",     gaplessgrid },
+	{ "|M|",     centeredmaster },
+	{ ">M>",     centeredfloatingmaster },
+	{ "><>",     NULL }, /* no layout function means floating behavior */
+	{ NULL,      NULL },
 };
 
 /* key definitions */
