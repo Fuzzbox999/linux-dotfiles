@@ -16,7 +16,7 @@ POWERLEVEL9K_INSTANT_PROMPT=off
 
 # fortune -e all fr && echo "\n"
 
-export PATH=$PATH:~/.local/bin:~/.local/bin/dmenuscripts
+export PATH=$PATH:~/.local/bin:~/.local/bin/dmenuscripts:~/.cache/go/bin
 export EDITOR=nvim
 export XDG_CONFIG_HOME=~/.config/
 export NNN_PLUG='f:finder;o:fzopen;p:mocplay;d:diffs;t:nmount;v:imgview'
@@ -275,3 +275,6 @@ source $ZSH/oh-my-zsh.sh
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.fzf/shell/completion.zsh
+source ~/.fzf/shell/key-bindings.zsh
+
