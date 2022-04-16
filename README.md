@@ -1,7 +1,7 @@
 # dotfiles
 
 - [Arch Linux](https://archlinux.org/)
-- [Thinkpads](https://www.reddit.com/r/thinkpad/) (X220, T430 and T450s)
+- [Thinkpads](https://www.reddit.com/r/thinkpad/) (X220, X270, T430 and T450s)
 - [dwm](https://dwm.suckless.org/)
 - [dwmblocks](https://github.com/torrinfail/dwmblocks)
 - [dmenu](https://tools.suckless.org/dmenu/)
