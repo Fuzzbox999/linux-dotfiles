@@ -14,6 +14,8 @@ elif [ "$MAX" = 4648 ]; then
 	STEP=332
 elif [ "$MAX" = 4437 ]; then
 	STEP=261
+elif [ "$MAX" = 512 ]; then
+	STEP=32
 fi
 
 if [ "$1" = down ]; then
@@ -30,4 +32,4 @@ elif [ "$VAL" -gt $MAX ]; then
 	VAL=$MAX
 fi
 
-echo $VAL | tee $KEYS_DIR/brightness && killall -USR1 i3status
+echo $VAL | tee $KEYS_DIR/brightness

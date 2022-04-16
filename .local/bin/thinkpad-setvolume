@@ -4,7 +4,7 @@
 
 MIN=0
 MAX=200
-VAL=$(pacmd list-sinks | grep "volume" | head -n1 | cut -d: -f3 | cut -d% -f1 |cut -d/ -f2 |xargs)
+VAL=$(pactl list sinks | grep "Volume" | head -n1 | cut -d: -f3 | cut -d% -f1 |cut -d/ -f2 |xargs)
 
 if [ "$1" = down ]; then
 	VAL=$((VAL-5))

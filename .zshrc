@@ -14,16 +14,16 @@ source ~/.cache/wal/colors-tty.sh
 
 POWERLEVEL9K_INSTANT_PROMPT=off
 
-fortune -e all fr && echo "\n"
+# fortune -e all fr && echo "\n"
 
-export PATH=$PATH:~/.local/bin:~/.local/bin/statusbar:~/.local/bin/dmenuscripts
+export PATH=$PATH:~/.local/bin:~/.local/bin/dmenuscripts
 export EDITOR=nvim
 export XDG_CONFIG_HOME=~/.config/
-export NNTPSERVER='news.eternal-september.org'
 export NNN_PLUG='f:finder;o:fzopen;p:mocplay;d:diffs;t:nmount;v:imgview'
+export GOPATH=$HOME/.cache/go
 
-alias slrn='slrn -i ~/.config/slrn/slrn.rc'
 alias pac='sudo pacman'
+alias upgrade='sudo pacman -Syu && sys_check_upgrades'
 alias mirrors='sudo reflector --country France --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 alias autoremove='pac -Rns $(pacman -Qtdq)'
 alias config='/usr/bin/git --git-dir=$HOME/.cache/dotfiles/ --work-tree=$HOME'
@@ -32,8 +32,8 @@ alias ccl='cd && clear'
 alias neo='echo "" && neofetch --disable Theme Icons GPU Uptime Packages title Resolution --color_blocks on --title_fqdn on --underline off --kernel_shorthand on --memory_percent on --memory_unit gib --speed_shorthand on --cpu_brand off --distro_shorthand on  --ascii_distro linux_small'
 alias dragon='dragon-drag-and-drop'
 alias bat='sudo tlp-stat -b'
-alias stab='tabbed -r 2 st -w '' -e'
 alias chk='journalctl -eperr'
+alias x='startx'
 
 setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes
@@ -81,6 +81,10 @@ plugins=(
 )
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
+
+if [ `tput colors` != "256" ]; then
+	  ZSH_THEME="robbyrussell"  
+fi
 
 zstyle ':completion:*' rehash true
 
