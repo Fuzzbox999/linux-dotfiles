@@ -1,4 +1,4 @@
-# dotfiles
+# Arch Linux dotfiles
 
 - [Arch Linux](https://archlinux.org/)
 - [Thinkpads](https://www.reddit.com/r/thinkpad/) (X220, X270, T430 and T450s)
