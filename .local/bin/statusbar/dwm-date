@@ -1,9 +1,0 @@
-#!/bin/sh
-
-day() {
-	day="$(date +"%e %b  %H:%M")"
-	echo "$day"
-}
-
-echo "$(day)  "
-

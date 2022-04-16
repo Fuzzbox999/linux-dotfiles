@@ -1,7 +1,0 @@
-#!/bin/sh
-
-KEYS_DIR=/sys/class
-
-echo "852" | tee $KEYS_DIR/backlight/intel_backlight/brightness
-echo "2" | tee $KEYS_DIR/leds/tpacpi::kbd_backlight/brightness 
-kill -39 $(pidof dwmblocks)

@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# Starts ncmpcpp in urxvt with desired layout
-# urxvt -name Ncmpcpp -e ncmpcpp -s playlist -S lyrics&
-st -n Ncmpcpp -e ncmpcpp -s playlist -S lyrics&
-
-
-
-

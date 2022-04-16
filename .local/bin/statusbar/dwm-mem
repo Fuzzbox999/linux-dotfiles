@@ -1,9 +1,0 @@
-#!/bin/sh
-
-mem(){
-	mem=$(free -h --mega | awk 'NR==2{print $3}')
-	echo " $mem "
-}
-
-echo $(mem)
-

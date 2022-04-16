@@ -1,9 +1,0 @@
-#!/bin/sh
-
-fan() {
-	 fan=$(cat /proc/acpi/ibm/fan|awk 'NR==2{print $2}')
-	 echo " $fan rpm"
-}
-
-echo $(fan)
-
