@@ -1,0 +1,13 @@
+#!/bin/sh
+
+vol() {
+	ismuted=$(pactl list sinks|grep Mute|awk '{print $2}')
+	if [ "$ismuted" = "yes" ]; then
+		echo "^c#ff0000^ Muted^d^"
+	else
+ 		echo " $(pactl list sinks|grep "Volume"|awk 'NR==1{print $5}')"
+ 	fi
+}
+
+echo $(vol)
+

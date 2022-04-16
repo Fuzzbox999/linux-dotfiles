@@ -1,0 +1,16 @@
+#!/bin/sh
+
+mail() {
+
+	size0=$(stat --printf="%s" /home/fuzzbox/.mutt/perso/perso)    
+        size1=$(stat --printf="%s" /home/fuzzbox/.mutt/pro/pro)    
+        size2=$(stat --printf="%s" /home/fuzzbox/.mutt/gmail/gmail)    
+        if [ $size0 = "0" ] && [ $size1 = "0" ] && [ $size2 = "0" ]; then    
+		echo "  "
+        else    
+                echo "^c#ff0000^  ^d^"
+        fi    
+}
+
+echo $(mail)
+

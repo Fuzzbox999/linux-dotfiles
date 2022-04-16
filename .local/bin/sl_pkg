@@ -1,0 +1,14 @@
+#!/bin/sh
+
+. $HOME/.local/etc/pkg-status
+
+pkg() {
+	if [ "$upgradeable" = "0" ]; then
+		echo " $upgradeable / $installed pkg"
+	else
+		echo " ^c#ff0000^$upgradeable^d^ / $installed pkg"
+	fi
+	. "$HOME/.local/etc/pkg-status"
+}
+
+echo $(pkg)

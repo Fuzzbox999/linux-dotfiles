@@ -12,8 +12,8 @@ static int smartgaps          = 1;        /* 1 means no outer gap when there is 
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 0;        /* 0 means bottom bar */
 static int user_bh            = 32;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]    = { "SFNS Display:style=Regular:size=9:antialias=true:autohint=true", "FontAwesome:style=Regular:size=9:antialias=true:autohint=true", "Font awesome 5 Free Solid:style=Solid:size=9:antialias=true:autohint=true" };
-static char dmenufont[]       = "SFNS Display:style=Regular:size=9:antialias=true:autohint=true";
+static const char *fonts[]    = { "SFNS Display:style=Regular:size=11:antialias=true:autohint=true", "FontAwesome:style=Regular:size=11:antialias=true:autohint=true", "Font awesome 5 Free Solid:style=Solid:size=11:antialias=true:autohint=true" };
+static char dmenufont[]       = "SFNS Display:style=Regular:size=11:antialias=true:autohint=true";
 static char normbgcolor[]     = "#222222";
 static char normbordercolor[] = "#444444";
 static char normfgcolor[]     = "#bbbbbb";
@@ -61,6 +61,7 @@ static const Rule rules[] = {
 static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static int nmaster     = 1;    /* number of clients in master area */
 static int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 static int attachdirection = 0; /* 0 default, 1 above, 2 aside, 3 below, 4 bottom, 5 top */
 
 /* Xresources preferences to load at startup */
@@ -86,6 +87,7 @@ ResourcePref resources[] = {
 	{ "mfact",              FLOAT,   &mfact },
 	{ "nmaster",            INTEGER, &nmaster },
 	{ "resizehints",        INTEGER, &resizehints },
+	{ "lockfullscreen",     INTEGER, &lockfullscreen },
 	{ "attachdirection",    INTEGER, &attachdirection },
 };
 
@@ -201,12 +203,12 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,           spawn,                SHCMD("kill -HUP $(pidof dwm)") },
 	{ MODKEY|ShiftMask,             XK_e,           quit,                 {0} },
 	{ MODKEY|ControlMask|ShiftMask, XK_e,           quit,                 {1} },
-	{ 0, XF86XK_MonBrightnessDown,                  spawn,                SHCMD("thinkpad-backlight down ; kill -39 $(pidof dwmblocks)") },
-	{ 0, XF86XK_MonBrightnessUp,                    spawn,                SHCMD("thinkpad-backlight up ; kill -39 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioRaiseVolume,                   spawn,                SHCMD("thinkpad-setvolume up ; kill -45 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioLowerVolume,                   spawn,                SHCMD("thinkpad-setvolume down ; kill -45 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioMute,                          spawn,                SHCMD("pactl set-sink-mute 0 toggle ; kill -45 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioMicMute,                       spawn,                SHCMD("pactl set-source-mute 1 toggle") },
+	{ 0, XF86XK_MonBrightnessDown,                  spawn,                SHCMD("thinkpad-backlight down") },
+	{ 0, XF86XK_MonBrightnessUp,                    spawn,                SHCMD("thinkpad-backlight up") },
+	{ 0, XF86XK_AudioRaiseVolume,                   spawn,                SHCMD("thinkpad-setvolume up") },
+	{ 0, XF86XK_AudioLowerVolume,                   spawn,                SHCMD("thinkpad-setvolume down") },
+	{ 0, XF86XK_AudioMute,                          spawn,                SHCMD("pactl set-sink-mute 0 toggle") },
+	{ 0, XF86XK_AudioMicMute,                       spawn,                SHCMD("pactl set-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo toggle") },
 	{ 0, XK_Caps_Lock,                              spawn,                SHCMD("kill -40 $(pidof dwmblocks)") },
 	{ 0, XK_Print,                                  spawn,                SHCMD("scrot -e 'mv $f ~/Images/Screenshots' && sleep 2 && notify-send Screenshot!!!") },
 	{ 0, XF86XK_Launch1,                            spawn,                SHCMD("thinkpad-touchpad-toggle ; kill -49 $(pidof dwmblocks)") },
