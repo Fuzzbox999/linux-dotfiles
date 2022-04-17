@@ -5,7 +5,7 @@ up=$(uptime -p)
 action=$(echo -e "Verrouiller\nArrêter\nRedémarrer"|dmenu -i -l 3 -p "$up")
 
 if [ $action == "Verrouiller" ]; then
-	exec i3lock_custom
+	exec slock
 elif [ $action == "Arrêter" ]; then
 	poweroff
 elif [ $action == "Redémarrer" ]; then
