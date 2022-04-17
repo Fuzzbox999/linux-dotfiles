@@ -13,15 +13,17 @@ battery() {
 	read BAT1_FULL < /sys/class/power_supply/BAT1/energy_full
 
 	BAT_TOT=$((($BAT0_NOW+$BAT1_NOW)*100/($BAT0_FULL+$BAT1_FULL)))
-	# is it on AC or on battery ?
+
+	# is it on AC or on battery ? Show appropriate text-icon
 	if [ $online = "1" ]; then
 			status=""
 		else
 			status=" "
 	fi
-	# Different colors if on AC / on battery / on < 30% battery
+
+	# Red color if battery level is lower than 30%
 	if [ $status = "" ]; then
-		echo " $status $BAT_TOT% ^d^"
+		echo "$status $BAT_TOT%^d^"
 		exit 0
 	else
 		if [ "$BAT_TOT" -lt $limit ]; then

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# supposed to work with pipewire installed
+
 vol() {
 	ismuted=$(pactl list sinks|grep Mute|awk '{print $2}')
 	if [ "$ismuted" = "yes" ]; then

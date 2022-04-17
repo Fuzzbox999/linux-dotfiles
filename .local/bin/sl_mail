@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# is the size of the different inboxes is NULL, there are no new mails
+
 mail() {
 
 	size0=$(stat --printf="%s" /home/fuzzbox/.mutt/perso/perso)    
